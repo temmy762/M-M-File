@@ -1,0 +1,83 @@
+/**
+ * Admin sidebar and layout cleanup styles after removing footer and welcome message
+ * Enhanced to ensure proper mobile layout and consistent spacing
+ */
+
+/* Remove excess padding in the sidebar */
+.admin-sidebar {
+    padding-bottom: 0;
+}
+
+/* Add more space to the main content area */
+.admin-main {
+    margin-bottom: 0;
+    padding-bottom: 30px;
+    /* Remove any lingering footer space */
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 50px); /* Ensure main content fills viewport height */
+}
+
+/* Ensure the admin header has proper spacing after welcome message removal */
+.admin-header {
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea; /* Add subtle border to replace visual separation */
+}
+
+/* Clean up the header - center title after welcome message removed */
+.admin-header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px; /* Consistent size */
+}
+
+/* Fix main content area structure */
+.admin-content {
+    flex: 1;
+    padding-bottom: 20px;
+}
+
+/* Ensure proper section margins */
+.admin-section {
+    margin-bottom: 30px;
+}
+
+/* Fix mobile view */
+@media screen and (max-width: 991px) {
+    /* Remove extra space at the bottom of mobile sidebar */
+    .admin-sidebar {
+        padding-bottom: 0 !important;
+    }
+    
+    /* Fix header on mobile */
+    .admin-header {
+        padding: 15px !important;
+        justify-content: center !important;
+    }
+    
+    /* Ensure proper spacing at the bottom of content area on mobile */
+    .admin-content {
+        padding-bottom: 20px !important;
+        padding-top: 10px !important;
+    }
+    
+    /* Make sure there's no lingering footer space */
+    .admin-main {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Better spacing for mobile section headers */
+    .section-header {
+        margin-bottom: 15px !important;
+        padding-bottom: 10px !important;
+    }
+    
+    /* Fix sidebar nav on mobile */
+    .admin-sidebar-nav {
+        padding-bottom: 0 !important;
+    }
+}

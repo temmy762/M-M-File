@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form Test - Memories and More Photo Booths</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/simple-form.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .test-panel {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .status-panel {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .status {
+            font-weight: bold;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .warning { color: #ffc107; }
+        .info { color: #17a2b8; }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+        .back-link i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Email Form Test</h1>
+        <p>This page tests the email form functionality for Memories and More Photo Booths</p>
+    </div>
+
+    <div class="test-panel">
+        <h2 class="section-title">PHP Server Status</h2>
+        <div class="status-panel" id="serverStatus">
+            <span class="status info">Checking server status...</span>
+        </div>
+        <button class="btn btn-primary" id="checkServer">Check Server Status</button>
+    </div>
+
+    <div class="test-panel">
+        <h2 class="section-title">Test Email Form</h2>
+        <p>Complete this form to test the email functionality:</p>
+        
+        <!-- Alert Messages -->
+        <div id="formAlert" class="form-alert" style="display: none;"></div>
+
+        <!-- Test Form -->
+        <form id="testForm" method="post">
+            <input type="hidden" name="form_type" value="test">
+            
+            <div class="form-group">
+                <label for="name">Your Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+                <div class="field-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <div class="field-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Test Message <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="3" required>This is a test message from the email form test page.</textarea>
+                <div class="field-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="submitButton">
+                    <span class="button-text">Send Test Email</span>
+                    <span class="button-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Sending...
+                    </span>
+                </button>
+            </div>
+        </form>
+        
+        <!-- Form Success Message (initially hidden) -->
+        <div id="formSuccess" class="form-success" style="display: none;">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Test Successful!</h3>
+            <p>The test email was sent successfully. Check the recipient inbox to confirm delivery.</p>
+            <button class="btn btn-primary" id="resetForm">Send Another Test</button>
+        </div>
+    </div>
+
+    <div class="test-panel">
+        <h2 class="section-title">Email Configuration Status</h2>
+        <div id="configStatus">
+            <p>Checking email configuration...</p>
+        </div>
+    </div>
+
+    <a href="contact.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Contact Page</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check server status
+            checkServerStatus();
+            
+            // Check email configuration
+            checkEmailConfig();
+            
+            // Initialize form handler
+            const testForm = document.getElementById('testForm');
+            if (testForm) {
+                testForm.addEventListener('submit', handleFormSubmit);
+            }
+            
+            // Add event listeners
+            document.getElementById('checkServer').addEventListener('click', checkServerStatus);
+            
+            // Reset form button
+            const resetButton = document.getElementById('resetForm');
+            if (resetButton) {
+                resetButton.addEventListener('click', function() {
+                    document.getElementById('formSuccess').style.display = 'none';
+                    document.getElementById('testForm').style.display = 'block';
+                    document.getElementById('testForm').reset();
+                });
+            }
+        });
+        
+        function checkServerStatus() {
+            const statusElement = document.getElementById('serverStatus');
+            statusElement.innerHTML = '<span class="status info">Checking server status...</span>';
+            
+            fetch('phpinfo.php', {
+                method: 'HEAD',
+                cache: 'no-cache'
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusElement.innerHTML = '<span class="status success">PHP server is running!</span>';
+                } else {
+                    statusElement.innerHTML = '<span class="status warning">Server responded with status: ' + response.status + '</span>';
+                }
+            })
+            .catch(error => {
+                statusElement.innerHTML = '<span class="status error">PHP server is not running or not accessible.</span>' +
+                    '<p>Error details: ' + error.message + '</p>' +
+                    '<p>Use the start-php-server.bat file to start the PHP server.</p>';
+            });
+        }
+        
+        function checkEmailConfig() {
+            const configElement = document.getElementById('configStatus');
+            
+            fetch('simple-form-handler.php?check=config', {
+                method: 'GET',
+                cache: 'no-cache'
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Server responded with status: ' + response.status);
+                }
+            })
+            .then(data => {
+                if (data.config_status) {
+                    configElement.innerHTML = '<div class="status-panel">' +
+                        '<span class="status success">Email configuration appears to be set up.</span>' +
+                        '<p>' + data.message + '</p>' +
+                        '</div>';
+                } else {
+                    configElement.innerHTML = '<div class="status-panel">' +
+                        '<span class="status warning">Email configuration needs attention.</span>' +
+                        '<p>' + data.message + '</p>' +
+                        '</div>';
+                }
+            })
+            .catch(error => {
+                configElement.innerHTML = '<div class="status-panel">' +
+                    '<span class="status error">Could not check email configuration.</span>' +
+                    '<p>Error details: ' + error.message + '</p>' +
+                    '</div>';
+            });
+        }
+        
+        function handleFormSubmit(event) {
+            // Prevent default form submission
+            event.preventDefault();
+            
+            const form = event.target;
+            
+            // Check form validity first
+            if (!validateForm(form)) {
+                return false;
+            }
+            
+            // Show loading state
+            setLoadingState(true);
+            
+            // Get form data
+            const formData = new FormData(form);
+            
+            // Determine API endpoint - use PHP development server if on localhost
+            const isLocalDev = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+            const endpoint = isLocalDev ? 'http://localhost:8000/simple-form-handler.php' : 'simple-form-handler.php';
+            
+            // Send form data via fetch API
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Server returned error ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Hide loading state
+                setLoadingState(false);
+                
+                if (data.success) {
+                    // Show success message and hide form
+                    showSuccess();
+                } else {
+                    // Show error message
+                    showAlert('error', data.message || 'There was an error submitting the form. Please try again.');
+                }
+            })
+            .catch(error => {
+                // Hide loading state
+                setLoadingState(false);
+                
+                // Show appropriate error message based on error type
+                if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+                    showAlert('error', 'Cannot connect to the server. Please make sure the PHP server is running.');
+                } else {
+                    showAlert('error', 'There was a problem submitting the form: ' + error.message);
+                }
+                
+                console.error('Form submission error:', error);
+            });
+        }
+        
+        function validateForm(form) {
+            // Reset previous error messages
+            const errorElements = form.querySelectorAll('.field-error');
+            errorElements.forEach(el => el.textContent = '');
+            
+            // Get all required fields
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            // Check each required field
+            requiredFields.forEach(field => {
+                const errorContainer = field.nextElementSibling;
+                
+                // Check if field is empty
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('error');
+                    if (errorContainer && errorContainer.classList.contains('field-error')) {
+                        errorContainer.textContent = 'This field is required';
+                    }
+                } 
+                // Check email field format
+                else if (field.type === 'email' && !isValidEmail(field.value)) {
+                    isValid = false;
+                    field.classList.add('error');
+                    if (errorContainer && errorContainer.classList.contains('field-error')) {
+                        errorContainer.textContent = 'Please enter a valid email address';
+                    }
+                }
+                else {
+                    field.classList.remove('error');
+                }
+            });
+            
+            return isValid;
+        }
+        
+        function isValidEmail(email) {
+            // Simple email validation regex
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email.toLowerCase());
+        }
+        
+        function setLoadingState(isLoading) {
+            const submitButton = document.getElementById('submitButton');
+            const buttonText = submitButton.querySelector('.button-text');
+            const buttonLoading = submitButton.querySelector('.button-loading');
+            
+            if (isLoading) {
+                submitButton.disabled = true;
+                buttonText.style.display = 'none';
+                buttonLoading.style.display = 'inline-block';
+            } else {
+                submitButton.disabled = false;
+                buttonText.style.display = 'inline-block';
+                buttonLoading.style.display = 'none';
+            }
+        }
+        
+        function showAlert(type, message) {
+            const alertElement = document.getElementById('formAlert');
+            alertElement.className = 'form-alert alert-' + type;
+            alertElement.innerHTML = message;
+            alertElement.style.display = 'block';
+            
+            // Scroll to the alert
+            alertElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Hide alert after 8 seconds
+            setTimeout(() => {
+                alertElement.style.display = 'none';
+            }, 8000);
+        }
+        
+        function showSuccess() {
+            // Hide the form
+            document.getElementById('testForm').style.display = 'none';
+            
+            // Show success message
+            document.getElementById('formSuccess').style.display = 'block';
+            
+            // Scroll to success message
+            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>

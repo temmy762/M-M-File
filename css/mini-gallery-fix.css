@@ -1,0 +1,58 @@
+/* 
+   Memories and More Photo Booths - Mini Gallery Fix
+   Version: 1.0
+*/
+
+/* Fix for the Moments Captured section on the home page */
+.mini-gallery .gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    position: relative;
+}
+
+/* Ensure all images use object-fit: cover and have consistent dimensions */
+.mini-gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+/* Hover effect */
+.mini-gallery .gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Ensure consistent grid layout */
+.mini-gallery .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .mini-gallery .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-gallery .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mini-gallery .gallery-item {
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .mini-gallery .gallery-item {
+        height: 180px;
+    }
+}

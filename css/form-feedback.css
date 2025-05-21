@@ -1,0 +1,85 @@
+/* 
+ * Form Feedback Styles
+ * Styles for form feedback including loading indicators, success, and error messages
+ */
+
+/* Form Error Styles */
+.form-error {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid #ff3b30;
+    color: #ff3b30;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    display: none;
+}
+
+/* Input field error style */
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #ff3b30;
+}
+
+/* Error message under field */
+.error-message {
+    color: #ff3b30;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Form Success Styles */
+.form-success {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-left: 4px solid #34c759;
+    padding: 30px 25px;
+    border-radius: 6px;
+    margin: 20px 0;
+    text-align: center;
+    display: none;
+}
+
+.form-success .success-icon {
+    font-size: 48px;
+    color: #34c759;
+    margin-bottom: 15px;
+}
+
+.form-success h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.form-success p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Loading Indicator */
+button[type="submit"] .fa-spinner {
+    margin-right: 5px;
+}
+
+/* Disabled button style */
+button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Animation for spinner */
+.fa-spin {
+    animation: fa-spin 2s infinite linear;
+}
+
+@keyframes fa-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,92 @@
+/* 
+   Gallery Overlay Fix - Removes all text overlays and adds a clean hover effect
+   For Memories and More Photo Booths
+*/
+
+/* Remove all overlay content */
+.overlay-content,
+.gallery-item .overlay-content,
+.gallery-overlay .overlay-content,
+.masonry-gallery .overlay-content,
+.gallery-item h3,
+.gallery-item p,
+.gallery-overlay h3,
+.gallery-overlay p {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
+
+/* Clean up any broken HTML structure */
+.gallery-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent) !important;
+    opacity: 0 !important;
+    transition: opacity 0.4s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1 !important;
+}
+
+/* Enhanced hover effects */
+.gallery-item {
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.4s ease !important;
+    margin-bottom: 15px !important;
+}
+
+.gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.5s ease !important;
+    display: block !important;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08) !important;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1 !important;
+}
+
+/* Add a zoom icon on hover */
+.gallery-overlay::after {
+    content: '\f00e' !important;
+    font-family: 'Font Awesome 5 Free' !important;
+    font-weight: 900 !important;
+    color: white !important;
+    font-size: 24px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: scale(0) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.gallery-item:hover .gallery-overlay::after {
+    transform: scale(1) !important;
+}

@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Dashboard - Memories and More Photo Booths</title>
+    
+    <!-- Run this script immediately to ensure toggle works -->
+    <script src="js/ensure-toggle-works.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="css/simple-mobile.css">
+    <link rel="stylesheet" href="css/sidebar-cleanup-new.css">
+    <link rel="stylesheet" href="css/section-visibility-fix.css">
+    <link rel="stylesheet" href="css/admin-mobile-enhancements.css">
+    
+    <!-- Inline critical mobile toggle styles -->
+    <style>
+        /* Critical mobile toggle styles */
+        @media screen and (max-width: 991px) {
+            #mobileMenuToggle {
+                display: block !important;
+                cursor: pointer !important;
+                z-index: 9999 !important;
+            }
+            
+            .admin-sidebar.mobile-expanded .admin-nav {
+                display: block !important;
+            }
+            
+            .admin-nav {
+                display: none !important;
+            }
+        }
+    </style>
+    <style>
+        body {
+            font-family: var(--admin-font-primary);
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            font-size: var(--admin-font-size-base);
+            line-height: var(--admin-line-height);
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+        
+        .admin-logo {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .admin-logo h2 {
+            margin: 0;
+            color: #e91e63;
+        }
+        
+        .admin-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .admin-nav li {
+            margin-bottom: 5px;
+        }
+        
+        .admin-nav a {
+            display: block;
+            padding: 10px 20px;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .admin-nav a:hover,
+        .admin-nav li.active a {
+            background-color: #e91e63;
+            color: white;
+        }
+        
+        .admin-nav i {
+            margin-right: 10px;
+        }
+        
+        .admin-logout {
+            padding: 0 20px;
+            margin-top: 20px;
+        }
+        
+        .admin-logout button {
+            background: none;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            padding: 10px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .admin-logout button i {
+            margin-right: 10px;
+        }
+        
+        .admin-logout button:hover {
+            color: #e91e63;
+        }
+        
+        .admin-main {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .admin-header h1 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .admin-user {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .admin-section {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .admin-section.active {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .section-header {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .dashboard-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1 1 200px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-icon {
+            font-size: 24px;
+            color: #e91e63;
+            margin-right: 15px;
+        }
+        
+        .stat-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .stat-info p {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .admin-form {
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px; /* Prevents zoom on iOS */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #e91e63;
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.15);
+            outline: none;
+        }
+        
+        .form-actions {
+            margin-top: 20px;
+        }
+        
+        .btn-primary {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d81557;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .admin-table-container {
+            margin-top: 30px;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-table th {
+            background-color: #f5f5f5;
+        }
+        
+        .link-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #e91e63;
+        }
+        
+        .link-item h3 {
+            margin: 0 0 10px 0;
+        }
+        
+        .link-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+        
+        .link-item button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        /* Add screen reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+        }
+        
+        .close-modal {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .modal-footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .modal-footer button {
+            margin-left: 10px;
+        }
+        
+        /* Package Management Specific Styles */
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .package-edit-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .package-edit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .package-edit-card h3 {
+            margin-top: 0;
+            color: #e91e63;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Add-ons Management Specific Styles */
+        .addon-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .addon-edit-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .addon-edit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .addon-edit-item h3 {
+            margin-top: 0;
+            color: #e91e63;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .section-intro {
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+    </style>
+        
+        </style>
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>M&M Admin</h2>
+                <button type="button" id="mobileMenuToggle" 
+                        style="background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; padding: 10px; width: 50px; height: 50px; z-index: 9999;"
+                        onclick="document.querySelector('.admin-sidebar').classList.toggle('mobile-expanded'); return false;">
+                    <i class="fas fa-bars" style="display: inline-block;"></i>
+                    <i class="fas fa-times" style="display: none;"></i>
+                </button>
+                <script>
+                    // Immediate script for toggle functionality
+                    (function() {
+                        var toggle = document.getElementById('mobileMenuToggle');
+                        var sidebar = document.querySelector('.admin-sidebar');
+                        var bars = toggle.querySelector('.fa-bars');
+                        var times = toggle.querySelector('.fa-times');
+                        
+                        toggle.onclick = function() {
+                            sidebar.classList.toggle('mobile-expanded');
+                            
+                            if (sidebar.classList.contains('mobile-expanded')) {
+                                bars.style.display = 'none';
+                                times.style.display = 'inline-block';
+                            } else {
+                                bars.style.display = 'inline-block';
+                                times.style.display = 'none';
+                            }
+                            
+                            return false;
+                        };
+                    })();
+                </script>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li class="active"><a href="#dashboard-section"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#events-section"><i class="fas fa-calendar-alt"></i> Event Links</a></li>
+                    <li><a href="#packages-section"><i class="fas fa-tags"></i> Pricing Packages</a></li>
+                    <li><a href="#addons-section"><i class="fas fa-plus-circle"></i> Add-ons</a></li>
+                    <li><a href="#settings-section"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="admin-logout">
+                <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+        
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>Admin Dashboard</h1>
+            </header>
+            
+            <div class="admin-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="admin-section active" style="display: block; visibility: visible; opacity: 1;">
+                    <div class="section-header">
+                        <h2>Dashboard Overview</h2>
+                    </div>
+                    <div class="dashboard-welcome">
+                        <h3>Welcome to the Memories and More Photo Booths Admin Dashboard</h3>
+                        <p>Use the sidebar navigation to manage your website content.</p>
+                    </div>
+                </section>
+                
+                <!-- Events Section -->
+                <section id="events-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Event Links Management</h2>
+                    </div>
+                    
+                    <div class="section-content">
+                        <form id="addLinkForm" class="admin-form">
+                            <div class="form-group">
+                                <label for="eventName">Event Name:</label>
+                                <input type="text" id="eventName" placeholder="Johnson Wedding" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="smugmugLink">SmugMug Link:</label>
+                                <input type="text" id="smugmugLink" placeholder="https://smugmug.com/gallery/your-link" required>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Add Event Link</button>
+                            </div>
+                        </form>
+                        
+                        <div id="successMessage" class="alert alert-success">
+                            Event link added successfully!
+                        </div>
+                        
+                        <div id="errorMessage" class="alert alert-error">
+                            There was an error adding the event link. Please try again.
+                        </div>
+                        
+                        <div class="admin-table-container">
+                            <h3>Current Event Links</h3>
+                            <div id="linksList" class="admin-table"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Packages Section -->
+                <section id="packages-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Pricing Packages Management</h2>
+                    </div>
+                    
+                    <div class="section-content">
+                        <p class="section-intro">Manage your pricing packages here. Changes will be reflected on the public website.</p>
+                        
+                        <div class="package-cards">
+                            <!-- Silver Package -->
+                            <div class="package-edit-card" id="silver-package">
+                                <h3>Silver Experience</h3>
+                                <form class="package-form">
+                                    <div class="form-group">
+                                        <label>Package Name:</label>
+                                        <input type="text" class="package-name" value="Silver Experience">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subtitle:</label>
+                                        <input type="text" class="package-subtitle" value="Package #1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price ($):</label>
+                                        <input type="number" class="package-price" value="445">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Features (one per line):</label>
+                                        <textarea class="package-features" rows="8">2 Hours of Continuous Photo Booth Use
+Full Time Attendant
+Immediate Photo Strip Printouts
+Choice of B&W or Color Photos
+Unlimited Photo Booth Sessions
+Dye-Sub Prints (non-smudge, high quality)
+Online Viewing of Photos
+Digital Link with All Photos (no expiration)</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Featured Package:</label>
+                                        <input type="checkbox" class="package-featured">
+                                    </div>
+                                    <button type="button" class="btn-primary save-package" data-package="silver">Save Changes</button>
+                                </form>
+                            </div>
+                            
+                            <!-- Gold Package -->
+                            <div class="package-edit-card" id="gold-package">
+                                <h3>Golden Moments</h3>
+                                <form class="package-form">
+                                    <div class="form-group">
+                                        <label>Package Name:</label>
+                                        <input type="text" class="package-name" value="Golden Moments">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subtitle:</label>
+                                        <input type="text" class="package-subtitle" value="Package #2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price ($):</label>
+                                        <input type="number" class="package-price" value="595">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Features (one per line):</label>
+                                        <textarea class="package-features" rows="10">3 Hours of Continuous Photo Booth Use
+Full Time Attendant
+Immediate Photo Strip Printouts
+Choice of B&W or Color Photos
+Unlimited Photo Booth Sessions
+Dye-Sub Prints (non-smudge, high quality)
+Online Viewing of Photos
+Digital Link with All Photos (no expiration)
+Props Included
+Personalized Photo Strip Layout</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Featured Package:</label>
+                                        <input type="checkbox" class="package-featured" checked>
+                                    </div>
+                                    <button type="button" class="btn-primary save-package" data-package="gold">Save Changes</button>
+                                </form>
+                            </div>
+                            
+                            <!-- Custom Package -->
+                            <div class="package-edit-card" id="custom-package">
+                                <h3>Custom Package</h3>
+                                <form class="package-form">
+                                    <div class="form-group">
+                                        <label>Package Name:</label>
+                                        <input type="text" class="package-name" value="Custom Package">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subtitle:</label>
+                                        <input type="text" class="package-subtitle" value="Tailored to Your Needs">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price Display:</label>
+                                        <input type="text" class="package-price-display" value="Custom Quote">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description:</label>
+                                        <textarea class="package-description" rows="4">Need something specific for your event? We can create a custom package that perfectly fits your requirements.
+
+Contact us to discuss your event details and we'll provide a personalized quote.</textarea>
+                                    </div>
+                                    <button type="button" class="btn-primary save-package" data-package="custom">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button id="publishPackages" class="btn-success">Publish Changes to Website</button>
+                        </div>
+                        
+                        <div id="packageSuccessMessage" class="alert alert-success">
+                            Pricing packages updated successfully!
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Add-ons Section -->
+                <section id="addons-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Add-ons Management</h2>
+                    </div>
+                    
+                    <div class="section-content">
+                        <p class="section-intro">Manage your add-on services here. Changes will be reflected on the public website.</p>
+                        
+                        <div class="addon-list">
+                            <!-- Props Add-on -->
+                            <div class="addon-edit-item">
+                                <h3>Props</h3>
+                                <form class="addon-form">
+                                    <div class="form-group">
+                                        <label>Add-on Name:</label>
+                                        <input type="text" class="addon-name" value="Props">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Icon Class:</label>
+                                        <input type="text" class="addon-icon" value="fas fa-theater-masks">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description:</label>
+                                        <input type="text" class="addon-description" value="Fun collection of hats, glasses, signs and more">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price ($):</label>
+                                        <input type="number" class="addon-price" value="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Additional Note:</label>
+                                        <input type="text" class="addon-note" value="Included in Package #2">
+                                    </div>
+                                    <button type="button" class="btn-primary save-addon" data-addon="props">Save Changes</button>
+                                </form>
+                            </div>
+                            
+                            <!-- DVD Add-on -->
+                            <div class="addon-edit-item">
+                                <h3>DVD of All Images</h3>
+                                <form class="addon-form">
+                                    <div class="form-group">
+                                        <label>Add-on Name:</label>
+                                        <input type="text" class="addon-name" value="DVD of All Images">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Icon Class:</label>
+                                        <input type="text" class="addon-icon" value="fas fa-compact-disc">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description:</label>
+                                        <input type="text" class="addon-description" value="High-resolution digital copies of all photos">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price ($):</label>
+                                        <input type="number" class="addon-price" value="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Additional Note:</label>
+                                        <input type="text" class="addon-note" value="">
+                                    </div>
+                                    <button type="button" class="btn-primary save-addon" data-addon="dvd">Save Changes</button>
+                                </form>
+                            </div>
+                            
+                            <!-- Custom Layout Add-on -->
+                            <div class="addon-edit-item">
+                                <h3>Personalized Photo Layouts</h3>
+                                <form class="addon-form">
+                                    <div class="form-group">
+                                        <label>Add-on Name:</label>
+                                        <input type="text" class="addon-name" value="Personalized Photo Layouts">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Icon Class:</label>
+                                        <input type="text" class="addon-icon" value="fas fa-palette">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description:</label>
+                                        <input type="text" class="addon-description" value="Custom design with names, date, and event details">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price ($):</label>
+                                        <input type="number" class="addon-price" value="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Additional Note:</label>
+                                        <input type="text" class="addon-note" value="Included in Package #2">
+                                    </div>
+                                    <button type="button" class="btn-primary save-addon" data-addon="layouts">Save Changes</button>
+                                </form>
+                            </div>
+                            
+                            <!-- Scrapbook Add-on -->
+                            <div class="addon-edit-item">
+                                <h3>Custom Scrapbook Service</h3>
+                                <form class="addon-form">
+                                    <div class="form-group">
+                                        <label>Add-on Name:</label>
+                                        <input type="text" class="addon-name" value="Custom Scrapbook Service">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Icon Class:</label>
+                                        <input type="text" class="addon-icon" value="fas fa-book">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description:</label>
+                                        <input type="text" class="addon-description" value="Keepsake album with photos and guest messages">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price ($):</label>
+                                        <input type="number" class="addon-price" value="75">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Additional Note:</label>
+                                        <input type="text" class="addon-note" value="">
+                                    </div>
+                                    <button type="button" class="btn-primary save-addon" data-addon="scrapbook">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button id="publishAddons" class="btn-success">Publish Changes to Website</button>
+                        </div>
+                        
+                        <div id="addonSuccessMessage" class="alert alert-success">
+                            Add-ons updated successfully!
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Settings Section -->
+                <section id="settings-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Admin Settings</h2>
+                    </div>
+                    
+                    <div class="section-content">
+                        <form id="settingsForm" class="admin-form">
+                            <div class="form-group">
+                                <label for="adminUsername">Admin Username:</label>
+                                <input type="text" id="adminUsername" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password:</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword">New Password:</label>
+                                <input type="password" id="newPassword">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password:</label>
+                                <input type="password" id="confirmPassword">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Save Settings</button>                        </div>
+                    </form>
+                </div>
+            </section>
+            </div>
+            
+        </main>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Confirm Action</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelAction" class="btn-secondary">Cancel</button>
+                <button id="confirmAction" class="btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load existing links when page loads
+        window.onload = function() {
+            loadLinks();
+            
+            // Update navigation functionality
+            setupNavigation();
+            
+            // Initialize package management
+            initPackageManagement();
+        };
+        
+        // Set up navigation between sections
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('.admin-nav a');
+            const sections = document.querySelectorAll('.admin-section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target section ID from the href
+                    const targetId = this.getAttribute('href');
+                    
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show the target section
+                    document.querySelector(targetId).classList.add('active');
+                    
+                    // Update active nav link
+                    navLinks.forEach(navLink => {
+                        navLink.parentElement.classList.remove('active');
+                    });
+                    this.parentElement.classList.add('active');
+                    
+                    // Update stats when viewing dashboard
+                    if (targetId === '#dashboard-section') {
+                        updateDashboardCounts();
+                    }
+                });
+            });
+        }
+        
+        // Initialize package management
+        function initPackageManagement() {
+            // Load package data
+            loadPackageData();
+            loadAddonData();
+            
+            // Package save buttons
+            document.querySelectorAll('.save-package').forEach(button => {
+                button.addEventListener('click', function() {
+                    const packageType = this.getAttribute('data-package');
+                    savePackage(packageType);
+                });
+            });
+            
+            // Add-on save buttons
+            document.querySelectorAll('.save-addon').forEach(button => {
+                button.addEventListener('click', function() {
+                    const addonType = this.getAttribute('data-addon');
+                    saveAddon(addonType);
+                });
+            });
+            
+            // Publish buttons
+            if (document.getElementById('publishPackages')) {
+                document.getElementById('publishPackages').addEventListener('click', publishPackagesToWebsite);
+            }
+            
+            if (document.getElementById('publishAddons')) {
+                document.getElementById('publishAddons').addEventListener('click', publishAddonsToWebsite);
+            }
+            
+            // Update dashboard counts
+            updateDashboardCounts();
+            
+            // Settings form
+            const settingsForm = document.getElementById('settingsForm');
+            if (settingsForm) {
+                settingsForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    saveSettings();
+                });
+            }
+        }
+        
+        // Handle form submission for event links
+        document.getElementById('addLinkForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const eventName = document.getElementById('eventName').value;
+            const smugmugLink = document.getElementById('smugmugLink').value;
+            
+            // Create link object
+            const link = {
+                name: eventName,
+                url: smugmugLink
+            };
+            
+            // Get existing links from localStorage
+            let links = JSON.parse(localStorage.getItem('eventLinks')) || [];
+            
+            // Add new link
+            links.push(link);
+            
+            // Save to localStorage
+            localStorage.setItem('eventLinks', JSON.stringify(links));
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 3000);
+            
+            // Reset form
+            document.getElementById('addLinkForm').reset();
+            
+            // Update dashboard counts
+            updateDashboardCounts();
+            
+            // Reload links list
+            loadLinks();
+        });
+        
+        // Load links from localStorage
+        function loadLinks() {
+            const linksList = document.getElementById('linksList');
+            if (!linksList) return;
+            
+            linksList.innerHTML = '';
+            
+            // Get links from localStorage
+            const links = JSON.parse(localStorage.getItem('eventLinks')) || [];
+            
+            if (links.length === 0) {
+                linksList.innerHTML = '<p>No event links added yet.</p>';
+                return;
+            }
+            
+            // Display each link
+            links.forEach(function(link, index) {
+                const linkItem = document.createElement('div');
+                linkItem.className = 'link-item';
+                linkItem.innerHTML = `
+                    <h3>${link.name}</h3>
+                    <p><strong>Link:</strong> <a href="${link.url}" target="_blank">${link.url}</a></p>
+                    <button onclick="removeLink(${index})">Remove</button>
+                `;
+                linksList.appendChild(linkItem);
+            });
+        }
+        
+        // Remove a link
+        function removeLink(index) {
+            // Get existing links
+            let links = JSON.parse(localStorage.getItem('eventLinks')) || [];
+            
+            // Remove the link at the specified index
+            links.splice(index, 1);
+            
+            // Save back to localStorage
+            localStorage.setItem('eventLinks', JSON.stringify(links));
+            
+            // Update event count
+            updateDashboardCounts();
+            
+            // Reload links list
+            loadLinks();
+        }
+        
+        // Update dashboard counts
+        function updateDashboardCounts() {
+            // Update event count
+            const eventLinks = JSON.parse(localStorage.getItem('eventLinks')) || [];
+            if (document.getElementById('eventCount')) {
+                document.getElementById('eventCount').textContent = eventLinks.length;
+            }
+            
+            // Package count is fixed at 3
+            if (document.getElementById('packageCount')) {
+                document.getElementById('packageCount').textContent = '3';
+            }
+            
+            // Add-on count is fixed at 4
+            if (document.getElementById('addonCount')) {
+                document.getElementById('addonCount').textContent = '4';
+            }
+        }
+        
+        // Package management functions
+        function loadPackageData() {
+            // Get package data from localStorage or use defaults
+            const packages = JSON.parse(localStorage.getItem('packageData')) || {
+                silver: {
+                    name: "Silver Experience",
+                    subtitle: "Package #1",
+                    price: 445,
+                    features: [
+                        "2 Hours of Continuous Photo Booth Use",
+                        "Full Time Attendant",
+                        "Immediate Photo Strip Printouts",
+                        "Choice of B&W or Color Photos",
+                        "Unlimited Photo Booth Sessions",
+                        "Dye-Sub Prints (non-smudge, high quality)",
+                        "Online Viewing of Photos",
+                        "Digital Link with All Photos (no expiration)"
+                    ],
+                    featured: false
+                },
+                gold: {
+                    name: "Golden Moments",
+                    subtitle: "Package #2",
+                    price: 595,
+                    features: [
+                        "3 Hours of Continuous Photo Booth Use",
+                        "Full Time Attendant",
+                        "Immediate Photo Strip Printouts",
+                        "Choice of B&W or Color Photos",
+                        "Unlimited Photo Booth Sessions",
+                        "Dye-Sub Prints (non-smudge, high quality)",
+                        "Online Viewing of Photos",
+                        "Digital Link with All Photos (no expiration)",
+                        "Props Included",
+                        "Personalized Photo Strip Layout"
+                    ],
+                    featured: true
+                },
+                custom: {
+                    name: "Custom Package",
+                    subtitle: "Tailored to Your Needs",
+                    priceDisplay: "Custom Quote",
+                    description: "Need something specific for your event? We can create a custom package that perfectly fits your requirements.\n\nContact us to discuss your event details and we'll provide a personalized quote."
+                }
+            };
+            
+            // If it doesn't exist in localStorage, save default data
+            if (!localStorage.getItem('packageData')) {
+                localStorage.setItem('packageData', JSON.stringify(packages));
+            }
+            
+            // Update form values with stored data
+            updatePackageForms(packages);
+        }
+        
+        function updatePackageForms(packages) {
+            // Silver package form
+            const silverForm = document.querySelector('#silver-package .package-form');
+            if (silverForm && packages.silver) {
+                silverForm.querySelector('.package-name').value = packages.silver.name;
+                silverForm.querySelector('.package-subtitle').value = packages.silver.subtitle;
+                silverForm.querySelector('.package-price').value = packages.silver.price;
+                silverForm.querySelector('.package-features').value = packages.silver.features.join('\n');
+                silverForm.querySelector('.package-featured').checked = packages.silver.featured;
+            }
+            
+            // Gold package form
+            const goldForm = document.querySelector('#gold-package .package-form');
+            if (goldForm && packages.gold) {
+                goldForm.querySelector('.package-name').value = packages.gold.name;
+                goldForm.querySelector('.package-subtitle').value = packages.gold.subtitle;
+                goldForm.querySelector('.package-price').value = packages.gold.price;
+                goldForm.querySelector('.package-features').value = packages.gold.features.join('\n');
+                goldForm.querySelector('.package-featured').checked = packages.gold.featured;
+            }
+            
+            // Custom package form
+            const customForm = document.querySelector('#custom-package .package-form');
+            if (customForm && packages.custom) {
+                customForm.querySelector('.package-name').value = packages.custom.name;
+                customForm.querySelector('.package-subtitle').value = packages.custom.subtitle;
+                customForm.querySelector('.package-price-display').value = packages.custom.priceDisplay;
+                customForm.querySelector('.package-description').value = packages.custom.description;
+            }
+        }
+        
+        function savePackage(packageType) {
+            // Get existing package data
+            let packages = JSON.parse(localStorage.getItem('packageData')) || {};
+            
+            // Get package form element
+            const packageForm = document.querySelector(`#${packageType}-package .package-form`);
+            
+            if (packageType === 'custom') {
+                packages.custom = {
+                    name: packageForm.querySelector('.package-name').value,
+                    subtitle: packageForm.querySelector('.package-subtitle').value,
+                    priceDisplay: packageForm.querySelector('.package-price-display').value,
+                    description: packageForm.querySelector('.package-description').value
+                };
+            } else {
+                packages[packageType] = {
+                    name: packageForm.querySelector('.package-name').value,
+                    subtitle: packageForm.querySelector('.package-subtitle').value,
+                    price: parseFloat(packageForm.querySelector('.package-price').value),
+                    features: packageForm.querySelector('.package-features').value.split('\n'),
+                    featured: packageForm.querySelector('.package-featured').checked
+                };
+                
+                // If this package is featured, un-feature the other package
+                if (packageType === 'silver' && packages.silver.featured && packages.gold) {
+                    packages.gold.featured = false;
+                } else if (packageType === 'gold' && packages.gold.featured && packages.silver) {
+                    packages.silver.featured = false;
+                }
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('packageData', JSON.stringify(packages));
+            
+            // Update forms with new data
+            updatePackageForms(packages);
+            
+            // Show success message
+            const successMsg = document.getElementById('packageSuccessMessage');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+        
+        function publishPackagesToWebsite() {
+            // Indicate that data has been published
+            localStorage.setItem('packages_published', 'true');
+            
+            // Show success message
+            const successMsg = document.getElementById('packageSuccessMessage');
+            successMsg.textContent = 'Pricing packages published to website successfully!';
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.textContent = 'Pricing packages updated successfully!';
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Add-ons management functions
+        function loadAddonData() {
+            // Get add-on data from localStorage or use defaults
+            const addons = JSON.parse(localStorage.getItem('addonData')) || {
+                props: {
+                    name: "Props",
+                    icon: "fas fa-theater-masks",
+                    description: "Fun collection of hats, glasses, signs and more",
+                    price: 50,
+                    note: "Included in Package #2"
+                },
+                dvd: {
+                    name: "DVD of All Images",
+                    icon: "fas fa-compact-disc",
+                    description: "High-resolution digital copies of all photos",
+                    price: 50,
+                    note: ""
+                },
+                layouts: {
+                    name: "Personalized Photo Layouts",
+                    icon: "fas fa-palette",
+                    description: "Custom design with names, date, and event details",
+                    price: 50,
+                    note: "Included in Package #2"
+                },
+                scrapbook: {
+                    name: "Custom Scrapbook Service",
+                    icon: "fas fa-book",
+                    description: "Keepsake album with photos and guest messages",
+                    price: 75,
+                    note: ""
+                }
+            };
+            
+            // If it doesn't exist in localStorage, save default data
+            if (!localStorage.getItem('addonData')) {
+                localStorage.setItem('addonData', JSON.stringify(addons));
+            }
+            
+            // Update add-on forms with stored data
+            updateAddonForms(addons);
+        }
+        
+        function updateAddonForms(addons) {
+            // Update each add-on form
+            Object.keys(addons).forEach(addonKey => {
+                const addon = addons[addonKey];
+                const addonForm = document.querySelector(`.addon-edit-item form[data-addon="${addonKey}"]`) || 
+                                document.querySelector(`.addon-edit-item button[data-addon="${addonKey}"]`).closest('form');
+                
+                if (addonForm) {
+                    addonForm.querySelector('.addon-name').value = addon.name;
+                    addonForm.querySelector('.addon-icon').value = addon.icon;
+                    addonForm.querySelector('.addon-description').value = addon.description;
+                    addonForm.querySelector('.addon-price').value = addon.price;
+                    addonForm.querySelector('.addon-note').value = addon.note || '';
+                }
+            });
+        }
+        
+        function saveAddon(addonType) {
+            // Get existing add-on data
+            let addons = JSON.parse(localStorage.getItem('addonData')) || {};
+            
+            // Get add-on form element
+            const addonForm = document.querySelector(`.addon-edit-item button[data-addon="${addonType}"]`).closest('form');
+            
+            if (addonForm) {
+                addons[addonType] = {
+                    name: addonForm.querySelector('.addon-name').value,
+                    icon: addonForm.querySelector('.addon-icon').value,
+                    description: addonForm.querySelector('.addon-description').value,
+                    price: parseFloat(addonForm.querySelector('.addon-price').value),
+                    note: addonForm.querySelector('.addon-note').value
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('addonData', JSON.stringify(addons));
+                
+                // Show success message
+                const successMsg = document.getElementById('addonSuccessMessage');
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        function publishAddonsToWebsite() {
+            // Indicate that data has been published
+            localStorage.setItem('addons_published', 'true');
+            
+            // Show success message
+            const successMsg = document.getElementById('addonSuccessMessage');
+            successMsg.textContent = 'Add-ons published to website successfully!';
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.textContent = 'Add-ons updated successfully!';
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Admin settings functions
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('mmph_admin_settings')) || {
+                username: 'admin',
+                password: 'admin123' // Default password
+            };
+            
+            // Populate settings form
+            const usernameField = document.getElementById('adminUsername');
+            if (usernameField) {
+                usernameField.value = settings.username;
+            }
+        }
+        
+        function saveSettings() {
+            const username = document.getElementById('adminUsername').value;
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Get current settings
+            const settings = JSON.parse(localStorage.getItem('mmph_admin_settings')) || {
+                username: 'admin',
+                password: 'admin123' // Default password
+            };
+            
+            // Validate current password
+            if (currentPassword !== settings.password) {
+                alert('Current password is incorrect');
+                return;
+            }
+            
+            // Check if changing password
+            if (newPassword) {
+                if (newPassword !== confirmPassword) {
+                    alert('New password and confirmation do not match');
+                    return;
+                }
+                
+                // Update password
+                settings.password = newPassword;
+            }
+            
+            // Update username
+            settings.username = username;
+            
+            // Save settings
+            localStorage.setItem('mmph_admin_settings', JSON.stringify(settings));
+            
+            // Show success message
+            alert('Settings saved successfully');
+            
+            // Clear password fields
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
+    </script>
+    
+    <script src="js/simple-admin.js"></script>
+    <link rel="stylesheet" href="css/simple-mobile.css">
+</body>
+</html>

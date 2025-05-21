@@ -1,0 +1,406 @@
+/* 
+   Memories and More Photo Booths - Enhanced Responsive Styles
+   Version: 1.0
+*/
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+
+/* Base responsive viewport settings */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* Ensure images are responsive by default */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fluid typography for better readability across devices */
+html {
+    font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .container {
+        width: 95%;
+        max-width: 1140px;
+    }
+}
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 992px) {
+    html {
+        font-size: 14px;
+    }
+    
+    /* Adjust section padding for medium screens */
+    section {
+        padding: 60px 0;
+    }
+    
+    /* Adjust hero section for better fit */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    /* Ensure buttons are properly sized */
+    .btn {
+        padding: 10px 20px;
+    }
+    
+    /* Adjust grid layouts */
+    .grid-3, .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Adjust service cards */
+    .service-card {
+        padding: 20px;
+    }
+    
+    /* Adjust testimonials */
+    .testimonial {
+        padding: 20px;
+    }
+    
+    /* Adjust package cards */
+    .package-card {
+        padding: 20px;
+    }
+    
+    /* Adjust form elements */
+    input, select, textarea {
+        padding: 10px;
+    }
+}
+
+/* Tablets and Large Phones */
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+    
+    /* Further reduce section padding */
+    section {
+        padding: 50px 0;
+    }
+    
+    /* Center align section titles on mobile */
+    .section-title {
+        text-align: center;
+    }
+    
+    /* Adjust hero for mobile */
+    .hero-content {
+        padding: 0 15px;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    /* Adjust buttons for touch */
+    .btn {
+        padding: 12px 24px;
+        min-width: 150px;
+    }
+    
+    /* Stack buttons on mobile */
+    .button-group {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    /* Adjust grid layouts for mobile */
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Center align cards */
+    .card {
+        margin: 0 auto;
+        max-width: 450px;
+    }
+    
+    /* Adjust gallery items */
+    .gallery-item {
+        margin-bottom: 15px;
+    }
+    
+    /* Adjust form elements for touch */
+    input, select, textarea {
+        padding: 12px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Ensure form labels are visible */
+    label {
+        font-size: 14px;
+    }
+    
+    /* Adjust CTA sections */
+    .cta-content {
+        text-align: center;
+    }
+    
+    /* Fix table display on small screens */
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 576px) {
+    html {
+        font-size: 12px;
+    }
+    
+    /* Minimal section padding for small screens */
+    section {
+        padding: 40px 0;
+    }
+    
+    /* Adjust hero for very small screens */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* Make buttons full width on very small screens */
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Adjust card padding */
+    .card {
+        padding: 15px;
+    }
+    
+    /* Adjust form layout */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    /* Ensure form elements are easily tappable */
+    input, select, textarea, button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Adjust spacing for stacked elements */
+    .mb-4 {
+        margin-bottom: 15px !important;
+    }
+    
+    .mt-4 {
+        margin-top: 15px !important;
+    }
+    
+    /* Adjust padding for nested containers */
+    .container {
+        padding: 0 10px;
+    }
+}
+
+/* Very Small Phones */
+@media (max-width: 375px) {
+    /* Further adjustments for very small screens */
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    /* Reduce padding further */
+    .card, .service-card, .package-card, .testimonial {
+        padding: 12px;
+    }
+    
+    /* Adjust icon sizes */
+    .icon {
+        font-size: 1.5rem;
+    }
+    
+    /* Ensure form elements have adequate spacing */
+    .form-group {
+        margin-bottom: 12px;
+    }
+}
+
+/* Specific component enhancements */
+
+/* Google Reviews Slider Enhancements */
+@media (max-width: 992px) {
+    .google-reviews-slider {
+        padding: 0 40px;
+    }
+    
+    .google-reviews-slide {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .google-reviews-slide {
+        grid-template-columns: 1fr;
+    }
+    
+    .google-reviews-slider {
+        padding: 0 30px;
+    }
+    
+    .google-reviews-nav-button {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .google-reviews-slider {
+        padding: 0 25px;
+    }
+    
+    .google-reviews-pagination {
+        margin-top: 15px;
+    }
+    
+    .google-reviews-pagination-dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+    }
+}
+
+/* Gallery Enhancements */
+@media (max-width: 768px) {
+    .gallery-filter {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .filter-button {
+        margin: 5px;
+        padding: 8px 15px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-item {
+        height: 250px;
+    }
+}
+
+/* Form Enhancements */
+@media (max-width: 768px) {
+    .form-step {
+        padding: 20px;
+    }
+    
+    .progress-step {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .backdrop-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .form-step {
+        padding: 15px;
+    }
+    
+    .backdrop-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .backdrop-option {
+        max-width: 250px;
+        margin: 0 auto 15px;
+    }
+}
+
+/* Service Cards Enhancements */
+@media (max-width: 768px) {
+    .service-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .service-card img {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .service-card-content {
+        padding: 15px 0;
+    }
+}
+
+/* Navigation Enhancements */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 10px 0;
+    }
+}
+
+/* Print styles for better printing */
+@media print {
+    .navbar, .footer, .cta-section, .scroll-top, .nav-toggle {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}

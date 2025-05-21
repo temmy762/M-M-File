@@ -1,0 +1,71 @@
+/* 
+   Memories and More Photo Booths - Google Reviews Mobile Fix
+   Version: 1.0
+*/
+
+/* Mobile-specific styles for Google Reviews slider */
+@media (max-width: 768px) {
+    .google-reviews-columns {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .google-reviews-column {
+        width: 100%;
+    }
+    
+    .google-review-slide {
+        margin-bottom: 0;
+    }
+    
+    /* Ensure proper height for mobile slides */
+    .google-reviews-carousel {
+        min-height: 250px;
+    }
+    
+    /* Make pagination more visible on mobile */
+    .carousel-pagination {
+        margin-top: 20px;
+    }
+    
+    .pagination-dot {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    .google-reviews-container {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .google-reviews-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .google-reviews-rating {
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .google-review-slide {
+        padding: 12px;
+    }
+    
+    .google-review-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .reviewer-photo {
+        margin: 0 auto 10px;
+    }
+    
+    .reviewer-info {
+        text-align: center;
+    }
+}

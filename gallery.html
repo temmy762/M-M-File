@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Memories and More Photo Booths</title>
+    <meta name="description" content="Browse our photo gallery showcasing memorable moments captured at weddings, parties, corporate events and more with our premium photo booths.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/navbar-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/header-fix.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Photo Booths Logo"></a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="our-booth.html">Our Booth</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="inquire.html">Inquire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>Memories captured at events across the Twin Cities</p>
+        </div>
+    </section>
+
+    <!-- Gallery Categories -->
+    <section class="gallery-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All Events</button>
+                <button class="category-tab" data-category="weddings">Weddings</button>
+                <button class="category-tab" data-category="corporate">Corporate</button>
+                <button class="category-tab" data-category="parties">Parties</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid-section">
+        <div class="container">
+            <div class="masonry-gallery">
+                <!-- Wedding Photos -->
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/image-2.jpeg" data-lightbox="gallery" data-title="Wedding Photo Booth">
+                        <img src="images/image-2.jpeg" alt="Wedding photo booth picture">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Wedding</h3>
+                                <p>Minneapolis, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/image-3.jpeg" data-lightbox="gallery" data-title="Wedding Reception Photo Booth">
+                        <img src="images/image-3.jpeg" alt="Wedding reception photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Wedding Reception</h3>
+                                <p>St. Paul, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/image-6.jpeg" data-lightbox="gallery" data-title="Bride and Groom Photo Booth">
+                        <img src="images/image-6.jpeg" alt="Bride and groom photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Bride & Groom</h3>
+                                <p>Edina, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Corporate Photos -->
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-4.jpeg" data-lightbox="gallery" data-title="Corporate Event Photo Booth">
+                        <img src="images/image-4.jpeg" alt="Corporate event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Corporate Event</h3>
+                                <p>Downtown Minneapolis</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-7.jpeg" data-lightbox="gallery" data-title="Company Holiday Party">
+                        <img src="images/image-7.jpeg" alt="Company holiday party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Holiday Party</h3>
+                                <p>Bloomington, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-23.jpeg" data-lightbox="gallery" data-title="Team Building Event">
+                        <img src="images/image-23.jpeg" alt="Team building event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Team Building</h3>
+                                <p>Plymouth, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Party Photos -->
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-5.jpeg" data-lightbox="gallery" data-title="Birthday Party Photo Booth">
+                        <img src="images/image-5.jpeg" alt="Birthday party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>30th Birthday</h3>
+                                <p>Maple Grove, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-8.jpeg" data-lightbox="gallery" data-title="Graduation Party">
+                        <img src="images/image-8.jpeg" alt="Graduation party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Graduation</h3>
+                                <p>Blaine, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-9.jpeg" data-lightbox="gallery" data-title="Sweet 16 Party">
+                        <img src="images/image-9.jpeg" alt="Sweet 16 party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Sweet 16</h3>
+                                <p>Woodbury, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- More Mixed Photos -->
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/image-10.jpeg" data-lightbox="gallery" data-title="Wedding Party Photo Booth">
+                        <img src="images/image-10.jpeg" alt="Wedding party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Wedding Party</h3>
+                                <p>Stillwater, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-13.jpeg" data-lightbox="gallery" data-title="Anniversary Party">
+                        <img src="images/image-13.jpeg" alt="Anniversary party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>25th Anniversary</h3>
+                                <p>Eden Prairie, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-14.jpeg" data-lightbox="gallery" data-title="Product Launch Event">
+                        <img src="images/image-14.jpeg" alt="Product launch event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Product Launch</h3>
+                                <p>Minnetonka, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-20.jpeg" data-lightbox="gallery" data-title="Family Reunion">
+                        <img src="images/image-20.jpeg" alt="Family reunion photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Family Reunion</h3>
+                                <p>Roseville, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-21.jpeg" data-lightbox="gallery" data-title="School Dance">
+                        <img src="images/image-21.jpeg" alt="School dance photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>School Dance</h3>
+                                <p>Eagan, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-22.jpeg" data-lightbox="gallery" data-title="Fundraiser Event">
+                        <img src="images/image-22.jpeg" alt="Fundraiser event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Charity Fundraiser</h3>
+                                <p>Minneapolis, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="video-gallery">
+        <div class="container">
+            <h2 class="section-title">Photo Booth in Action</h2>
+            <p class="section-description">See our photo booths bringing joy and laughter to events</p>
+            
+            <div class="video-slider">
+                <div class="video-slide">
+                    <div class="video-container">
+                        <!-- Replace with actual video embed code when available -->
+                        <img src="images/image-23.jpeg" alt="Photo booth in action" class="video-placeholder">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>Wedding Reception Highlights</h3>
+                </div>
+                <div class="video-slide">
+                    <div class="video-container">
+                        <!-- Replace with actual video embed code when available -->
+                        <img src="images/image-24.jpeg" alt="Photo booth in action" class="video-placeholder">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>Corporate Event Fun</h3>
+                </div>
+                <div class="video-slide">
+                    <div class="video-container">
+                        <!-- Replace with actual video embed code when available -->
+                        <img src="images/image-25.jpeg" alt="Photo booth in action" class="video-placeholder">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>Birthday Party Memories</h3>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Create Your Own Photo Memories?</h2>
+            <p>Book a photo booth for your next event and let the fun begin!</p>
+            <div class="cta-buttons">
+                <a href="inquire.html" class="btn btn-primary">Get a Quote</a>
+                <a href="packages.html" class="btn btn-secondary">View Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Memories & More</h3>
+                    <p>Creating memories since 2010</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> 763.785.1590</p>
+                    <p><i class="fas fa-envelope"></i> info@MemoriesAndMorePhotoBooths.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Blaine, MN (Serving Twin Cities Metro)</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Memories and More Photo Booths. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

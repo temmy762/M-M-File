@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Memories and More Photo Booths</title>
+    <meta name="description" content="Get in touch with Memories and More Photo Booths. Contact us for general inquiries, availability checks, or to book your photo booth rental.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/navbar-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive-enhancements.css">
+    <link rel="stylesheet" href="css/mobile-fixes.css">
+    <link rel="stylesheet" href="css/hero-alignment.css">
+    <link rel="stylesheet" href="css/simple-form.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Photo Booths Logo"></a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="event-gallery.html">Event Gallery</a></li>
+                <li><a href="our-booth.html">Our Booths</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="inquire.html">Inquire</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="client-events.html">Client Access</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p>Have questions or want to check availability? Reach out to us using any of the methods below or fill out the contact form.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-details">
+                                <h3>Phone</h3>
+                                <p>763.785.1590</p>
+                                <p class="method-note">Available Monday-Friday, 9am-6pm</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-details">
+                                <h3>Email</h3>
+                                <p>info@MemoriesAndMorePhotoBooths.com</p>
+                                <p class="method-note">We respond within 24-48 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-details">
+                                <h3>Location</h3>
+                                <p>Blaine, MN</p>
+                                <p class="method-note">Serving the Twin Cities Metro area</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-connect">
+                        <h3>Connect With Us</h3>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/Memories-and-More-Photo-Booths-228725290807237/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-area">
+                        <h3>Our Service Area</h3>
+                        <p>We provide photo booth services throughout the Twin Cities Metro area with no travel fee within 40 miles of Blaine, MN. This includes:</p>
+                        <ul class="area-list">
+                            <li>Minneapolis</li>
+                            <li>St. Paul</li>
+                            <li>Bloomington</li>
+                            <li>Plymouth</li>
+                            <li>Maple Grove</li>
+                            <li>Eden Prairie</li>
+                            <li>Minnetonka</li>
+                            <li>Eagan</li>
+                            <li>Woodbury</li>
+                            <li>And surrounding areas</li>
+                        </ul>
+                        <p>For events outside our standard service area, please contact us for availability and travel fees.</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    
+                    <!-- Alert Messages -->
+                    <div id="formAlert" class="form-alert" style="display: none;"></div>
+
+                    <!-- Contact Form -->
+                    <form id="contactForm" method="post">
+                        <input type="hidden" name="form_type" value="contact">
+                        
+                        <div class="form-group">
+                            <label for="name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="field-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="field-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                            <div class="field-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="" selected disabled>Select a Subject</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Availability Check">Availability Check</option>
+                                <option value="Booking Question">Booking Question</option>
+                                <option value="Package Information">Package Information</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="field-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <div class="field-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="submitButton">
+                                <span class="button-text">Send Message</span>
+                                <span class="button-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Form Success Message (initially hidden) -->
+                    <div id="formSuccess" class="form-success" style="display: none;">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Thank You!</h3>
+                        <p>Your message has been sent successfully. We'll get back to you as soon as possible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Our Service Area</h2>
+            <div class="map-container">
+                <!-- Replace with actual Google Maps embed code -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d178988.7746513849!2d-93.43172869325407!3d45.16043257909822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32a9c8a4c6e53%3A0x4b4bc5a4a4529af7!2sBlaine%2C%20MN!5e0!3m2!1sen!2sus!4v1649876523456!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Teaser -->
+    <section class="faq-teaser">
+        <div class="container">
+            <div class="teaser-content">
+                <h2>Have Questions?</h2>
+                <p>Check out our frequently asked questions for quick answers to common inquiries.</p>
+                <a href="faq.html" class="btn btn-secondary">View FAQs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Memories & More</h3>
+                    <p>Creating memories since 2010</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> 763.785.1590</p>
+                    <p><i class="fas fa-envelope"></i> info@MemoriesAndMorePhotoBooths.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Blaine, MN (Serving Twin Cities Metro)</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/Memories-and-More-Photo-Booths-228725290807237/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Memories and More Photo Booths. All Rights Reserved. Proudly Developed by <a href="https://solvatree.com" target="_blank">SolvaTree</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <!-- Simple form handler -->
+    <script src="js/simple-form-handler.js"></script>
+</body>
+</html>

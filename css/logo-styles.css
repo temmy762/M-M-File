@@ -1,0 +1,33 @@
+/* 
+   Memories and More Photo Booths - Logo Styles
+   Author: Cascade
+   Version: 1.0
+*/
+
+/* Logo styling */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.navbar .logo img {
+    height: auto;
+    max-height: 60px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar .logo img {
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar .logo img {
+        max-height: 40px;
+    }
+}

@@ -1,0 +1,187 @@
+/**
+ * Mobile Menu Fixes - Memories and More Photo Booths Admin
+ * These styles fix mobile admin menu display issues
+ */
+
+@media screen and (max-width: 991px) {
+    /* Base container adjustments */
+    .admin-container {
+        flex-direction: column;
+        display: block;
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    /* Improved mobile sidebar */
+    .admin-sidebar {
+        width: 100% !important;
+        position: relative;
+        padding: 0;
+        z-index: 100;
+        background-color: #333;
+    }
+    
+    .admin-logo {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: none;
+    }
+      /* Enhanced mobile menu toggle button */
+    .mobile-menu-toggle {
+        display: block !important;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 12px;
+        z-index: 9999;
+        position: relative;
+        outline: none;
+        margin-left: auto;
+        width: 50px;
+        height: 50px;
+        -webkit-appearance: none;
+        appearance: none;
+        touch-action: manipulation;
+    }
+      /* Better navbar toggle animation */
+    .mobile-menu-toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background-color: white;
+        pointer-events: none;
+        border-radius: 2px;
+    }
+    
+    /* Make the toggle button more visible */
+    .mobile-menu-toggle:hover .bar {
+        background-color: #e91e63;
+    }
+    
+    .admin-sidebar.mobile-expanded .mobile-menu-toggle .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .admin-sidebar.mobile-expanded .mobile-menu-toggle .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .admin-sidebar.mobile-expanded .mobile-menu-toggle .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+      /* Improved mobile navigation display */
+    .admin-nav {
+        display: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid #444;
+        width: 100%;
+        background-color: #333;
+    }
+    
+    .admin-nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .admin-sidebar.mobile-expanded .admin-nav {
+        display: block !important;
+    }
+    
+    .admin-nav li {
+        margin: 0;
+    }
+    
+    .admin-nav a {
+        padding: 15px;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .admin-logout {
+        display: none;
+    }
+    
+    .admin-sidebar.mobile-expanded .admin-logout {
+        display: block;
+        padding: 15px;
+    }
+    
+    /* Main content area fix */
+    .admin-main {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 15px;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .admin-content {
+        padding: 15px 0;
+    }
+    
+    /* Section fixes */
+    .admin-section {
+        width: 100% !important;
+        padding: 15px !important;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure active sections display properly */
+    .admin-section.active {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* Tighter spacing for mobile */
+    .admin-main {
+        padding: 10px;
+    }
+    
+    .admin-section {
+        padding: 10px !important;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    
+    .admin-header h1 {
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+    }
+    
+    /* Better mobile form layout */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        margin-bottom: 5px;
+    }
+    
+    /* Fix button spacing */
+    .btn {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .form-actions .btn {
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,33 @@
+/* 
+   Memories and More Photo Booths - Hero Badge Fix
+   Version: 1.0
+*/
+
+/* Override any existing hero badge styles to ensure proper centering */
+.hero-content .hero-badge {
+    position: static !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    width: fit-content !important;
+    max-width: 300px !important;
+    float: none !important;
+    transform: none !important;
+    right: auto !important;
+    left: auto !important;
+}
+
+/* Ensure proper spacing */
+.hero-content h1 {
+    margin-top: 20px !important;
+}
+
+/* Ensure all hero content is centered */
+.hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}

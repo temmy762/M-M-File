@@ -1,0 +1,33 @@
+/**
+ * Admin sidebar cleanup styles
+ */
+
+/* Remove excess padding in the sidebar */
+.admin-sidebar {
+    padding-bottom: 0;
+}
+
+/* Add more space to the main content area */
+.admin-main {
+    margin-bottom: 0;
+    padding-bottom: 30px;
+}
+
+/* Ensure the admin header has proper spacing */
+.admin-header {
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+/* Fix mobile view */
+@media screen and (max-width: 991px) {
+    /* Remove extra space at the bottom of mobile sidebar */
+    .admin-sidebar {
+        padding-bottom: 0 !important;
+    }
+    
+    /* Fix header on mobile */
+    .admin-header {
+        padding: 15px 0 !important;
+    }
+}

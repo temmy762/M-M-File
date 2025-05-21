@@ -1,0 +1,3 @@
+Johnson Wedding|April 15, 2025|Minneapolis, MN|https://smugmug.com/gallery/example1
+ABC Corp Annual Party|March 28, 2025|St. Paul, MN|https://smugmug.com/gallery/example2
+Smith Graduation Party|May 2, 2025|Bloomington, MN|https://smugmug.com/gallery/example3

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>405 Error Diagnostic Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 5px;
+        }
+        .log {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>405 Error Diagnostic Tool</h1>
+        <p>This tool tests different HTTP methods to diagnose 405 (Method Not Allowed) errors.</p>
+        
+        <div class="test-section">
+            <h2>1. Basic HTTP Method Tests</h2>
+            <p>Tests different HTTP methods against a test endpoint.</p>
+            <button onclick="testHttpMethod('GET')">Test GET</button>
+            <button onclick="testHttpMethod('POST')">Test POST</button>
+            <button onclick="testHttpMethod('OPTIONS')">Test OPTIONS</button>
+            <div id="methodLog" class="log"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>2. Form Handler Test</h2>
+            <p>Tests the form-handler.php file with different methods.</p>
+            <button onclick="testFormHandler('GET')">Test form-handler.php GET</button>
+            <button onclick="testFormHandler('POST')">Test form-handler.php POST</button>
+            <button onclick="testFormHandler('OPTIONS')">Test form-handler.php OPTIONS</button>
+            <div id="formHandlerLog" class="log"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>3. Headers Inspection</h2>
+            <p>Shows what headers are being sent/received.</p>
+            <button onclick="inspectHeaders()">Inspect Headers</button>
+            <div id="headersLog" class="log"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>4. Form Submission Simulation</h2>
+            <p>Simulates an actual form submission.</p>
+            <button onclick="simulateFormSubmission()">Simulate Form Submission</button>
+            <div id="formSimLog" class="log"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Utility function to log messages
+        function log(elementId, message, isError = false) {
+            const logElement = document.getElementById(elementId);
+            const entry = document.createElement('div');
+            entry.style.marginBottom = '5px';
+            entry.style.color = isError ? 'red' : 'black';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logElement.appendChild(entry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        // Test different HTTP methods
+        function testHttpMethod(method) {
+            log('methodLog', `Testing ${method} request to test-server.php...`);
+            
+            fetch('test-server.php', {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                // Add body for POST requests
+                body: method === 'POST' ? JSON.stringify({test: 'data'}) : undefined
+            })
+            .then(response => {
+                log('methodLog', `Response status: ${response.status} ${response.statusText}`);
+                return response.text();
+            })
+            .then(data => {
+                try {
+                    const jsonData = JSON.parse(data);
+                    log('methodLog', `Success! Response: ${JSON.stringify(jsonData)}`);
+                } catch (e) {
+                    log('methodLog', `Received non-JSON response: ${data.substring(0, 100)}...`);
+                }
+            })
+            .catch(error => {
+                log('methodLog', `Error: ${error.message}`, true);
+            });
+        }
+        
+        // Test the form handler with different methods
+        function testFormHandler(method) {
+            log('formHandlerLog', `Testing ${method} request to form-handler.php...`);
+            
+            fetch('form-handler.php', {
+                method: method,
+                headers: {
+                    'Content-Type': method === 'POST' ? 'application/x-www-form-urlencoded' : 'application/json'
+                },
+                // Add form data for POST requests
+                body: method === 'POST' ? 'form_type=test&name=Test+User&email=test@example.com&message=Test+message' : undefined
+            })
+            .then(response => {
+                log('formHandlerLog', `Response status: ${response.status} ${response.statusText}`);
+                return response.text();
+            })
+            .then(data => {
+                try {
+                    const jsonData = JSON.parse(data);
+                    log('formHandlerLog', `Success! Response: ${JSON.stringify(jsonData)}`);
+                } catch (e) {
+                    log('formHandlerLog', `Received non-JSON response: ${data.substring(0, 100)}...`);
+                }
+            })
+            .catch(error => {
+                log('formHandlerLog', `Error: ${error.message}`, true);
+            });
+        }
+        
+        // Inspect headers
+        function inspectHeaders() {
+            log('headersLog', 'Inspecting headers...');
+            
+            fetch('test-server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Test-Header': 'TestValue'
+                },
+                body: JSON.stringify({test: 'headers'})
+            })
+            .then(response => {
+                log('headersLog', `Response status: ${response.status} ${response.statusText}`);
+                
+                // Log response headers
+                let headerLog = 'Response headers:\n';
+                response.headers.forEach((value, name) => {
+                    headerLog += `${name}: ${value}\n`;
+                });
+                log('headersLog', headerLog);
+                
+                return response.json();
+            })
+            .catch(error => {
+                log('headersLog', `Error: ${error.message}`, true);
+            });
+        }
+        
+        // Simulate actual form submission
+        function simulateFormSubmission() {
+            log('formSimLog', 'Simulating form submission to form-handler.php...');
+            
+            // Create form data
+            const formData = new FormData();
+            formData.append('form_type', 'test');
+            formData.append('name', 'Test User');
+            formData.append('email', 'test@example.com');
+            formData.append('message', 'This is a test message from the diagnostic tool');
+            
+            fetch('form-handler.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                log('formSimLog', `Response status: ${response.status} ${response.statusText}`);
+                
+                // Try to get response as text first
+                return response.text().then(text => {
+                    log('formSimLog', `Raw response: ${text.substring(0, 100)}${text.length > 100 ? '...' : ''}`);
+                    
+                    // Try to parse as JSON if possible
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        log('formSimLog', `Warning: Could not parse response as JSON: ${e.message}`, true);
+                        return { error: 'Invalid JSON', raw: text };
+                    }
+                });
+            })
+            .then(data => {
+                if (data.success) {
+                    log('formSimLog', `Form submission successful! Message: ${data.message}`);
+                } else {
+                    log('formSimLog', `Form submission failed. Message: ${data.message}`, true);
+                }
+            })
+            .catch(error => {
+                log('formSimLog', `Error: ${error.message}`, true);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+/**
+ * Simple Mobile Admin Styles
+ * Clean implementation of mobile admin menu and layout
+ */
+
+/* Mobile Styles */
+@media screen and (max-width: 991px) {
+    /* === BASE LAYOUT === */
+    body {
+        overflow-x: hidden;
+    }
+    
+    .admin-container {
+        display: block;
+        width: 100%;
+    }
+    
+    /* === SIDEBAR === */
+    .admin-sidebar {
+        width: 100%;
+        background-color: #333;
+        position: relative;
+        z-index: 100;
+    }
+    
+    .admin-logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-bottom: none;
+    }
+    
+    .admin-logo h2 {
+        margin: 0;
+        color: #e91e63;
+    }
+    
+    /* === TOGGLE BUTTON === */
+    #mobileMenuToggle {
+        display: block;
+        background: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+        font-size: 24px;
+        outline: none;
+    }
+    
+    #mobileMenuToggle .fa-bars {
+        display: block;
+    }
+    
+    #mobileMenuToggle .fa-times {
+        display: none;
+    }
+    
+    .admin-sidebar.mobile-expanded #mobileMenuToggle .fa-bars {
+        display: none;
+    }
+    
+    .admin-sidebar.mobile-expanded #mobileMenuToggle .fa-times {
+        display: block;
+        color: #e91e63;
+    }
+    
+    /* === NAVIGATION === */
+    .admin-nav {
+        display: none;
+    }
+    
+    .admin-sidebar.mobile-expanded .admin-nav {
+        display: block;
+    }
+    
+    .admin-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .admin-nav li {
+        margin: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .admin-nav a {
+        display: block;
+        padding: 15px;
+        color: #ccc;
+        text-decoration: none;
+    }
+    
+    .admin-nav a:hover,
+    .admin-nav li.active a {
+        background-color: #e91e63;
+        color: white;
+    }
+    
+    .admin-nav i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+    }
+    
+    /* === MAIN CONTENT === */
+    .admin-main {
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    /* === SECTIONS === */
+    .admin-section {
+        display: none;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .admin-section.active {
+        display: block;
+    }
+    
+    /* === HEADERS === */
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    
+    .admin-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    
+    /* === FORMS === */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* === CARDS === */
+    .stat-card,
+    .package-edit-card,
+    .addon-edit-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    /* === TABLES === */
+    table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+    .admin-main {
+        padding: 10px;
+    }
+    
+    .admin-section {
+        padding: 10px;
+    }
+    
+    .admin-header h1 {
+        font-size: 1.3rem;
+    }
+}

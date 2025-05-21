@@ -1,0 +1,62 @@
+/**
+ * Critical Mobile Toggle Styles
+ * These styles ensure the mobile menu toggle is always visible and clickable
+ */
+
+/* Mobile toggle button must always be visible and clickable */
+@media screen and (max-width: 991px) {
+    /* Ensure toggle is visible */
+    #mobileMenuToggle {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        cursor: pointer !important;
+        z-index: 9999 !important;
+        position: relative !important;
+        padding: 12px !important;
+        width: 50px !important;
+        height: 50px !important;
+        background-color: transparent !important;
+        border: none !important;
+        margin-left: auto !important;
+        pointer-events: auto !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+    }
+    
+    /* Make menu toggle bars visible */
+    #mobileMenuToggle .bar {
+        display: block !important;
+        width: 25px !important;
+        height: 3px !important;
+        margin: 5px auto !important;
+        background-color: #e91e63 !important;
+        border-radius: 2px !important;
+        transition: all 0.3s ease-in-out !important;
+    }
+    
+    /* Ensure navigation is shown when expanded */
+    .admin-sidebar.mobile-expanded .admin-nav {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Basic show/hide for mobile navigation */
+    .admin-nav {
+        display: none;
+    }
+    
+    /* Animation for menu toggle */
+    .admin-sidebar.mobile-expanded #mobileMenuToggle .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg) !important;
+    }
+    
+    .admin-sidebar.mobile-expanded #mobileMenuToggle .bar:nth-child(2) {
+        opacity: 0 !important;
+    }
+    
+    .admin-sidebar.mobile-expanded #mobileMenuToggle .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg) !important;
+    }
+}

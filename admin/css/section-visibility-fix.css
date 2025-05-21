@@ -1,0 +1,114 @@
+/* 
+   Memories and More Photo Booths - Admin Dashboard Section Visibility Fix
+   Fixes issues with sections not displaying properly on mobile devices
+   Updated with additional mobile optimizations
+*/
+
+/* Global fix for admin layout to ensure sections display properly */
+body.admin-body {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+/* Additional styles for admin sections to ensure they're visible */
+.admin-section {
+    position: relative !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: none !important; /* Prevent transitions causing visibility issues */
+    padding: 15px !important; /* Consistent padding for all sections */
+}
+
+/* Fix section visibility - ensure sections are fully visible when active */
+#dashboard-section.active,
+#packages-section.active,
+#addons-section.active,
+#events-section.active,
+#settings-section.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 5;
+    min-height: 300px; /* Ensure minimum height to show content */
+    height: auto !important;
+    overflow: visible !important;
+    width: 100% !important; /* Ensure full width */
+}
+
+/* Force dark space issue fix */
+.admin-main {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Fix for the black space issue */
+@media screen and (max-width: 991px) {
+    .admin-content {
+        background-color: #f5f5f5;
+        min-height: calc(100vh - 60px);
+        padding: 15px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    
+    .admin-section {
+        margin-bottom: 20px;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 15px !important;
+        overflow: visible !important;
+    }
+    
+    /* Enhanced mobile menu styles */
+    .admin-sidebar {
+        width: 100% !important;
+        position: relative;
+        z-index: 1000;
+    }
+    
+    .admin-nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .admin-sidebar.mobile-expanded .admin-nav {
+        max-height: 500px;
+        overflow: visible;
+    }
+      .admin-main {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Improve mobile touch targets */
+    .admin-sidebar-nav a {
+        padding: 15px !important;
+        font-size: 16px !important;
+    }
+    
+    /* Fix tables on mobile */
+    table.admin-table {
+        display: block;
+        overflow-x: auto;
+        width: 100% !important;
+    }
+    
+    /* Fix form elements on mobile */
+    input, select, textarea, button {
+        font-size: 16px !important; /* Prevent iOS zoom */
+    }
+    
+    /* Fix spacing between active sections */
+    .admin-section.active {
+        padding: 15px !important;
+        margin-top: 10px !important;
+    }
+    
+    /* Improve mobile sidebar after footer removal */
+    .admin-sidebar.mobile-expanded {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Add shadow when expanded */
+    }
+}

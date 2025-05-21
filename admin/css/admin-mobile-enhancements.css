@@ -1,0 +1,112 @@
+/**
+ * Enhanced Admin Mobile Responsiveness
+ * Additional fixes to improve mobile admin dashboard
+ * Updated to handle header/footer cleanup
+ */
+
+/* Make sure mobile viewport is handled properly */
+@media screen and (max-width: 991px) {
+    /* Adjust content padding and margins */
+    .section-content {
+        padding: 15px !important;
+        margin: 0 !important;
+    }
+    
+    /* Fix mobile stats layout */
+    .dashboard-stats {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .stat-card {
+        width: 100% !important;
+        margin-bottom: 15px;
+        flex-basis: 100% !important;
+    }
+    
+    /* Fix form layout */
+    .admin-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 15px !important;
+    }
+    
+    /* Clean up header after welcome message removal */
+    .admin-header {
+        text-align: center !important;
+        padding: 15px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: auto !important;
+    }
+    
+    /* Improve section headers */
+    .section-header {
+        padding: 15px 0 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Package cards in mobile */
+    .package-cards {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .package-edit-card {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Addon cards in mobile */
+    .addon-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .addon-edit-item {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 576px) {
+    /* Further reduce padding */
+    .admin-header h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .section-header h2 {
+        font-size: 1.3rem !important;
+    }
+    
+    /* Fix button layout */
+    .btn-group {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    .btn-group .btn {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+    
+    /* Improve form layout on very small screens */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px !important; /* Prevent iOS zoom */
+    }
+    
+    /* Better touch targets */
+    button, 
+    .btn,
+    a.btn,
+    input[type="submit"],
+    input[type="button"] {
+        min-height: 44px !important; /* Apple's minimum recommendation */
+    }
+}

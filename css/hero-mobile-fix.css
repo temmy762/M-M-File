@@ -1,0 +1,104 @@
+/* 
+   Memories and More Photo Booths - Hero Mobile Fixes
+   Version: 1.0
+*/
+
+/* Increase hero section height */
+.hero {
+    height: 150vh; /* 1.5x viewport height */
+    min-height: 1000px; /* Increased minimum height */
+}
+
+/* Specific height adjustments for different devices */
+@media (min-width: 992px) {
+    .hero {
+        min-height: 900px; /* Even taller on larger screens */
+    }
+}
+
+/* Base hero content styles to ensure proper centering */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Remove the hero badge completely */
+.hero-badge {
+    display: none !important;
+}
+
+/* Feature tags styling for better spacing */
+.hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    /* Hide all feature tags on mobile */
+    .hero-features {
+        display: none;
+    }
+    
+    /* Ensure proper spacing and alignment for remaining feature tags */
+    .hero-features {
+        gap: 20px;
+        margin: 15px 0;
+    }
+    
+    /* Improve spacing for buttons on mobile */
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    /* Make buttons full width on mobile */
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Adjust hero content spacing */
+    .hero-content {
+        padding: 0 15px;
+    }
+    
+    /* Ensure title and subtitle are centered */
+    .animate-title,
+    .animate-subtitle {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    .hero-badge {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .animate-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .animate-subtitle {
+        font-size: 18px;
+    }
+    
+    .feature-tag {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}

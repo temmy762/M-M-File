@@ -1,0 +1,42 @@
+/* 
+   Memories and More Photo Booths - Booth Heading Divider Fix
+   Version: 1.0
+*/
+
+/* Fix for section headings and their dividers */
+.booth-details h2,
+.props-details h2 {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.booth-details h2::after,
+.props-details h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #000;
+}
+
+/* Center dividers on mobile */
+@media (max-width: 992px) {
+    .booth-details,
+    .props-details {
+        text-align: center;
+    }
+    
+    .booth-details h2,
+    .props-details h2 {
+        text-align: center;
+    }
+    
+    .booth-details h2::after,
+    .props-details h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

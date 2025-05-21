@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Photos - Memories and More Photo Booths</title>
+    <meta name="description" content="Access your event photos from Memories and More Photo Booths. View and download your photo booth pictures.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/navbar-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/header-fix.css">
+    <link rel="stylesheet" href="css/responsive-enhancements.css">
+    <link rel="stylesheet" href="css/mobile-fixes.css">
+    <link rel="stylesheet" href="css/hero-alignment.css">
+    
+    <style>
+        /* Event Photos Page Styles */
+        .event-photos-section {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .photo-list {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .photo-list-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .photo-list-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .photo-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+        
+        .photo-item:last-child {
+            border-bottom: none;
+        }
+        
+        .photo-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .photo-item h3 {
+            margin: 0 0 15px 0;
+            font-size: 20px;
+            color: var(--text-dark);
+        }
+        
+        .photo-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .photo-link:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .page-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .page-intro p {
+            color: #6c757d;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .empty-message {
+            padding: 40px 20px;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        .empty-message h3 {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Photo Booths Logo"></a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="event-gallery.html">Event Gallery</a></li>
+                <li><a href="our-booth.html">Our Booths</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="inquire.html">Inquire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="active"><a href="client-events.html">Event Photos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Event Photos</h1>
+            <p>View and download your photo booth memories</p>
+        </div>
+    </section>
+
+    <!-- Event Photos Section -->
+    <section class="event-photos-section">
+        <div class="container">
+            <div class="page-intro">
+                <p>Find your event below and click the link to view and download your photo booth pictures. All photos are hosted on SmugMug for easy viewing and downloading.</p>
+            </div>
+            
+            <div class="photo-list">
+                <div class="photo-list-header">
+                    <h2>Available Photo Galleries</h2>
+                </div>
+                
+                <div id="eventsList">
+                    <!-- Event links will be loaded here dynamically -->
+                </div>
+                
+                <div id="noEvents" class="empty-message" style="display: none;">
+                    <h3>No Events Available</h3>
+                    <p>Check back soon for upcoming event galleries!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Memories & More Photo Booths</h3>
+                    <p>Creating unforgettable moments at every event</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="event-gallery.html">Gallery</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> 763.785.1590</p>
+                    <p><i class="fas fa-envelope"></i> info@MemoriesAndMorePhotoBooths.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Twin Cities, MN</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Memories & More Photo Booths. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Load event links when page loads
+        window.onload = function() {
+            loadEventLinks();
+        };
+        
+        // Load event links from localStorage
+        function loadEventLinks() {
+            const eventsList = document.getElementById('eventsList');
+            const noEvents = document.getElementById('noEvents');
+            
+            // Get links from localStorage
+            const links = JSON.parse(localStorage.getItem('eventLinks')) || [];
+            
+            // Check if there are any links
+            if (links.length === 0) {
+                eventsList.innerHTML = '';
+                noEvents.style.display = 'block';
+                return;
+            }
+            
+            // Hide no events message
+            noEvents.style.display = 'none';
+            
+            // Clear existing content
+            eventsList.innerHTML = '';
+            
+            // Add each event link
+            links.forEach(function(link) {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'photo-item';
+                eventItem.innerHTML = `
+                    <h3>${link.name}</h3>
+                    <a href="${link.url}" class="photo-link" target="_blank">View Photos</a>
+                `;
+                eventsList.appendChild(eventItem);
+            });
+        }
+    </script>
+</body>
+</html>

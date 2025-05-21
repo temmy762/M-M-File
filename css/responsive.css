@@ -1,0 +1,536 @@
+/* 
+   Memories and More Photo Booths - Responsive Styles
+   Author: Cascade
+   Version: 1.0
+*/
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+/* 
+   Desktop: >992px
+   Tablet: 768px-992px
+   Mobile: <768px
+   Small Mobile: <576px
+*/
+
+/* ===== GLOBAL RESPONSIVE STYLES ===== */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+        padding: 0 20px;
+    }
+    
+    h1 {
+        font-size: 42px;
+    }
+    
+    h2 {
+        font-size: 32px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .section-description {
+        font-size: 16px;
+    }
+    
+    /* Adjust section padding for medium screens */
+    section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .section-description {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+    
+    /* Adjust section padding for small screens */
+    section {
+        padding: 50px 0;
+    }
+    
+    /* Center align text on mobile */
+    .text-center-mobile {
+        text-align: center;
+    }
+    
+    /* Adjust button sizing on mobile */
+    .btn {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+    
+    /* Adjust section padding for extra small screens */
+    section {
+        padding: 40px 0;
+    }
+}
+
+/* ===== HEADER & NAVIGATION RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .navbar .logo img {
+        max-height: 50px;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 300px;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        transition: 0.4s;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .nav-menu li {
+        margin: 15px 0;
+        width: 100%;
+    }
+    
+    .nav-menu a {
+        font-size: 16px;
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-toggle {
+        display: flex !important;
+    }
+    
+    .page-header {
+        padding: 100px 0 50px;
+    }
+    
+    .page-header h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .navbar .logo img {
+        max-height: 40px;
+    }
+    
+    .nav-menu {
+        width: 100%;
+        top: 70px;
+        height: calc(100vh - 70px);
+    }
+    
+    .page-header {
+        padding: 80px 0 40px;
+    }
+    
+    .page-header h1 {
+        font-size: 28px;
+    }
+}
+
+/* ===== HERO SECTION RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .hero {
+        height: 80vh;
+        padding-top: 100px;
+    }
+    
+    .hero-content {
+        max-width: 600px;
+    }
+    
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero h2 {
+        font-size: 18px;
+    }
+    
+    .scroll-down {
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 70vh;
+        padding-top: 120px;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        margin: 5px 0;
+        width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 60vh;
+        padding-top: 130px;
+    }
+    
+    .hero h1 {
+        font-size: 28px;
+    }
+    
+    .hero h2 {
+        font-size: 16px;
+    }
+}
+
+/* ===== FEATURES & SERVICES RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .features-grid,
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .feature-card,
+    .service-card {
+        padding: 25px 20px;
+    }
+    
+    .feature-icon,
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .service-item {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .service-item.reverse {
+        flex-direction: column;
+    }
+    
+    .service-image,
+    .service-details {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .features-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-features {
+        justify-content: center;
+    }
+}
+
+/* ===== GALLERY RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-filter {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        margin: 5px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* ===== BOOTH PAGE RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .booth-content,
+    .booth-content.reverse,
+    .props-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .booth-image,
+    .booth-details,
+    .props-image,
+    .props-details {
+        width: 100%;
+    }
+    
+    .booth-image img,
+    .props-image img {
+        max-width: 100%;
+        height: auto !important;
+        width: 100% !important;
+    }
+    
+    .booth-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .specs-grid,
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .booth-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature {
+        padding: 15px;
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .backdrop-carousel {
+        flex-direction: column;
+    }
+    
+    .backdrop-slide {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .specs-grid,
+    .addons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .spec-item,
+    .addon-item {
+        padding: 20px 15px;
+    }
+    
+    .spec-icon,
+    .addon-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+}
+
+/* ===== PACKAGES PAGE RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .package-card {
+        max-width: 450px;
+        margin: 0 auto 30px;
+    }
+    
+    .comparison-table {
+        overflow-x: auto;
+    }
+    
+    .comparison-table table {
+        min-width: 700px;
+    }
+}
+
+/* ===== CONTACT & FORM RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .contact-grid,
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .contact-info {
+        order: 2;
+    }
+    
+    .contact-form {
+        order: 1;
+    }
+    
+    .form-group.half {
+        width: 100%;
+    }
+}
+
+/* ===== FOOTER RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-links ul {
+        justify-content: center;
+    }
+    
+    .footer-social .social-icons {
+        justify-content: center;
+    }
+}
+
+/* ===== CTA SECTION RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+    .cta-section h2 {
+        font-size: 24px;
+    }
+    
+    .cta-section p {
+        font-size: 16px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        margin: 5px 0;
+        width: 200px;
+    }
+}
+
+/* ===== UTILITY CLASSES FOR RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    .show-on-mobile {
+        display: block !important;
+    }
+    
+    .center-on-mobile {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .stack-on-mobile {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .full-width-on-mobile {
+        width: 100% !important;
+    }
+}

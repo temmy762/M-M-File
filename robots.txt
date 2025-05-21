@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Sitemap: https://memoriesandmorephotobooths.com/sitemap.xml
+
+# Allow all crawlers full access
+Disallow:
+
+# Optimize crawling rate
+Crawl-delay: 10

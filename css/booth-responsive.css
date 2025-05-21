@@ -1,0 +1,231 @@
+/* 
+   Memories and More Photo Booths - Booth Responsive Fixes
+   Version: 1.0
+*/
+
+/* Base styles for booth content */
+.booth-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 60px 0;
+}
+
+.booth-content.reverse {
+    flex-direction: row-reverse;
+}
+
+.booth-image {
+    flex: 0 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.booth-details {
+    flex: 1;
+}
+
+/* Responsive image handling */
+.booth-image img,
+.props-image img {
+    max-width: 100%;
+    height: 500px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Tablet responsiveness */
+@media (max-width: 992px) {
+    .booth-content {
+        flex-direction: column;
+        gap: 30px;
+        margin: 40px 0;
+    }
+    
+    .booth-content.reverse {
+        flex-direction: column;
+    }
+    
+    .booth-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .booth-details {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .booth-features {
+        justify-content: center;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .booth-image img,
+    .props-image img {
+        max-height: 400px;
+        margin: 0 auto;
+    }
+    
+    .booth-features {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .feature {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+    
+    /* Center section titles and headings on mobile */
+    .section-title,
+    .booth-showcase h2,
+    .props-collection h2,
+    .tech-specs h2,
+    .why-choose-us h2,
+    .add-ons h2 {
+        text-align: center;
+        width: 100%;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    
+    /* Add centered divider under section headings */
+    .booth-showcase h2::after,
+    .props-collection h2::after,
+    .tech-specs h2::after,
+    .why-choose-us h2::after,
+    .add-ons h2::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 15px auto 0;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    .booth-image img,
+    .props-image img {
+        max-height: 300px;
+    }
+    
+    .booth-content {
+        margin: 30px 0;
+    }
+    
+    .booth-details h2 {
+        font-size: 24px;
+    }
+    
+    .booth-description {
+        font-size: 15px;
+    }
+}
+
+/* Fix for Fun Props Collection section */
+.props-collection {
+    padding: var(--section-padding);
+}
+
+.props-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.props-image {
+    flex: 0 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.props-details {
+    flex: 1;
+}
+
+@media (max-width: 992px) {
+    .props-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .props-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .props-details {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Fix for Add-ons section */
+.add-ons {
+    padding: var(--section-padding);
+    background-color: var(--bg-light);
+}
+
+.addon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.addon-item {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    width: calc(33.333% - 20px);
+    min-width: 250px;
+}
+
+@media (max-width: 992px) {
+    .addon-item {
+        width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 576px) {
+    .addon-item {
+        width: 100%;
+    }
+}
+
+/* Ensure proper spacing for all sections */
+section {
+    overflow: hidden;
+}
+
+/* Fix for Technical Specifications section */
+@media (max-width: 992px) {
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+}

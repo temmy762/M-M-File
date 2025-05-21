@@ -1,0 +1,63 @@
+/* 
+   Memories and More Photo Booths - Booth Display Fix
+   Ensures proper display of booth sections
+*/
+
+/* Fix for booth images in all booth sections */
+.booth-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Improved spacing between booth sections */
+.booth-showcase {
+    padding: 60px 0;
+    margin-bottom: 0;
+}
+
+/* Fix alternating background appearance */
+.booth-showcase.alt-bg {
+    background-color: #f8f8f8;
+}
+
+/* Specific styling for the White Booth section */
+section.booth-showcase:nth-of-type(3) .booth-image img {
+    border: 5px solid #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+section.booth-showcase:nth-of-type(3) .booth-details h2 {
+    color: #333;
+    font-weight: 700;
+}
+
+section.booth-showcase:nth-of-type(3) .feature-icon i {
+    color: #e91e63;
+}
+
+/* Ensure proper display on mobile */
+@media screen and (max-width: 768px) {
+    .booth-content {
+        flex-direction: column;
+    }
+    
+    .booth-content.reverse {
+        flex-direction: column;
+    }
+    
+    .booth-image {
+        margin-bottom: 25px;
+    }
+    
+    .booth-details {
+        padding: 0;
+    }
+    
+    /* Fix order of sections on mobile */
+    section.booth-showcase:nth-of-type(3) {
+        order: 3;
+    }
+}

@@ -1,0 +1,632 @@
+/* 
+   Memories and More Photo Booths - Admin Dashboard Responsive Styles
+   Version: 1.0
+*/
+
+/* Base Responsive Styles */
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Responsive Variables */
+:root {
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 70px;
+    --transition-speed: 0.3s;
+}
+
+/* Large Screens (Desktops) */
+@media screen and (min-width: 992px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+    
+    .admin-sidebar.collapsed {
+        width: var(--sidebar-collapsed-width);
+    }
+    
+    .admin-sidebar.collapsed .admin-logo h2 {
+        display: none;
+    }
+    
+    .admin-sidebar.collapsed .admin-nav a span {
+        display: none;
+    }
+    
+    .admin-sidebar.collapsed .admin-nav a {
+        justify-content: center;
+        padding: 15px 0;
+    }
+    
+    .admin-sidebar.collapsed .admin-nav i {
+        margin-right: 0;
+        font-size: 1.2em;
+    }
+    
+    .admin-sidebar.collapsed + .admin-main {
+        margin-left: var(--sidebar-collapsed-width);
+        width: calc(100% - var(--sidebar-collapsed-width));
+    }
+    
+    .admin-main {
+        transition: margin-left var(--transition-speed), width var(--transition-speed);
+    }
+    
+    .admin-content {
+        padding: 20px 30px;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: calc(100vw - var(--sidebar-width)); /* Account for sidebar width */
+    }
+    
+    .admin-sidebar + .admin-content {
+        width: calc(100% - var(--sidebar-width));
+        margin-left: var(--sidebar-width);
+    }
+    
+    .admin-sidebar.collapsed + .admin-content {
+        width: calc(100% - var(--sidebar-collapsed-width));
+        margin-left: var(--sidebar-collapsed-width);
+    }
+}
+
+/* Enhanced desktop welcome message styling */
+.desktop-welcome {
+    background: linear-gradient(135deg, #3a6186, #89253e);
+    border-radius: 10px;
+    padding: 25px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desktop-welcome .welcome-header {
+    flex: 1 1 100%;
+    margin-bottom: 15px;
+}
+
+.desktop-welcome .welcome-header h3 {
+    font-size: 24px;
+    margin: 0 0 5px 0;
+    color: white;
+}
+
+.desktop-welcome .welcome-header p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.desktop-welcome .welcome-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.desktop-welcome .stat-item {
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    padding: 15px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin: 0;
+}
+
+.desktop-welcome .stat-number {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.desktop-welcome .stat-label {
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.desktop-welcome .stat-item i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    display: block;
+}
+
+.desktop-welcome .welcome-actions {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.desktop-welcome .welcome-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-align: center;
+    min-width: 160px;
+}
+
+.desktop-welcome .welcome-btn i {
+    margin-right: 8px;
+}
+
+.desktop-welcome .welcome-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-welcome .welcome-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Medium Screens (Tablets) */
+@media screen and (max-width: 991px) {
+    .admin-container {
+        flex-direction: column;
+        display: block; /* Change to block for mobile */
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .admin-sidebar {
+        width: 100% !important;
+        position: relative;
+        padding: 10px 0;
+        display: block;
+    }
+    
+    .admin-logo {
+        padding: 0 15px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }    .mobile-menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 12px;
+        z-index: 100;
+        position: relative;
+        outline: none;
+        margin-left: auto; /* Push to right side */
+        width: 50px; /* Wider touch target */
+        height: 50px; /* Taller touch target */
+    }
+    
+    .admin-nav {
+        display: none;
+        margin-top: 15px;
+    }
+      .admin-sidebar.mobile-expanded .admin-nav {
+        display: block;
+    }
+    
+    .admin-main {
+        width: 100%;
+        min-height: calc(100vh - 70px);
+        display: block; /* Change to block layout for mobile */
+        margin-left: 0 !important; /* Remove any margin that pushes content */
+        overflow-x: visible;
+        overflow-y: visible;
+    }
+    
+    .admin-content {
+        width: 100%;
+        padding: 15px;
+        display: block; /* Ensure content displays properly */
+        box-sizing: border-box;
+    }
+    
+    .package-cards, 
+    .addon-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .admin-section {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+        margin: 0;
+    }
+    
+    .admin-section.active {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Fix for sections not showing */
+    #dashboard-section.active,
+    #events-section.active,
+    #packages-section.active,
+    #addons-section.active,
+    #settings-section.active {
+        display: block !important;
+    }
+    
+    /* Ensure proper spacing */
+    .section-header {
+        margin-bottom: 15px;
+        width: 100%;
+        padding-left: 5px;
+    }
+    
+    .section-content {
+        width: 100%;
+        padding: 0 5px;
+    }
+}
+
+/* Mobile welcome message styling remains simple */
+@media (max-width: 991px) {
+    .dashboard-welcome {
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-welcome h3 {
+        margin-top: 0;
+        font-size: 18px;
+    }
+
+    .dashboard-welcome p {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+}
+
+/* Small Screens (Mobile Phones) */
+@media screen and (max-width: 767px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    
+    .admin-header h1 {
+        margin-bottom: 10px;
+    }
+    
+    .admin-main {
+        padding: 15px;
+    }
+    
+    .dashboard-stats {
+        flex-direction: column;
+    }
+    
+    .stat-card {
+        margin-bottom: 15px;
+    }
+    
+    .package-cards, 
+    .addon-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .section-header h2 {
+        margin-bottom: 10px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 480px) {
+    .admin-logo h2 {
+        font-size: 1.2rem;
+    }
+    
+    .admin-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .admin-user {
+        font-size: 0.8rem;
+    }
+    
+    .package-edit-card,
+    .addon-edit-item {
+        padding: 15px;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Specific Component Responsiveness */
+
+/* Tables */
+@media screen and (max-width: 767px) {
+    .admin-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    .admin-table th, 
+    .admin-table td {
+        white-space: nowrap;
+    }
+}
+
+/* Form Elements */
+@media screen and (max-width: 767px) {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px; /* Prevent zoom on iOS */
+        padding: 12px;
+    }
+    
+    /* Improve form element touch targets */
+    .form-group label {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    /* Enhance checkbox usability on touch devices */
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+    
+    /* Make buttons more touch-friendly */
+    .btn-primary, 
+    .btn-secondary, 
+    .btn-success {
+        padding: 14px 20px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Mobile sidebar toggle animation */
+.mobile-menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+    pointer-events: none; /* Ensures clicks pass through to the button */
+}
+
+.mobile-menu-toggle:hover .bar {
+    background-color: #f8f8f8; /* Slightly lighter on hover */
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); /* Subtle glow effect */
+}
+
+.mobile-menu-toggle:active .bar {
+    background-color: #e0e0e0; /* Even lighter when pressed */
+}
+
+.admin-sidebar.mobile-expanded .mobile-menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.admin-sidebar.mobile-expanded .mobile-menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.admin-sidebar.mobile-expanded .mobile-menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Accessibility - Keyboard focus styles */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid rgba(233, 30, 99, 0.4);
+    outline-offset: 2px;
+}
+
+.keyboard-focus {
+    outline: 3px solid rgba(233, 30, 99, 0.4) !important;
+    outline-offset: 2px !important;
+}
+
+/* Provide visual feedback for button interaction */
+.btn-primary:active,
+.btn-secondary:active,
+.btn-success:active {
+    transform: scale(0.98);
+}
+
+/* Improve alert visibility on mobile */
+@media screen and (max-width: 767px) {
+    .alert {
+        padding: 15px;
+        margin: 15px 0;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+/* Make sure the full welcome message is visible */
+.admin-section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Fix container width issues */
+.admin-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex: 1;
+    padding-bottom: 70px; /* Make space for the footer */
+}
+
+.section-header {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Make dashboard content fill available space */
+#dashboard-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Ensure dashboard welcome spans the full width */
+.dashboard-welcome {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* General layout improvements */
+.admin-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    flex-direction: row;
+}
+
+.admin-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+/* Admin Footer Styling */
+.admin-footer {
+    width: 100%;
+    background-color: var(--admin-primary);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.admin-footer a {
+    color: #e91e63;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.admin-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.tree-icon {
+    display: inline-block;
+    margin: 0 2px;
+    color: #4CAF50; /* Green color for the tree */
+    font-size: 15px;
+    transition: transform 0.3s ease;
+}
+
+.admin-footer a:hover .tree-icon {
+    transform: rotate(5deg) scale(1.2);
+}
+
+/* Additional mobile footer styles */
+@media screen and (max-width: 767px) {
+    .admin-footer {
+        padding: 12px 0;
+    }
+    
+    .admin-footer p {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,313 @@
+/* 
+   Memories and More Photo Booths - Booth Image Adjustment
+   Author: Cascade
+   Version: 1.0
+*/
+
+/* Set fixed height and width for Open-Air Style Booth image */
+.booth-image img {
+    height: 600px !important;
+    width: 500px !important; /* Constant width */
+    object-fit: cover !important; /* Maintain aspect ratio while filling the container */
+}
+
+/* Set the same dimensions for Fun Props Collection image */
+.props-image img {
+    height: 600px !important;
+    width: 500px !important; /* Constant width */
+    object-fit: cover !important; /* Maintain aspect ratio while filling the container */
+}
+
+/* Fix for Technical Specifications section */
+.tech-specs {
+    padding: var(--section-padding);
+    background-color: var(--bg-light);
+    position: relative;
+    z-index: 1;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.spec-item {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+.spec-item:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: var(--shadow-dark);
+}
+
+.spec-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--bg-gradient);
+    color: var(--text-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+}
+
+.spec-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.spec-item p {
+    color: var(--text-gray);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Fix for Available Add-Ons section */
+.addons-section {
+    padding: var(--section-padding);
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.addons-section .section-description {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: var(--text-gray);
+}
+
+.booth-features {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.booth-comparison {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.booth-comparison-image {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.booth-comparison-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.booth-comparison-placeholder {
+    width: 100%;
+    height: 400px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 2px dashed #ccc;
+}
+
+.booth-placeholder-text {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.booth-placeholder-text i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #999;
+}
+
+.booth-placeholder-text p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.placeholder-note {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+}
+
+.booth-caption {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+}
+
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.addon-item {
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius);
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.addon-item:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: var(--shadow-dark);
+}
+
+.addon-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--bg-gradient);
+    color: var(--text-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.addon-details {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.addon-item h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addon-item p {
+    color: var(--text-gray);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
+
+.addon-price {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.addon-note {
+    font-size: 13px !important;
+    font-style: italic;
+    color: var(--primary-color) !important;
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .addons-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .booth-image img,
+    .props-image img {
+        height: 550px !important;
+        width: 450px !important;
+    }
+    
+    .specs-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .booth-image img,
+    .props-image img {
+        height: 500px !important;
+        width: 400px !important;
+    }
+    
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .booth-image img,
+    .props-image img {
+        height: 450px !important;
+        width: 100% !important; /* Full width on mobile */
+    }
+    
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .addons-grid {
+        grid-template-columns: 1fr;
+    }
+}

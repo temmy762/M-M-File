@@ -1,0 +1,48 @@
+/* 
+   Memories and More Photo Booths - Services Divider Fix
+   Version: 1.0
+*/
+
+/* Center the dividers below service headings */
+.service-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.service-details h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+}
+
+/* Center other elements for consistency */
+.service-details {
+    text-align: center;
+}
+
+.service-icon {
+    margin: 0 auto 20px;
+}
+
+.service-features {
+    justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-details h2 {
+        text-align: center;
+    }
+    
+    .service-details h2:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

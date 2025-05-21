@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Form Test - Updated</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PHP Form Processing Test</h1>
+        <p>This form will test if your PHP configuration is working properly for form processing.</p>
+        
+        <form id="testForm">
+            <input type="hidden" name="form_type" value="test">
+            
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Test Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            
+            <button type="submit" id="submitBtn">Submit Test Form</button>
+        </form>
+        
+        <div id="result"></div>
+    </div>      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('testForm');
+            const result = document.getElementById('result');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Create debug section with improved styling
+            const debugSection = document.createElement('div');
+            debugSection.id = 'debugInfo';
+            debugSection.style.marginTop = '20px';
+            debugSection.style.padding = '15px';
+            debugSection.style.border = '1px solid #ddd';
+            debugSection.style.borderRadius = '4px';
+            debugSection.style.backgroundColor = '#f8f9fa';
+            debugSection.style.display = 'block'; // Always show debug section
+            debugSection.innerHTML = '<h3>Debug Information</h3><pre id="debugContent" style="background-color: #eee; padding: 10px; overflow: auto; max-height: 300px;"></pre>';
+            debugSection.innerHTML += '<div id="serverInfo"><h3>Server Information</h3><p>Testing connection to PHP server...</p></div>';
+            document.querySelector('.container').appendChild(debugSection);
+              // First check if the PHP server is running
+            fetch('check-mail.php', { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('serverInfo').innerHTML = 
+                            '<h3>Server Information</h3>' +
+                            '<p style="color: green;">✓ PHP server is running</p>' +
+                            '<p>You can also check <a href="phpinfo.php" target="_blank">PHP Configuration Details</a></p>' +
+                            '<p>And view <a href="check-mail.php" target="_blank">Mail Configuration</a></p>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('serverInfo').innerHTML = 
+                        '<h3>Server Information</h3>' +
+                        '<p style="color: red;">✗ PHP server is NOT running. Please start the server first.</p>' +
+                        '<p>Error: ' + error.message + '</p>' +
+                        '<p>Run the <code>start-php-server.bat</code> file or execute this PowerShell command:</p>' +
+                        '<pre>Set-Location "c:\\Users\\user\\Desktop\\M&More Photo booth File"; ' +
+                        '& "$env:USERPROFILE\\Desktop\\PHP\\php.exe" -S localhost:8000</pre>';
+                });
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading
+                submitBtn.innerHTML = 'Submitting... <span class="loading"></span>';
+                submitBtn.disabled = true;
+                result.style.display = 'none';
+                
+                // Update debug content
+                document.getElementById('debugContent').textContent = 'Sending request to form-handler.php...\n';
+                document.getElementById('debugContent').textContent += 'Time: ' + new Date().toLocaleTimeString() + '\n';
+                
+                // Collect form data
+                const formData = new FormData(form);
+                
+                // Display form data being sent
+                document.getElementById('debugContent').textContent += '\nForm data being sent:\n';
+                for (let pair of formData.entries()) {
+                    document.getElementById('debugContent').textContent += pair[0] + ': ' + pair[1] + '\n';
+                }
+                
+                // Send form data to handler
+                fetch('form-handler.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    document.getElementById('debugContent').textContent += '\nResponse status: ' + response.status + ' ' + response.statusText;
+                    
+                    // Clone the response for raw text viewing
+                    const clonedResponse = response.clone();
+                    
+                    // Get raw response text for debugging
+                    clonedResponse.text().then(rawText => {
+                        document.getElementById('debugContent').textContent += '\n\nRaw Response:\n' + rawText;
+                    });
+                    
+                    return response.json().catch(err => {
+                        document.getElementById('debugContent').textContent += '\n\nJSON Parse Error: ' + err.message;
+                        throw new Error('Invalid JSON: ' + err.message);
+                    });
+                })                .then(data => {
+                    document.getElementById('debugContent').textContent += '\n\nParsed JSON Response:\n' + JSON.stringify(data, null, 2);
+                    
+                    // Reset button
+                    submitBtn.innerHTML = 'Submit Test Form';
+                    submitBtn.disabled = false;
+                    
+                    // Display result
+                    result.style.display = 'block';
+                    if (data.success) {
+                        result.className = 'success';
+                        result.innerHTML = '<strong>Success!</strong> ' + data.message + 
+                            '<p>Your PHP setup is working correctly for form processing.</p>' +
+                            '<p>You can now test the live forms on the <a href="contact.html">Contact</a> and <a href="inquire.html">Inquire</a> pages.</p>';
+                    } else {
+                        result.className = 'error';
+                        result.innerHTML = '<strong>Error:</strong> ' + data.message;
+                        
+                        // Add debug info if available
+                        if (data.debug_info) {
+                            result.innerHTML += '<h4>Debug Information:</h4>';
+                            result.innerHTML += '<pre style="background-color:#eee;padding:10px;overflow:auto;max-height:200px;">' + 
+                                JSON.stringify(data.debug_info, null, 2) + '</pre>';
+                        }
+                        
+                        // Add troubleshooting tips
+                        result.innerHTML += '<h4>Troubleshooting Tips:</h4>' +
+                            '<ol>' +
+                            '<li>Check that PHP mail settings are configured correctly in php.ini</li>' +
+                            '<li>Verify SMTP server settings</li>' +
+                            '<li>Try using an alternative mail library like PHPMailer</li>' +
+                            '</ol>';
+                    }
+                })
+                .catch(error => {
+                    // Reset button
+                    submitBtn.innerHTML = 'Submit Test Form';
+                    submitBtn.disabled = false;
+                    
+                    // Display detailed error
+                    result.style.display = 'block';
+                    result.className = 'error';
+                    result.innerHTML = '<strong>Error:</strong> ' + 
+                        'There was a problem communicating with the server. ' + 
+                        'Make sure PHP is running correctly.<br><br>' +
+                        '<code>' + error + '</code>' +
+                        '<h4>Common Issues:</h4>' +
+                        '<ol>' +
+                        '<li>PHP server is not running (start it using start-php-server.bat)</li>' +
+                        '<li>PHP has syntax errors in form-handler.php</li>' +
+                        '<li>Missing required PHP extensions</li>' +
+                        '</ol>';
+                    
+                    // Log error for debugging
+                    console.error('Form submission error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

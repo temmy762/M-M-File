@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Form Test</h1>
+        <p>This form tests form submission using both direct submission and AJAX methods.</p>
+        
+        <div class="form-options">
+            <label>
+                <input type="radio" name="testType" value="direct" checked> Direct Form Submission
+            </label>
+            <label>
+                <input type="radio" name="testType" value="ajax"> AJAX Form Submission
+            </label>
+        </div>
+        
+        <hr>
+        
+        <!-- Direct Submission Form -->
+        <form id="directForm" action="test-server.php" method="post">
+            <h2>Form (Direct Submission)</h2>
+            <div class="form-group">
+                <label for="directName">Name:</label>
+                <input type="text" id="directName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="directEmail">Email:</label>
+                <input type="email" id="directEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="directMessage">Message:</label>
+                <textarea id="directMessage" name="message" rows="4" required></textarea>
+            </div>
+            <input type="hidden" name="submission_type" value="direct">
+            <button type="submit">Submit (Direct)</button>
+        </form>
+        
+        <hr>
+        
+        <!-- AJAX Submission Form -->
+        <form id="ajaxForm">
+            <h2>Form (AJAX Submission)</h2>
+            <div class="form-group">
+                <label for="ajaxName">Name:</label>
+                <input type="text" id="ajaxName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="ajaxEmail">Email:</label>
+                <input type="email" id="ajaxEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="ajaxMessage">Message:</label>
+                <textarea id="ajaxMessage" name="message" rows="4" required></textarea>
+            </div>
+            <input type="hidden" name="submission_type" value="ajax">
+            <button type="submit">Submit (AJAX)</button>
+        </form>
+        
+        <!-- Results Area -->
+        <div id="result" class="result" style="display: none;">
+            <h3>Response:</h3>
+            <pre id="resultContent"></pre>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle test type selection
+            const radioButtons = document.querySelectorAll('input[name="testType"]');
+            const directForm = document.getElementById('directForm');
+            const ajaxForm = document.getElementById('ajaxForm');
+            
+            function updateFormVisibility() {
+                const selectedValue = document.querySelector('input[name="testType"]:checked').value;
+                if (selectedValue === 'direct') {
+                    directForm.style.display = 'block';
+                    ajaxForm.style.display = 'none';
+                } else {
+                    directForm.style.display = 'none';
+                    ajaxForm.style.display = 'block';
+                }
+            }
+            
+            radioButtons.forEach(button => {
+                button.addEventListener('change', updateFormVisibility);
+            });
+            
+            // Initialize visibility
+            updateFormVisibility();
+            
+            // Handle AJAX form submission
+            ajaxForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+                
+                // Collect form data
+                const formData = new FormData(this);
+                
+                // Send AJAX request
+                fetch('test-server.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    // Display raw response for debugging
+                    response.clone().text().then(raw => {
+                        console.log('Raw response:', raw);
+                    });
+                    
+                    return response.json();
+                })
+                .then(data => {
+                    // Display results
+                    const resultElement = document.getElementById('result');
+                    const resultContent = document.getElementById('resultContent');
+                    
+                    resultElement.style.display = 'block';
+                    resultContent.textContent = JSON.stringify(data, null, 2);
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    // Show error
+                    const resultElement = document.getElementById('result');
+                    const resultContent = document.getElementById('resultContent');
+                    
+                    resultElement.style.display = 'block';
+                    resultContent.textContent = 'Error: ' + error.message;
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

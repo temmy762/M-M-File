@@ -1,0 +1,92 @@
+/* 
+   Memories and More Photo Booths - CTA Banner Styles
+   Author: Cascade
+   Version: 1.0
+*/
+
+/* ===== GET A QUOTE SECTION ===== */
+.get-quote {
+    padding: 80px 0;
+    background: var(--bg-gradient);
+    color: var(--text-light);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.get-quote:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/image-25.jpeg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.quote-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.get-quote h2 {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.get-quote p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Fix for the CTA button */
+.get-quote .btn-light {
+    background-color: white !important;
+    color: var(--primary-color) !important;
+    border: 2px solid white !important;
+    padding: 12px 30px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 30px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.get-quote .btn-light:hover {
+    background-color: transparent !important;
+    color: white !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .get-quote h2 {
+        font-size: 28px;
+    }
+    
+    .get-quote p {
+        font-size: 16px;
+    }
+    
+    .get-quote .btn-light {
+        padding: 10px 25px !important;
+        font-size: 14px !important;
+    }
+}

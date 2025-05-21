@@ -1,0 +1,348 @@
+/* 
+   Memories and More Photo Booths - Services Page Styles
+   Author: Cascade
+   Version: 1.0
+*/
+
+/* Service item styling */
+.service-item {
+    display: flex;
+    margin-bottom: 80px;
+    gap: 50px;
+    align-items: center;
+}
+
+.service-item.reverse {
+    flex-direction: row-reverse;
+}
+
+.service-image {
+    flex: 1;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.service-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.service-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Specific styling for wedding image */
+.service-item:first-of-type .service-image img {
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.service-details {
+    flex: 1;
+    position: relative;
+}
+
+.service-details h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.service-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.feature-tag {
+    background-color: rgba(128, 0, 128, 0.1);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ideal-for {
+    font-style: italic;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .service-item,
+    .service-item.reverse {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .service-details {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-features {
+        justify-content: center;
+    }
+    
+    .service-details h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .service-details p {
+        text-align: center;
+    }
+    
+    .ideal-for {
+        text-align: center;
+    }
+    
+    .service-details .btn {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+/* 
+   Memories and More Photo Booths - Services Page Styles
+   Version: 1.0
+*/
+
+.services-section {
+    padding: 80px 0;
+    background-color: var(--bg-light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-dark);
+}
+
+.service-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.service-card p {
+    color: var(--text-gray);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.service-cta {
+    margin-top: auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-card {
+        padding: 25px;
+    }
+
+    .service-card h3 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-section {
+        padding: 60px 0;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .service-card {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section {
+        padding: 40px 0;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .service-card p {
+        font-size: 15px;
+    }
+}
+
+/* Additional Events Grid Styling */
+.other-events {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.other-events h2 {
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+.other-events h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.event-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    height: 100%;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-dark);
+}
+
+.event-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.event-card p {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Enhanced Responsive Adjustments for Events Grid */
+@media (max-width: 1200px) {
+    .events-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .service-item {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .service-item {
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .other-events {
+        margin-top: 60px;
+    }
+    
+    .service-image img {
+        max-height: 300px;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .service-features {
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .feature-tag {
+        font-size: 13px;
+        padding: 4px 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .event-card {
+        padding: 25px;
+    }
+    
+    .other-events h2 {
+        font-size: 24px;
+    }
+    
+    .service-item {
+        margin-bottom: 50px;
+    }
+    
+    .service-image img {
+        max-height: 250px;
+    }
+}
