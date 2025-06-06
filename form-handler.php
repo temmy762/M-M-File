@@ -1,7 +1,7 @@
 <?php
 /**
  * Memories and More Photo Booths - Form Handler
- * This script processes form submissions from contact.html and inquire.html
+ * This script processes form submissions from contact.html
  * using PHPMailer to send emails through Gmail SMTP
  */
 

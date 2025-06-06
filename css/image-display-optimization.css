@@ -1,0 +1,94 @@
+/* 
+   Enhanced Image Display Optimization
+   Improves performance, loading, and display of gallery images
+*/
+
+/* ===== Base Image Container Optimizations ===== */
+.gallery-item {
+  background-color: #f7f7f7; /* Placeholder color while loading */
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0); /* Hardware acceleration */
+  display: flex; /* Ensure all content is visible */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove the pseudo-element which may be causing layout issues */
+
+/* ===== Basic Image Display - Ensuring All Images Show ===== */
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+/* Simple hover effect only - eliminating complex animations */
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== Responsive Image Optimizations ===== */
+/* Optimize images for various screen sizes */
+@media (max-width: 480px) {
+  .gallery-item img {
+    image-rendering: optimizeSpeed; /* Optimized for lower res screens */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 991px) {
+  .gallery-item {
+    will-change: transform; /* Optimize animations on mid-range devices */
+  }
+}
+
+@media (min-width: 992px) {
+  .gallery-item {
+    backface-visibility: hidden;
+  }
+  
+  /* Higher quality on larger screens with hover */
+  @media (hover: hover) {
+    .gallery-item:hover img {
+      image-rendering: high-quality;
+    }
+  }
+}
+
+/* ===== Performance Optimizations ===== */
+/* Optimize image display for performance */
+.gallery-grid {
+  content-visibility: auto; /* Render only visible content */
+  contain-intrinsic-size: 1000px; /* Size hint for browser */
+}
+
+.gallery-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 300px; /* Size hint */
+}
+
+/* ===== Animation and Transition Optimizations ===== */
+/* Use more efficient blur values for better performance */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item.loading img {
+    filter: blur(5px) brightness(1.05); /* Lighter effect for reduced motion */
+  }
+}
+
+/* ===== Print Media Optimization ===== */
+@media print {
+  .gallery-item img {
+    filter: none !important;
+    opacity: 1 !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== High-Contrast Mode Optimizations ===== */
+@media (forced-colors: active) {
+  .gallery-item::after {
+    display: none; /* Remove shimmer in high contrast mode */
+  }
+}

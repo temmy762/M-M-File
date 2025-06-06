@@ -1,0 +1,336 @@
+/* 
+   Memories and More Photo Booths - Enhanced Mobile Responsiveness
+   Version: 1.0
+   This file contains additional responsive styles to improve the mobile experience
+   across all pages and sections of the website.
+*/
+
+/* ===== GLOBAL RESPONSIVE IMPROVEMENTS ===== */
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+    /* Make all interactive elements easier to tap */
+    button, 
+    .btn, 
+    a, 
+    input[type="submit"], 
+    .nav-menu a, 
+    .gallery-item a,
+    .feature-card,
+    .service-card,
+    .package-card,
+    .direct-contact-card {
+        min-height: 44px; /* Apple's recommended minimum touch target size */
+        min-width: 44px;
+    }
+    
+    /* Improve form field usability on mobile */
+    input, 
+    select, 
+    textarea {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+        padding: 12px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Ensure proper spacing between sections */
+    section {
+        margin-bottom: 30px !important;
+    }
+    
+    /* Improve readability of text */
+    p, li, .card-text {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Ensure proper spacing for content */
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+/* ===== NAVIGATION IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Improve mobile menu usability */
+    .nav-menu {
+        padding-top: 20px !important;
+    }
+    
+    .nav-menu li {
+        margin-bottom: 15px !important;
+    }
+    
+    .nav-menu a {
+        padding: 10px 15px !important;
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    /* Make hamburger menu more visible */
+    .nav-toggle {
+        padding: 10px !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 4px !important;
+    }
+    
+    .nav-toggle span {
+        height: 3px !important;
+        margin: 4px 0 !important;
+    }
+}
+
+/* ===== HERO SECTION IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Ensure hero content is properly centered and readable */
+    .hero-content,
+    .page-header-content {
+        text-align: center !important;
+        padding: 20px 15px !important;
+    }
+    
+    /* Improve hero image display on mobile */
+    .hero {
+        background-position: center center !important;
+        background-size: cover !important;
+    }
+    
+    /* Ensure hero buttons are properly sized and spaced */
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+    
+    .hero-buttons .btn {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 !important;
+    }
+}
+
+/* ===== GRID LAYOUTS IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Ensure all grid layouts stack properly on mobile */
+    .features-grid,
+    .services-grid,
+    .packages-grid,
+    .gallery-grid,
+    .testimonials-grid,
+    .contact-content,
+    .backdrop-gallery,
+    .mini-gallery .gallery-grid,
+    .masonry-gallery {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Special handling for mini-gallery to show 2 columns on larger phones */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .mini-gallery .gallery-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+    
+    /* Ensure cards are properly sized */
+    .feature-card,
+    .service-card,
+    .package-card,
+    .gallery-item,
+    .testimonial-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* ===== GALLERY PAGE IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Improve gallery grid layout */
+    .masonry-gallery {
+        column-count: 1 !important;
+    }
+    
+    @media (min-width: 480px) and (max-width: 768px) {
+        .masonry-gallery {
+            column-count: 2 !important;
+        }
+    }
+    
+    /* Ensure gallery items are properly sized */
+    .gallery-item {
+        margin-bottom: 15px !important;
+        break-inside: avoid !important;
+    }
+    
+    /* Improve gallery filter buttons */
+    .gallery-filter {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .filter-button {
+        padding: 8px 15px !important;
+        margin: 5px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* ===== CONTACT PAGE IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Improve contact form layout */
+    .contact-form {
+        padding: 20px !important;
+    }
+    
+    /* Stack contact info and form on mobile */
+    .contact-content {
+        flex-direction: column !important;
+    }
+    
+    .contact-info,
+    .contact-form-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+    
+    /* Improve direct contact cards */
+    .direct-contact-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 15px !important;
+    }
+    
+    .direct-contact-card i {
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Ensure map is responsive */
+    .map-container {
+        height: 300px !important;
+    }
+}
+
+/* ===== PACKAGES PAGE IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Improve package cards */
+    .package-card {
+        padding: 20px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .package-header h3 {
+        font-size: 20px !important;
+    }
+    
+    .package-price {
+        font-size: 24px !important;
+    }
+    
+    /* Ensure package features list is readable */
+    .package-features li {
+        padding: 8px 0 !important;
+    }
+}
+
+/* ===== FAQ PAGE IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Improve FAQ accordion */
+    .faq-item {
+        margin-bottom: 15px !important;
+    }
+    
+    .faq-question {
+        padding: 15px !important;
+        font-size: 16px !important;
+    }
+    
+    .faq-answer {
+        padding: 15px !important;
+    }
+}
+
+/* ===== FOOTER IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* Improve footer layout */
+    .footer-content {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    
+    .footer-column {
+        width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .footer-social {
+        justify-content: center !important;
+    }
+    
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+}
+
+/* ===== ADDITIONAL FIXES FOR VERY SMALL SCREENS ===== */
+@media (max-width: 375px) {
+    html {
+        font-size: 14px !important;
+    }
+    
+    h1, .hero-content h1 {
+        font-size: 24px !important;
+    }
+    
+    h2, .section-title {
+        font-size: 20px !important;
+    }
+    
+    .btn {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .hero, 
+    .page-header {
+        height: auto !important;
+        min-height: 500px !important;
+    }
+}
+
+/* Ensure all images are responsive */
+img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Ensure videos are responsive */
+.video-container {
+    position: relative !important;
+    padding-bottom: 56.25% !important; /* 16:9 aspect ratio */
+    height: 0 !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+}
+
+.video-container iframe,
+.video-container video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}

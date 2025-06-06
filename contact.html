@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en">    <link rel="stylesheet" href="css/enhanced-mobile-responsive.css">
+    <link rel="stylesheet" href="css/enhanced-mobile-responsive.css">
+    <link rel="stylesheet" href="css/mobile-display-fixes.css">head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Memories and More Photo Booths</title>
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/footer-logo-improvements.css">
     <link rel="stylesheet" href="css/logo-styles.css">
     <link rel="stylesheet" href="css/navbar-styles.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -29,6 +31,136 @@
     <link rel="stylesheet" href="css/mobile-fixes.css">
     <link rel="stylesheet" href="css/hero-alignment.css">
     <link rel="stylesheet" href="css/simple-form.css">
+    <link rel="stylesheet" href="css/mobile-loading-optimization.css">
+    <link rel="stylesheet" href="css/enhanced-mobile-responsiveness.css">
+    <link rel="stylesheet" href="css/enhanced-mobile-responsive.css">
+    
+    <style>
+        /* Direct Contact Info Styles */
+        .contact-direct-info {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .direct-contact-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .direct-contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .contact-card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: #4e73df;
+        }
+        
+        .contact-card-content h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .contact-card-content p {
+            margin: 0 0 5px;
+            font-size: 16px;
+        }
+        
+        .email-link, .phone-link {
+            color: #4e73df;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .email-link:hover, .phone-link:hover {
+            color: #2e59d9;
+            text-decoration: underline;
+        }
+        
+        .booking-info {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #f0f4ff;
+            border-radius: 8px;
+            border-left: 4px solid #4e73df;
+        }
+        
+        .booking-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .booking-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        
+        .booking-checklist li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .booking-checklist li i {
+            color: #4e73df;
+            margin-right: 10px;
+            min-width: 20px;
+        }
+        
+        .cta-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .cta-button .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .direct-contact-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-card-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+                align-self: center;
+            }
+
+            .method-icon {
+                align-self: center;
+                margin: 0 auto 15px;
+            }
+
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -48,7 +180,6 @@
                 <li><a href="event-gallery.html">Event Gallery</a></li>
                 <li><a href="our-booth.html">Our Booths</a></li>
                 <li><a href="packages.html">Packages</a></li>
-                <li><a href="inquire.html">Inquire</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
                 <li><a href="client-events.html">Client Access</a></li>
             </ul>
@@ -70,7 +201,7 @@
                 <!-- Contact Information -->
                 <div class="contact-info">
                     <h2>Get In Touch</h2>
-                    <p>Have questions or want to check availability? Reach out to us using any of the methods below or fill out the contact form.</p>
+                    <p>Have questions or want to check availability? Reach out to us directly using the contact information below.</p>
                     
                     <div class="contact-methods">
                         <div class="contact-method">
@@ -80,7 +211,7 @@
                             <div class="method-details">
                                 <h3>Phone</h3>
                                 <p>763.785.1590</p>
-                                <p class="method-note">Available Monday-Friday, 9am-6pm</p>
+                                <p class="method-note">Available 7 days a week</p>
                             </div>
                         </div>
                         
@@ -91,7 +222,7 @@
                             <div class="method-details">
                                 <h3>Email</h3>
                                 <p>info@MemoriesAndMorePhotoBooths.com</p>
-                                <p class="method-note">We respond within 24-48 hours</p>
+                                <p class="method-note"></p>
                             </div>
                         </div>
                         
@@ -133,72 +264,49 @@
                     </div>
                 </div>
                 
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h2>Send Us a Message</h2>
+                <!-- Direct Contact Information -->
+                <div class="contact-direct-info">
+                    <h2>Contact Us Directly</h2>
+                    <p>For inquiries, availability checks, or to book your photo booth, please contact us directly using the information below:</p>
                     
-                    <!-- Alert Messages -->
-                    <div id="formAlert" class="form-alert" style="display: none;"></div>
-
-                    <!-- Contact Form -->
-                    <form id="contactForm" method="post">
-                        <input type="hidden" name="form_type" value="contact">
-                        
-                        <div class="form-group">
-                            <label for="name">Your Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" required>
-                            <div class="field-error"></div>
+                    <div class="direct-contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-envelope fa-2x"></i>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required>
-                            <div class="field-error"></div>
+                        <div class="contact-card-content">
+                            <h3>Email Us</h3>
+                            <p><a href="mailto:info@MemoriesAndMorePhotoBooths.com" class="email-link">info@MemoriesAndMorePhotoBooths.com</a></p>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                            <div class="field-error"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject <span class="required">*</span></label>
-                            <select id="subject" name="subject" required>
-                                <option value="" selected disabled>Select a Subject</option>
-                                <option value="General Inquiry">General Inquiry</option>
-                                <option value="Availability Check">Availability Check</option>
-                                <option value="Booking Question">Booking Question</option>
-                                <option value="Package Information">Package Information</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <div class="field-error"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message <span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <div class="field-error"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary" id="submitButton">
-                                <span class="button-text">Send Message</span>
-                                <span class="button-loading" style="display: none;">
-                                    <i class="fas fa-spinner fa-spin"></i> Sending...
-                                </span>
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <!-- Form Success Message (initially hidden) -->
-                    <div id="formSuccess" class="form-success" style="display: none;">
-                        <div class="success-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <h3>Thank You!</h3>
-                        <p>Your message has been sent successfully. We'll get back to you as soon as possible.</p>
                     </div>
+                    
+                    <div class="direct-contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-phone fa-2x"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Call Us</h3>
+                            <p><a href="tel:7637851590" class="phone-link">763.785.1590</a></p>
+                            <p>Available 7 days a week</p>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-info">
+                        <h3>Ready to Book?</h3>
+                        <p>To book your photo booth or check availability for your event date, please email or call us with the following information:</p>
+                        <ul class="booking-checklist">
+                            <li><i class="fas fa-calendar-check"></i> Your event date</li>
+                            <li><i class="fas fa-clock"></i> Event start and end time</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Event location</li>
+                            <li><i class="fas fa-users"></i> Estimated number of guests</li>
+                            <li><i class="fas fa-star"></i> Any special requests or questions</li>
+                        </ul>
+                        <div class="cta-button">
+                            <a href="mailto:info@MemoriesAndMorePhotoBooths.com?subject=Photo%20Booth%20Inquiry" class="btn btn-primary">
+                                <i class="fas fa-envelope"></i> Email Us Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -239,7 +347,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="event-gallery.html">Gallery</a></li>
                         <li><a href="packages.html">Packages</a></li>
                         <li><a href="faq.html">FAQs</a></li>
                         <li><a href="contact.html">Contact</a></li>

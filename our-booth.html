@@ -20,20 +20,354 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-branding-responsive.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/booth-custom.css">
     <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/footer-logo-improvements.css">
     <link rel="stylesheet" href="css/logo-styles.css">
     <link rel="stylesheet" href="css/navbar-styles.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/header-fix.css">
-    <link rel="stylesheet" href="css/responsive-enhancements.css">
-    <link rel="stylesheet" href="css/mobile-fixes.css">
-    <link rel="stylesheet" href="css/hero-alignment.css">
-    <link rel="stylesheet" href="css/booth-responsive.css">
-    <link rel="stylesheet" href="css/booth-heading-fix.css">
-    <link rel="stylesheet" href="css/booth-page-alignment-fix.css">
-    <link rel="stylesheet" href="css/booth-section-fix.css">
+    <link rel="stylesheet" href="css/mobile-display-fixes.css">
+    
+    <!-- New Booth Styles - Gallery Theme -->
+    <style>
+        .new-booth-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .booth-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: #000000;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booth-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .booth-header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .booth-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: -0.02em;
+        }
+
+        .booth-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .booth-showcase-section {
+            margin-bottom: 3rem;
+        }
+
+        .booth-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .booth-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .booth-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 3rem;
+        }
+
+        .booth-content.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .booth-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .booth-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .booth-item:hover .booth-image img {
+            transform: scale(1.05);
+        }
+
+        .booth-details {
+            flex: 1;
+            padding: 0 2rem;
+        }
+
+        .booth-details h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .booth-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .booth-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            background: #000000;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover .feature-icon {
+            background: white;
+            color: #000000;
+        }
+
+        .feature-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .cta-section {
+            background: #000000;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .cta-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #000000;
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .new-booth-container {
+                padding: 1.5rem;
+            }
+
+            .booth-content {
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .booth-details {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booth-header {
+                padding: 3rem 1.5rem;
+            }
+
+            .booth-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .booth-header p {
+                font-size: 1.1rem;
+            }
+
+            .booth-content,
+            .booth-content.reverse {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .booth-details h2 {
+                font-size: 2rem;
+            }
+
+            .booth-features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .new-booth-container {
+                padding: 1rem;
+            }
+
+            .booth-header {
+                padding: 2rem 1rem;
+            }
+
+            .booth-header h1 {
+                font-size: 2rem;
+            }
+
+            .booth-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .booth-details h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -53,7 +387,6 @@
                 <li><a href="event-gallery.html">Event Gallery</a></li>
                 <li><a href="our-booth.html" class="active">Our Booths</a></li>
                 <li><a href="packages.html">Packages</a></li>
-                <li><a href="inquire.html">Inquire</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="client-events.html">Client Access</a></li>
             </ul>
@@ -122,16 +455,16 @@
         </div>
     </section>
 
-    <!-- White Booth -->
+    <!-- Open Air Booth Styles -->
     <section class="booth-showcase alt-bg">
         <div class="container">
             <div class="booth-content reverse">
                 <div class="booth-image">
-                    <img src="images/image-19.png" alt="White Photo Booth" onerror="this.src='images/image-20.png'">
+                    <img src="images/image-19.png" alt="Open Air Photo Booth Style" onerror="this.src='images/image-20.png'">
                 </div>
                 <div class="booth-details">
-                    <h2>White Booth</h2>
-                    <p class="booth-description">Our elegant White Booth offers a sleek, modern aesthetic that complements any event décor. With its minimalist design and premium finish, this booth creates a sophisticated photo experience that your guests will love. Perfect for weddings, corporate events, and upscale celebrations where aesthetics matter.</p>
+                    <h2>Elegant Design</h2>
+                    <p class="booth-description">Our open-air booths are available in different styles to match your event aesthetic. These elegant designs complement any event décor with their minimalist look and high-quality construction. The sophisticated photo experience will delight your guests at weddings, corporate events, and upscale celebrations where aesthetics matter.</p>
                     
                     <div class="booth-features">
                         <div class="feature">
@@ -436,7 +769,7 @@
             <h2>Ready to Book Your Photo Booth?</h2>
             <p>Contact us today to check availability for your event date!</p>
             <div class="cta-buttons">
-                <a href="inquire.html" class="btn btn-primary">Get a Quote</a>
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
                 <a href="packages.html" class="btn btn-secondary">View Packages</a>
             </div>
         </div>
@@ -455,7 +788,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="event-gallery.html">Gallery</a></li>
                         <li><a href="packages.html">Packages</a></li>
                         <li><a href="faq.html">FAQs</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -491,5 +824,6 @@
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/booth-image-fallback.js"></script>
+    <script src="js/image-loading-optimizer.js"></script>
 </body>
 </html>

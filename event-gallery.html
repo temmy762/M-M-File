@@ -18,29 +18,319 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Lightbox CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-    
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-branding-responsive.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/footer-logo-improvements.css">
     <link rel="stylesheet" href="css/logo-styles.css">
     <link rel="stylesheet" href="css/navbar-styles.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/header-fix.css">
-    <!-- Gallery Overlay Fix - Added to remove text overlays and improve hover effects -->
-    <link rel="stylesheet" href="css/gallery-overlay-fix.css">
-    <link rel="stylesheet" href="css/responsive-enhancements.css">
-    <link rel="stylesheet" href="css/mobile-fixes.css">
-    <link rel="stylesheet" href="css/hero-alignment.css">
+    <link rel="stylesheet" href="css/mobile-display-fixes.css">
+    
+    <!-- New Gallery Styles -->
+    <style>
+        .new-gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: #000000;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .gallery-header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: -0.02em;
+        }
+
+        .gallery-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-tab {
+            background: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .gallery-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-item .date {
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay-content {
+            transform: translateY(0);
+        }
+
+        .overlay-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .overlay-content span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .new-gallery-container {
+                padding: 1rem;
+            }
+            
+            .gallery-header {
+                padding: 3rem 1.5rem;
+                margin-bottom: 2rem;
+                border-radius: 15px;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
+            }
+            
+            .gallery-header p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                padding: 0 1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .filter-tabs {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .filter-tab {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-header {
+                padding: 2.5rem 1rem;
+            }
+            
+            .gallery-header p {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .new-gallery-container {
+                padding: 0.5rem;
+            }
+            
+            .filter-tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .gallery-header h1 {
+                font-size: 1.6rem;
+                line-height: 1.1;
+            }
+            
+            .gallery-header {
+                padding: 2rem 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .gallery-item-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Hide items with display: none */
+        .gallery-item[style*="display: none"] {
+            display: none !important;
+        }
+
+        /* Footer Logo Styling */
+        .footer-logo-img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-logo-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .footer-logo-img {
+                max-width: 150px;
+                margin: 0 auto 1rem;
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-logo-img {
+                max-width: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Photo Booths Logo"></a>
+                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Booths Logo"></a>
             </div>
             <div class="nav-toggle">
                 <span></span>
@@ -53,210 +343,238 @@
                 <li class="active"><a href="event-gallery.html">Event Gallery</a></li>
                 <li><a href="our-booth.html">Our Booths</a></li>
                 <li><a href="packages.html">Packages</a></li>
-                <li><a href="inquire.html">Inquire</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="client-events.html">Client Access</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
+    <!-- New Gallery Content -->
+    <div class="new-gallery-container">
+        <!-- Gallery Header -->
+        <div class="gallery-header">
             <h1>Our Gallery</h1>
-            <p>Memories captured at events across the Twin Cities</p>
+            <p>Discover the magic moments we've captured at weddings, corporate events, and celebrations across the Twin Cities. Each photo tells a story of joy, laughter, and unforgettable memories.</p>
         </div>
-    </section>
 
-    <!-- Gallery Categories -->
-    <section class="gallery-categories">
-        <div class="container">
-            <div class="category-tabs">
-                <button class="category-tab active" data-category="all">All Events</button>
-                <button class="category-tab" data-category="weddings">Weddings</button>
-                <button class="category-tab" data-category="corporate">Corporate</button>
-                <button class="category-tab" data-category="parties">Parties</button>
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Events</button>
+            <button class="filter-tab" data-filter="wedding">Weddings</button>
+            <button class="filter-tab" data-filter="corporate">Corporate</button>
+            <button class="filter-tab" data-filter="party">Parties</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+            <!-- Wedding Gallery Items -->
+            <div class="gallery-item" data-category="wedding">
+                <img src="images/image-2.jpeg" alt="Elegant wedding celebration setup">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-heart"></i>
+                        <span>Wedding Magic</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Elegant Wedding Celebration</h3>
+                    <p>A beautiful wedding celebration with our premium photo booth capturing every precious moment.</p>
+                    <div class="date">Spring 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="wedding">
+                <img src="images/image-5.jpeg" alt="Wedding reception celebration fun">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-heart"></i>
+                        <span>Love Stories</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Reception Memories</h3>
+                    <p>Guests enjoying our interactive photo booth during the wedding reception.</p>
+                    <div class="date">Summer 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="wedding">
+                <img src="images/image-8.jpeg" alt="Romantic wedding celebration">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-heart"></i>
+                        <span>Forever Moments</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Romantic Photo Session</h3>
+                    <p>Capturing intimate moments with our elegant photo booth setup.</p>
+                    <div class="date">Fall 2024</div>
+                </div>
+            </div>
+
+            <!-- Corporate Gallery Items -->
+            <div class="gallery-item" data-category="corporate">
+                <img src="images/corporatee..jpg" alt="Corporate event celebration">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Professional Events</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Corporate Excellence</h3>
+                    <p>Professional photo booth setup for corporate events and team building activities.</p>
+                    <div class="date">Winter 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="corporate">
+                <img src="images/image-12.png" alt="Business networking event">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-handshake"></i>
+                        <span>Networking</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Business Networking</h3>
+                    <p>Making professional connections fun with our engaging photo booth experience.</p>
+                    <div class="date">Spring 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="corporate">
+                <img src="images/image-15.jpeg" alt="Company celebration">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Company Milestone</h3>
+                    <p>Celebrating corporate achievements with memorable photo booth moments.</p>
+                    <div class="date">Summer 2024</div>
+                </div>
+            </div>
+
+            <!-- Party Gallery Items -->
+            <div class="gallery-item" data-category="party">
+                <img src="images/image-10.jpeg" alt="Birthday party celebration">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-birthday-cake"></i>
+                        <span>Party Fun</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Birthday Celebration</h3>
+                    <p>Making birthday parties extra special with fun props and memorable photos.</p>
+                    <div class="date">Spring 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="party">
+                <img src="images/image-16.jpeg" alt="Anniversary party">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-glass-cheers"></i>
+                        <span>Celebrations</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Anniversary Party</h3>
+                    <p>Capturing decades of love and friendship at this special anniversary celebration.</p>
+                    <div class="date">Fall 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="party">
+                <img src="images/image-20.png" alt="Graduation party">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Milestones</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Graduation Success</h3>
+                    <p>Celebrating academic achievements with our interactive photo booth experience.</p>
+                    <div class="date">Summer 2024</div>
+                </div>
+            </div>
+
+            <!-- Additional Mixed Gallery Items -->
+            <div class="gallery-item" data-category="wedding">
+                <img src="images/image-22.jpeg" alt="Wedding ceremony moments">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-rings-wedding"></i>
+                        <span>Ceremony</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Wedding Ceremony</h3>
+                    <p>Beautiful moments captured during the wedding ceremony with our discreet setup.</p>
+                    <div class="date">Winter 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="party">
+                <img src="images/image-24.jpeg" alt="Holiday party celebration">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-snowflake"></i>
+                        <span>Holidays</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Holiday Celebration</h3>
+                    <p>Festive holiday party with themed props and seasonal decorations.</p>
+                    <div class="date">Winter 2024</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="corporate">
+                <img src="images/image-25.jpeg" alt="Corporate awards ceremony">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-award"></i>
+                        <span>Awards</span>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3>Awards Ceremony</h3>
+                    <p>Recognizing excellence with professional photo booth coverage of the awards ceremony.</p>
+                    <div class="date">Fall 2024</div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Gallery Grid -->
-    <section class="gallery-grid-section">
-        <div class="container">
-            <div class="masonry-gallery">
-                <!-- Wedding Photos -->
-                <div class="gallery-item" data-category="weddings">
-                    <a href="images/image-2.jpeg" data-lightbox="gallery" data-title="Wedding Photo Booth">
-                        <img src="images/image-2.jpeg" alt="Wedding photo booth picture">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Wedding</h3>
-                                <p>Minneapolis, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="weddings">
-                    <a href="images/Yinmu.jpg" data-lightbox="gallery" data-title="Wedding Celebration">
-                        <img src="images/Yinmu.jpg" alt="Wedding celebration photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Wedding Celebration</h3>
-                                <p>St. Paul, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="weddings">
-                    <a href="images/image-6.jpeg" data-lightbox="gallery" data-title="Bride and Groom Photo Booth">
-                        <img src="images/image-6.jpeg" alt="Bride and groom photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Bride & Groom</h3>
-                                <p>Edina, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Corporate Photos -->
-                <div class="gallery-item" data-category="corporate">
-                    <a href="images/image-16.jpeg" data-lightbox="gallery" data-title="Corporate Event Photo Booth">
-                        <img src="images/image-16.jpeg" alt="Corporate event photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Corporate Event</h3>
-                                <p>Downtown Minneapolis</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="corporate">
-                    <a href="images/image-7.jpeg" data-lightbox="gallery" data-title="Company Holiday Party">
-                        <img src="images/image-7.jpeg" alt="Company holiday party photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Holiday Party</h3>
-                                <p>Bloomington, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="corporate">
-                    <a href="images/fatia.jpg" data-lightbox="gallery" data-title="Corporate Event">
-                        <img src="images/fatia.jpg" alt="Corporate event photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Corporate Event</h3>
-                                <p>Plymouth, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Party Photos -->
-                <div class="gallery-item" data-category="corporate">
-                    <a href="images/corporatee..jpg" data-lightbox="gallery" data-title="Corporate Event">
-                        <img src="images/corporatee..jpg" alt="Corporate event photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Corporate Event</h3>
-                                <p>Maple Grove, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="parties">
-                    <a href="images/replaceee.jpg" data-lightbox="gallery" data-title="Celebration Party">
-                        <img src="images/replaceee.jpg" alt="Celebration party photo booth">
-                        <div class="gallery-overlay"></div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="parties">
-                    <a href="images/duplicate3.jpg" data-lightbox="gallery" data-title="Family Celebration">
-                        <img src="images/duplicate3.jpg" alt="Family celebration photo booth">
-                        <div class="gallery-overlay"></div>
-                    </a>
-                </div>
-
-                <!-- More Mixed Photos -->
-                <div class="gallery-item" data-category="corporate">
-                    <a href="images/image-14.jpeg" data-lightbox="gallery" data-title="Product Launch Event">
-                        <img src="images/image-14.jpeg" alt="Product launch event photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Product Launch</h3>
-                                <p>Minnetonka, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery-item" data-category="parties">
-                    <a href="images/reload2.jpg" data-lightbox="gallery" data-title="Family Reunion">
-                        <img src="images/reload2.jpg" alt="Family reunion photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Family Reunion</h3>
-                                <p>Roseville, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="gallery-item" data-category="corporate">
-                    <a href="images/Gbemu.jpg" data-lightbox="gallery" data-title="Corporate Celebration">
-                        <img src="images/Gbemu.jpg" alt="Corporate celebration photo booth">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h3>Corporate Celebration</h3>
-                                <p>Minneapolis, MN</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Create Your Own Photo Memories?</h2>
-            <p>Book a photo booth for your next event and let the fun begin!</p>
-            <div class="cta-buttons">
-                <a href="inquire.html" class="btn btn-primary">Get a Quote</a>
-                <a href="packages.html" class="btn btn-secondary">View Packages</a>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>Memories & More</h3>
-                    <p>Creating memories since 2010</p>
+                    <img src="images/logo.jpg" alt="Memories & More Booths" class="footer-logo-img">
+                    <p>Creating unforgettable memories, one photo at a time.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="event-gallery.html">Gallery</a></li>
                         <li><a href="packages.html">Packages</a></li>
-                        <li><a href="faq.html">FAQs</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i class="fas fa-phone"></i> 763.785.1590</p>
-                    <p><i class="fas fa-envelope"></i> info@memoriesandmorephotobooths.com</p>
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> (763) 234-9999</p>
+                    <p><i class="fas fa-envelope"></i> memoriesandmorephotobooths@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> Blaine, MN (Serving Twin Cities Metro)</p>
                 </div>
                 <div class="footer-social">
@@ -280,8 +598,51 @@
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
+
+    <!-- Gallery Filter Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Update active tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeInUp 0.5s ease forwards';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Add fade in animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>

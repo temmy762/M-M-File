@@ -1,0 +1,196 @@
+/* 
+   Memories and More Photo Booths - Image Loading Optimization
+   Version: 1.0
+*/
+
+/* ===== GLOBAL IMAGE OPTIMIZATIONS ===== */
+
+/* Enable progressive image loading */
+img {
+    transition: opacity 0.3s ease-in;
+    opacity: 1;
+}
+
+/* Apply hardware acceleration for smoother rendering */
+img, .gallery-item, .booth-image {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Enable lazy loading behavior with CSS */
+img.lazy-load {
+    opacity: 0;
+}
+
+img.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* Prevent content layout shift */
+.gallery-item, .booth-image {
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Light gray placeholder */
+}
+
+/* Optimized image sizing */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== GALLERY SPECIFIC OPTIMIZATIONS ===== */
+
+/* Optimize masonry gallery for mobile */
+.masonry-gallery {
+    display: grid;
+    gap: 15px;
+}
+
+/* Optimize image display in gallery */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+/* Responsive gallery layout */
+@media (min-width: 992px) {
+    .masonry-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 300px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .masonry-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 250px;
+    }
+}
+
+@media (max-width: 767px) {
+    .masonry-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+    }
+    
+    /* Faster transitions on mobile for better performance */
+    .gallery-item img {
+        transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+}
+
+@media (max-width: 480px) {
+    .masonry-gallery {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+    }
+}
+
+/* Optimize gallery overlay */
+.gallery-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+}
+
+/* ===== BOOTH PAGE OPTIMIZATIONS ===== */
+
+/* Optimize booth images */
+.booth-image img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Fallback for image loading errors */
+.booth-image {
+    min-height: 200px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+/* Responsive booth images */
+@media (max-width: 992px) {
+    .booth-image img {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .booth-image img {
+        max-height: 350px;
+    }
+    
+    .booth-image {
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booth-image img {
+        max-height: 300px;
+    }
+}
+
+/* Image loading optimization for both pages */
+@media (max-width: 768px) {
+    /* Lower image quality on mobile for faster loading */
+    .gallery-item img, .booth-image img {
+        image-rendering: auto;
+    }
+    
+    /* Reduce animation complexity on mobile */
+    .gallery-item:hover img, .booth-image:hover img {
+        transform: scale(1.03); /* Smaller scale effect for better performance */
+    }
+}
+
+/* ===== LOADING PERFORMANCE ENHANCEMENTS ===== */
+
+/* Remove overly complex animations */
+@media (max-width: 768px) {
+    .gallery-item, .booth-image {
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover, .booth-image:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Prevent images from affecting page load speed */
+img[loading="lazy"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Add specific dimensions to prevent layout shift */
+.gallery-item img, .booth-image img {
+    aspect-ratio: 4/3;
+}
+
+/* Fix for browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 4/3) {
+    .gallery-item::before, .booth-image::before {
+        content: "";
+        display: block;
+        padding-top: 75%; /* 4:3 aspect ratio */
+    }
+    
+    .gallery-item img, .booth-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -1,0 +1,26 @@
+/* 
+   Memories and More Photo Booths - Scroll Down Icon Fix
+   Version: 1.0
+*/
+
+/* Mobile-specific adjustments for scroll down icon */
+@media (max-width: 768px) {
+    /* Move the scroll down icon further down on mobile devices */
+    .scroll-down-icon {
+        bottom: -60px; /* Increased from -24px to move it down */
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    /* Move the scroll down icon even further down on small mobile devices */
+    .scroll-down-icon {
+        bottom: -80px; /* Even more space for very small screens */
+    }
+    
+    /* Make the mouse icon slightly smaller on very small screens */
+    .mouse {
+        width: 22px;
+        height: 36px;
+    }
+}

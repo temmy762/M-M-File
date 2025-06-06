@@ -1,0 +1,169 @@
+/* 
+   Memories and More Photo Booths - Mobile Loading Optimization
+   Version: 1.0
+   This file contains specific optimizations to ensure proper and fast display
+   of "Moments Captured" section and CTA banners on mobile devices.
+*/
+
+/* ===== OPTIMIZE MOMENTS CAPTURED SECTION LOADING ===== */
+
+/* Ensure immediate visibility of section title */
+.mini-gallery .section-title {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Optimize gallery image loading */
+.mini-gallery .gallery-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important; /* Reduce memory usage on mobile */
+}
+
+.mini-gallery .gallery-item img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    will-change: auto !important;
+    transform: none !important;
+    transition: transform 0.3s ease !important; /* Faster transition */
+    
+    /* Add specific size attributes to help browser allocate space immediately */
+    aspect-ratio: 1 / 1;
+    
+    /* Prevent image loading from blocking rendering */
+    content-visibility: auto;
+    
+    /* Improve image loading performance - achieved via HTML attributes instead */
+}
+
+/* Use smaller, optimized images on mobile */
+@media (max-width: 768px) {
+    .mini-gallery .gallery-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important; /* Reduced gap for mobile */
+    }
+    
+    .mini-gallery .gallery-item {
+        height: 150px !important; /* Smaller height for better performance */
+        transition: none !important; /* Remove transitions for better performance */
+    }
+    
+    /* Reduce box-shadow complexity for better rendering */
+    .mini-gallery .gallery-item {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Disable hover effects on mobile for better performance */
+    .mini-gallery .gallery-item:hover img {
+        transform: none !important;
+    }
+    
+    /* Ensure gallery container has defined dimensions to prevent layout shifts */
+    .mini-gallery .gallery-grid.balanced {
+        min-height: 320px !important; /* Approximate height to prevent layout shifts */
+        height: auto !important;
+    }
+}
+
+/* ===== OPTIMIZE CTA BANNER LOADING ===== */
+
+/* Ensure immediate visibility of CTA sections */
+.cta-section,
+.get-quote,
+.services-cta,
+.booth-cta {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    content-visibility: auto !important;
+}
+
+/* Optimize CTA background image loading */
+.cta-section:before,
+.get-quote:before {
+    opacity: 0.2 !important; /* Set initial opacity */
+    transition: none !important;
+    background-size: cover !important;
+    background-position: center !important;
+    will-change: auto !important;
+}
+
+/* Ensure CTA text is visible immediately */
+.cta-section h2,
+.get-quote h2,
+.services-cta h3,
+.booth-cta h3,
+.cta-section p,
+.get-quote p {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Mobile-specific optimizations for CTA sections */
+@media (max-width: 768px) {
+    /* Simplify CTA sections on mobile */
+    .cta-section,
+    .get-quote,
+    .services-cta,
+    .booth-cta {
+        padding: 40px 15px !important;
+        background: var(--primary-color) !important; /* Use solid color instead of gradient for better performance */
+    }
+    
+    /* Remove or simplify background images on mobile */
+    .cta-section:before,
+    .get-quote:before {
+        opacity: 0.1 !important; /* Reduce opacity for better text readability */
+        background-image: none !important; /* Remove background image for better performance */
+    }
+    
+    /* Ensure CTA buttons are visible and properly sized */
+    .cta-buttons,
+    .cta-button {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-top: 20px !important;
+    }
+    
+    .cta-section .btn,
+    .get-quote .btn,
+    .services-cta .btn,
+    .booth-cta .btn,
+    .cta-button .btn {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 5px 0 !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Ensure all text in CTA sections has good contrast */
+@media (max-width: 768px) {
+    .cta-section h2,
+    .get-quote h2,
+    .services-cta h3,
+    .booth-cta h3 {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+        color: white !important;
+    }
+    
+    .cta-section p,
+    .get-quote p {
+        font-size: 16px !important;
+        margin-bottom: 20px !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+}

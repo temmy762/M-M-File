@@ -1,0 +1,923 @@
+/* 
+   Memories and More Photo Booths - Enhanced Mobile Responsiveness
+   Version: 1.1
+   This file contains comprehensive mobile responsiveness improvements
+   for all sections across all pages.
+   Updated with additional enhancements for better display on all devices.
+*/
+
+/* ===== GLOBAL MOBILE ENHANCEMENTS ===== */
+
+/* Ensure proper font sizing across all devices */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Improve heading readability */
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.3 !important;
+    }
+}
+
+/* Ensure proper viewport behavior on all devices */
+@viewport {
+    width: device-width;
+    initial-scale: 1;
+    maximum-scale: 5;
+}
+
+/* Improve touch targets for all interactive elements */
+button, 
+.btn, 
+a, 
+input[type="submit"], 
+input[type="button"], 
+.nav-toggle,
+.gallery-item,
+.service-card,
+.package-card {
+    touch-action: manipulation;
+}
+
+/* Ensure proper spacing for all sections on mobile */
+@media (max-width: 768px) {
+    section {
+        padding: 40px 0;
+        overflow: hidden; /* Prevent horizontal scrolling */
+    }
+    
+    .container {
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Improve spacing between elements */
+    h1, h2, h3, h4, h5, h6, p {
+        margin-bottom: 15px;
+    }
+    
+    /* Ensure all text is readable */
+    p, li, td, th, label, input, textarea, select {
+        font-size: 16px !important; /* Prevents iOS zoom on input focus */
+        line-height: 1.5;
+    }
+}
+
+/* ===== NAVIGATION IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Improve mobile menu usability */
+    .nav-menu {
+        padding-top: 20px;
+    }
+    
+    .nav-menu li {
+        margin: 0;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-menu a {
+        padding: 8px 15px;
+        display: block;
+        font-size: 16px;
+    }
+    
+    /* Improve nav toggle button */
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    
+    /* Ensure logo is appropriately sized */
+    .logo img {
+        max-height: 45px;
+        width: auto;
+    }
+}
+
+/* ===== HERO SECTION IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Fix hero section content alignment */
+    .hero-content,
+    .page-header-content {
+        align-items: center;
+        text-align: center;
+        padding: 0 15px;
+    }
+    
+    /* Improve hero buttons layout */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        gap: 15px;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    /* Fix hero badge visibility */
+    .hero-badge {
+        display: inline-block !important;
+        font-size: 14px;
+        padding: 6px 12px;
+        margin-bottom: 15px;
+    }
+    
+    /* Improve hero feature tags */
+    .hero-features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+    }
+    
+    .feature-tag {
+        font-size: 12px;
+        padding: 6px 10px;
+        white-space: nowrap;
+    }
+}
+
+/* ===== GRID LAYOUTS IMPROVEMENTS ===== */
+
+@media (max-width: 992px) {
+    /* Adjust grid layouts for tablets */
+    .features-grid,
+    .services-grid,
+    .gallery-grid,
+    .backdrop-gallery,
+    .package-grid,
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Adjust grid layouts for mobile */
+    .features-grid,
+    .services-grid,
+    .gallery-grid,
+    .backdrop-gallery,
+    .package-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Center align cards */
+    .feature-card,
+    .service-card,
+    .gallery-item,
+    .package-card,
+    .team-member {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
+/* ===== CARD COMPONENTS IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Improve card spacing and sizing */
+    .feature-card,
+    .service-card,
+    .package-card,
+    .testimonial,
+    .team-member {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure icons are properly sized */
+    .feature-icon,
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 15px;
+    }
+    
+    /* Ensure text is centered */
+    .feature-card h3,
+    .service-card h3,
+    .package-card h3 {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .feature-card p,
+    .service-card p,
+    .package-card p {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+/* ===== GALLERY IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Improve gallery spacing */
+    .gallery-grid {
+        gap: 10px;
+    }
+    
+    /* Ensure gallery items have proper aspect ratio */
+    .gallery-item {
+        aspect-ratio: 1/1;
+        margin-bottom: 10px;
+    }
+    
+    /* Fix lightbox for mobile */
+    .lightbox-content {
+        width: 90%;
+        max-width: 400px;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ===== FORM IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Improve form layout */
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure form elements are properly sized for touch */
+    input, 
+    select, 
+    textarea {
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    /* Improve form button */
+    .form-button,
+    button[type="submit"] {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+    
+    /* Fix contact form layout */
+    .contact-form {
+        padding: 20px;
+    }
+    
+    /* Fix form columns */
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-col {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* ===== CONTACT PAGE SPECIFIC IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Fix contact cards layout */
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .contact-info,
+    .contact-form-container {
+        width: 100%;
+        margin: 0 0 30px 0;
+    }
+    
+    /* Improve contact method cards */
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .method-icon {
+        margin: 0 auto 15px;
+    }
+    
+    .direct-contact-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .contact-card-icon {
+        margin: 0 auto 15px;
+    }
+    
+    /* Fix map container */
+    .map-container {
+        height: 300px;
+    }
+}
+
+/* ===== PACKAGES PAGE SPECIFIC IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Improve package cards */
+    .package-card {
+        padding: 20px;
+    }
+    
+    .package-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .package-price {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+    
+    .package-features {
+        padding-left: 0;
+    }
+    
+    .package-features li {
+        padding: 8px 0 8px 25px;
+    }
+    
+    .package-features li:before {
+        left: 0;
+    }
+    
+    .package-cta {
+        text-align: center;
+    }
+}
+
+/* ===== BOOTH PAGE SPECIFIC IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Fix booth showcase layout */
+    .booth-showcase {
+        flex-direction: column;
+    }
+    
+    .booth-image,
+    .booth-details {
+        width: 100%;
+    }
+    
+    .booth-image {
+        margin-bottom: 20px;
+    }
+    
+    /* Fix booth features */
+    .booth-features {
+        flex-direction: column;
+    }
+    
+    .booth-feature {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+/* ===== FOOTER IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Improve footer layout */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-column {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo img {
+        margin: 0 auto 20px;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ===== ANIMATIONS OPTIMIZATIONS ===== */
+
+@media (max-width: 768px) {
+    /* Reduce or disable complex animations on mobile for better performance */
+    .animate-card,
+    .animate-title,
+    .animate-subtitle,
+    .animate-buttons {
+        animation-duration: 0.5s;
+    }
+    
+    /* Disable parallax effects on mobile */
+    .parallax-section {
+        background-attachment: scroll !important;
+    }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+/* Ensure proper focus states for keyboard navigation */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.btn:focus {
+    outline: 2px solid #4e73df;
+    outline-offset: 2px;
+}
+
+/* Improve color contrast for better readability */
+@media (max-width: 768px) {
+    .hero-content h1,
+    .hero-content h2,
+    .page-header h1,
+    .page-header p {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Optimize animations for mobile devices */
+@media (max-width: 768px) {
+    .animate-on-scroll {
+        animation-duration: 0.5s !important;
+    }
+    
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* Reduce layout shifts on mobile */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .hero,
+    .full-height-section,
+    .page-header {
+        height: auto !important;
+        min-height: 500px !important;
+    }
+    
+    /* Adjust for smaller devices */
+    @media (max-width: 576px) {
+        .hero,
+        .full-height-section,
+        .page-header {
+            min-height: 400px !important;
+        }
+    }
+}
+
+/* ===== ENHANCED GALLERY PAGE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve masonry gallery layout on mobile */
+    .masonry-gallery {
+        column-count: 1 !important;
+    }
+    
+    /* Use 2 columns for larger phones */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .masonry-gallery {
+            column-count: 2 !important;
+        }
+    }
+    
+    /* Ensure proper spacing between gallery items */
+    .gallery-item {
+        margin-bottom: 15px !important;
+        break-inside: avoid !important;
+    }
+    
+    /* Improve gallery filter buttons */
+    .gallery-filter {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .filter-button {
+        padding: 8px 15px !important;
+        margin: 0 !important;
+        font-size: 14px !important;
+        min-width: auto !important;
+    }
+    
+    /* Improve lightbox controls for touch */
+    .lb-prev, .lb-next {
+        min-width: 50px !important;
+        min-height: 50px !important;
+    }
+    
+    /* Improve video gallery on mobile */
+    .video-gallery .video-item {
+        margin-bottom: 20px !important;
+    }
+}
+
+/* ===== ENHANCED CONTACT PAGE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve contact form layout */
+    .contact-form {
+        padding: 20px !important;
+    }
+    
+    /* Stack contact info and form on mobile */
+    .contact-content {
+        flex-direction: column !important;
+    }
+    
+    .contact-info,
+    .contact-form-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+    
+    /* Improve direct contact cards */
+    .direct-contact-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .direct-contact-card i {
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+        font-size: 24px !important;
+    }
+    
+    /* Ensure map is responsive */
+    .map-container {
+        height: 300px !important;
+    }
+    
+    /* Improve form field spacing */
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    /* Make form buttons full width */
+    .contact-form .btn {
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* ===== ENHANCED PACKAGES PAGE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve package cards */
+    .package-card {
+        padding: 20px !important;
+        margin-bottom: 20px !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Ensure proper spacing and sizing for package elements */
+    .package-header {
+        margin-bottom: 15px !important;
+        text-align: center !important;
+    }
+    
+    .package-header h3 {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .package-price {
+        font-size: 24px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Improve package features list */
+    .package-features {
+        margin-bottom: 20px !important;
+    }
+    
+    .package-features li {
+        padding: 8px 0 !important;
+        font-size: 15px !important;
+    }
+    
+    /* Make package buttons full width */
+    .package-card .btn {
+        width: 100% !important;
+    }
+    
+    /* Improve package comparison table */
+    .package-comparison-table {
+        overflow-x: auto !important;
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    /* Improve package add-ons */
+    .add-ons-section {
+        padding: 20px !important;
+    }
+    
+    .add-on-item {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+/* ===== ENHANCED SERVICES PAGE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve services cards */
+    .service-card {
+        padding: 20px !important;
+        margin-bottom: 20px !important;
+        text-align: center !important;
+    }
+    
+    /* Center service icons */
+    .service-icon {
+        margin: 0 auto 15px auto !important;
+    }
+    
+    /* Improve service descriptions */
+    .service-description {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Improve services CTA section */
+    .services-cta {
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+    
+    .services-cta h3 {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Make services CTA button full width */
+    .services-cta .btn {
+        width: 100% !important;
+        max-width: 250px !important;
+    }
+}
+
+/* ===== ENHANCED FAQ PAGE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve FAQ accordion */
+    .faq-item {
+        margin-bottom: 15px !important;
+    }
+    
+    .faq-question {
+        padding: 15px !important;
+        font-size: 16px !important;
+        line-height: 1.4 !important;
+    }
+    
+    .faq-answer {
+        padding: 15px !important;
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Improve FAQ category navigation */
+    .faq-categories {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .category-button {
+        padding: 8px 15px !important;
+        font-size: 14px !important;
+        margin: 0 !important;
+    }
+}
+
+/* ===== ENHANCED OUR BOOTH PAGE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve booth features section */
+    .booth-features {
+        padding: 30px 20px !important;
+    }
+    
+    .booth-feature-item {
+        flex-direction: column !important;
+        text-align: center !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .booth-feature-icon {
+        margin: 0 auto 15px auto !important;
+    }
+    
+    .booth-feature-content h3 {
+        font-size: 18px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Improve booth gallery */
+    .booth-gallery {
+        padding: 30px 20px !important;
+    }
+    
+    .booth-gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Use 2 columns for larger phones */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .booth-gallery-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+    
+    /* Improve booth specs section */
+    .booth-specs {
+        padding: 30px 20px !important;
+    }
+    
+    .specs-table {
+        display: block !important;
+        overflow-x: auto !important;
+    }
+    
+    /* Improve booth CTA section */
+    .booth-cta {
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+    
+    .booth-cta h3 {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .booth-cta .btn {
+        width: 100% !important;
+        max-width: 250px !important;
+    }
+}
+
+/* ===== ENHANCED FOOTER RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    /* Improve footer layout */
+    .footer-content {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 30px !important;
+    }
+    
+    .footer-column {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    /* Center social icons */
+    .footer-social {
+        justify-content: center !important;
+        margin-top: 15px !important;
+    }
+    
+    .footer-social a {
+        margin: 0 10px !important;
+    }
+    
+    /* Improve footer bottom section */
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 10px !important;
+        text-align: center !important;
+        padding: 20px 15px !important;
+    }
+    
+    .footer-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+    }
+    
+    .footer-links a {
+        margin: 0 !important;
+    }
+}
+
+/* ===== EXTRA SMALL DEVICE OPTIMIZATIONS ===== */
+@media (max-width: 375px) {
+    /* Further reduce font sizes */
+    body {
+        font-size: 14px !important;
+    }
+    
+    h1, .hero-content h1, .page-header h1 {
+        font-size: 24px !important;
+    }
+    
+    h2, .section-title {
+        font-size: 20px !important;
+    }
+    
+    h3 {
+        font-size: 18px !important;
+    }
+    
+    /* Adjust button sizes */
+    .btn {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Reduce section padding */
+    section {
+        padding: 30px 0 !important;
+    }
+    
+    /* Adjust form elements */
+    input, select, textarea {
+        padding: 10px !important;
+    }
+    
+    /* Reduce gallery gap */
+    .gallery-grid, .masonry-gallery {
+        gap: 8px !important;
+    }
+    
+    /* Ensure proper spacing for all content */
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
+/* ===== FINAL ACCESSIBILITY IMPROVEMENTS ===== */
+/* Ensure proper focus states for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid #4e73df !important;
+    outline-offset: 2px !important;
+}
+
+/* Ensure proper contrast for text readability */
+@media (max-width: 768px) {
+    .hero-content h1,
+    .hero-content p,
+    .page-header h1,
+    .page-header p {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+    }
+}

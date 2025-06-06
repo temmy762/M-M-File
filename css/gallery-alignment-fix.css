@@ -1,0 +1,177 @@
+/* 
+   Gallery Alignment Fix
+   Ensures perfect alignment and visual balance for the gallery
+*/
+
+/* ===== CONTAINER ALIGNMENT ===== */
+.gallery-section {
+  padding: 60px 0;
+}
+
+.gallery-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER ALIGNMENT ===== */
+.gallery-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.gallery-header h2 {
+  margin: 0 0 15px;
+}
+
+.gallery-header p {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* ===== FILTER BUTTON ALIGNMENT ===== */
+.filter-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* ===== GALLERY GRID ALIGNMENT ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Ensure all gallery items have identical dimensions */
+.gallery-item {
+  aspect-ratio: 1/1; /* Square aspect ratio for consistency */
+  height: auto;
+  width: 100%;
+  margin: 0;
+}
+
+/* Center images perfectly within containers */
+.gallery-item img {
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Align overlay content consistently */
+.gallery-overlay {
+  padding: 12px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.overlay-content {
+  text-align: left;
+}
+
+/* ===== RESPONSIVE ALIGNMENT FIXES ===== */
+
+/* Mobile alignment (up to 767px) */
+@media (max-width: 767px) {
+  .gallery-section {
+    padding: 40px 0;
+  }
+  
+  .gallery-container {
+    padding: 0 10px;
+  }
+  
+  .gallery-header {
+    padding: 0 15px;
+    margin-bottom: 25px;
+  }
+  
+  .gallery-grid {
+    padding: 5px;
+    gap: 8px;
+  }
+  
+  .filter-buttons {
+    gap: 8px;
+    padding: 0 5px;
+  }
+  
+  .gallery-item {
+    border-radius: 6px; /* Slightly smaller radius on mobile */
+  }
+  
+  .gallery-overlay {
+    padding: 8px;
+  }
+}
+
+/* Tablet alignment (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+}
+
+/* Desktop alignment (992px and up) */
+@media (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr) !important; /* Explicitly set 4 columns on desktop */
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .gallery-section {
+    padding: 80px 0;
+  }
+  
+  .gallery-header {
+    margin-bottom: 50px;
+  }
+  
+  .gallery-item {
+    height: auto !important; /* Let height be determined by aspect ratio */
+    aspect-ratio: 1/1; /* Maintain square aspect ratio */
+  }
+}
+
+/* Large desktop alignment (1200px and up) */
+@media (min-width: 1200px) {
+  .gallery-container {
+    padding: 0 30px;
+  }
+  
+  .gallery-grid {
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+/* ===== PERFECT GRID ALIGNMENT ===== */
+/* Force equal dimensions for all gallery items */
+.gallery-grid::after {
+  content: "";
+  display: block;
+  clear: both;
+}

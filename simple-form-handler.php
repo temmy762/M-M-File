@@ -4,11 +4,17 @@
  * Processes form submissions and sends email notifications via SMTP
  */
 
-// Include PHPMailer setup
+// Include email configuration
+require_once __DIR__ . '/email_config.php';
+
+// Include PHPMailer setup with proper error handling
+$phpmailerAvailable = false;
 try {
     require_once __DIR__ . '/phpmailer_setup.php';
+    $phpmailerAvailable = class_exists('PHPMailer\PHPMailer\PHPMailer');
 } catch (Exception $e) {
-    // If PHPMailer setup fails, we'll handle this later
+    // PHPMailer not available, will use basic mail() function as fallback
+    $phpmailerAvailable = false;
 }
 
 // Set headers for AJAX response

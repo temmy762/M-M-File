@@ -1,0 +1,126 @@
+/*
+   Memories and More Photo Booths - Footer Logo Improvements
+   Author: Cascade
+   Version: 1.0
+   Description: Enhanced footer logo styling for better branding and responsiveness
+*/
+
+/* Footer Logo Enhancements */
+.footer-logo-img,
+.footer-logo img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.footer-logo-img:hover,
+.footer-logo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Footer Logo Container */
+.footer-logo {
+    text-align: center;
+}
+
+.footer-logo p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+/* Responsive Footer Logo */
+@media (max-width: 992px) {
+    .footer-logo-img,
+    .footer-logo img {
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-logo-img,
+    .footer-logo img {
+        max-width: 150px;
+        margin: 0 auto 1rem;
+    }
+    
+    .footer-logo {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .footer-logo p {
+        text-align: center;
+        max-width: 300px;
+        margin: 1rem auto 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-logo-img,
+    .footer-logo img {
+        max-width: 120px;
+    }
+    
+    .footer-logo p {
+        font-size: 14px;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo-img,
+    .footer-logo img {
+        max-width: 100px;
+    }
+    
+    .footer-logo p {
+        font-size: 13px;
+        max-width: 200px;
+        line-height: 1.5;
+    }
+}
+
+/* Enhanced Footer Brand Integration */
+.footer-logo {
+    position: relative;
+    z-index: 1;
+}
+
+/* Logo Loading States */
+.footer-logo-img,
+.footer-logo img {
+    opacity: 0;
+    animation: logoFadeIn 0.8s ease forwards;
+}
+
+@keyframes logoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .footer-logo-img,
+    .footer-logo img {
+        box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+    }
+    
+    .footer-logo-img:hover,
+    .footer-logo img:hover {
+        box-shadow: 0 6px 20px rgba(255,255,255,0.15);
+    }
+}

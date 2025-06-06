@@ -1,0 +1,253 @@
+/* 
+   Gallery Enhanced Experience
+   Advanced optimizations for gallery display and performance
+*/
+
+/* ===== GALLERY ITEM ENHANCEMENTS ===== */
+
+/* Smoother animations and transitions */
+.gallery-item {
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.3s ease, 
+              opacity 0.3s ease;
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Hardware acceleration */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Enhanced hover effects */
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1; /* Bring hovered item to front */
+}
+
+/* Improved image loading and display */
+.gallery-item img {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  image-rendering: optimizeQuality;
+}
+
+/* Enhanced overlay styling */
+.gallery-overlay {
+  background: linear-gradient(to bottom, 
+              rgba(0, 0, 0, 0) 0%, 
+              rgba(0, 0, 0, 0.7) 100%);
+  padding: 15px 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Improved text readability */
+.overlay-content h3 {
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.overlay-content p {
+  font-size: 13px;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== GALLERY GRID ENHANCEMENTS ===== */
+
+/* Improved gallery grid layout */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+  contain: layout style;
+}
+
+/* ===== LOADING ANIMATIONS ===== */
+
+/* Add loading animation for images */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: loading-shine 1.5s infinite;
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+}
+
+.gallery-item.loading::before {
+  display: block;
+}
+
+@keyframes loading-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ===== FILTER BUTTON ENHANCEMENTS ===== */
+
+/* Improved filter buttons */
+.filter-btn {
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid #ddd;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.filter-btn:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn.active {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(255, 126, 95, 0.3);
+}
+
+/* ===== MOBILE-SPECIFIC ENHANCEMENTS ===== */
+
+/* Always show overlay on mobile for better UX */
+@media (max-width: 768px) {
+  .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0) 0%, 
+                rgba(0, 0, 0, 0.8) 100%);
+    padding: 10px 8px;
+  }
+  
+  .overlay-content h3 {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  
+  .overlay-content p {
+    font-size: 12px;
+  }
+  
+  /* Disable hover effects on mobile for better performance */
+  .gallery-item:hover {
+    transform: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gallery-item:hover img {
+    transform: none;
+  }
+  
+  /* Optimize filter buttons for mobile */
+  .filter-buttons {
+    gap: 8px;
+  }
+  
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+
+/* Tablet layout (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .gallery-item {
+    height: 180px;
+  }
+}
+
+/* Desktop layout (992px and up) */
+@media (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .gallery-item {
+    height: 220px;
+  }
+  
+  .overlay-content h3 {
+    font-size: 16px;
+  }
+  
+  .overlay-content p {
+    font-size: 14px;
+  }
+}
+
+/* Large desktop layout (1200px and up) */
+@media (min-width: 1200px) {
+  .gallery-grid {
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .gallery-item {
+    height: 250px;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .gallery-grid {
+    display: block;
+  }
+  
+  .gallery-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .gallery-overlay {
+    position: relative;
+    opacity: 1;
+    background: none;
+    color: #000;
+  }
+  
+  .overlay-content {
+    color: #000;
+  }
+}

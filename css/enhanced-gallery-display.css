@@ -1,0 +1,245 @@
+/* 
+   Enhanced Gallery Display
+   Advanced visual presentation for image gallery
+*/
+
+/* ===== GALLERY CONTAINER ENHANCEMENTS ===== */
+
+/* Smoother gallery container with better spacing */
+.gallery-grid-section {
+  background-color: #fafafa;
+  padding-bottom: 60px;
+}
+
+/* Create a cleaner container for images */
+.masonry-gallery {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0;
+  column-gap: 15px;
+  row-gap: 15px;
+}
+
+/* ===== IMPROVED IMAGE PRESENTATION ===== */
+
+/* Enhanced gallery item styling */
+.gallery-item {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateZ(0);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Better hover effects */
+.gallery-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px) translateZ(0);
+}
+
+/* Smoother image presentation */
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backface-visibility: hidden;
+}
+
+/* More subtle zoom effect */
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+/* ===== IMAGE LOADING STATES ===== */
+
+/* Improved loading placeholder */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    #f0f0f0 30%,
+    #f8f8f8 38%,
+    #f8f8f8 40%,
+    #f0f0f0 48%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.5s infinite;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide placeholder when image is loaded */
+.gallery-item.loaded::before {
+  opacity: 0;
+}
+
+/* Loading animation */
+@keyframes loadingShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* ===== GALLERY LAYOUT IMPROVEMENTS ===== */
+
+/* Use CSS Grid for better control on all screen sizes */
+@media (min-width: 768px) {
+  .masonry-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 300px;
+    grid-auto-flow: dense;
+    gap: 15px;
+  }
+  
+  /* Feature certain images to be larger */
+  .gallery-item:nth-child(5n+1) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  .gallery-item:nth-child(8n+3) {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+/* Tablet layout */
+@media (min-width: 480px) and (max-width: 767px) {
+  .masonry-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 250px;
+    gap: 10px;
+  }
+  
+  /* Occasional large image for visual interest */
+  .gallery-item:nth-child(6n+1) {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 479px) {
+  .masonry-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 10px;
+  }
+  
+  .gallery-item {
+    margin-bottom: 10px;
+  }
+  
+  /* Control image height on mobile */
+  .gallery-item img {
+    height: 250px;
+  }
+}
+
+/* ===== OVERLAY STYLING ENHANCEMENTS ===== */
+
+/* More elegant overlay */
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Better text styling */
+.overlay-content {
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.gallery-item:hover .overlay-content {
+  transform: translateY(0);
+}
+
+.overlay-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.overlay-content p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* ===== IMAGE LOADING OPTIMIZATIONS ===== */
+
+/* Use modern formats when available */
+.gallery-item picture {
+  width: 100%;
+  height: 100%;
+}
+
+/* Better blur-up effect */
+.gallery-item img.blur-up {
+  filter: blur(15px);
+  transition: filter 0.4s ease;
+}
+
+.gallery-item img.blur-up.loaded {
+  filter: blur(0);
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+/* Better focus states for keyboard navigation */
+.gallery-item a:focus {
+  outline: 3px solid #4e73df;
+  outline-offset: 3px;
+}
+
+/* Reduce motion option */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item,
+  .gallery-item img,
+  .overlay-content,
+  .gallery-overlay {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .gallery-item:hover img {
+    transform: none !important;
+  }
+}

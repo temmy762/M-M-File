@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Email Test Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Business Email Test Form</h1>
+        <p>This form will test sending emails to your business email using a different method.</p>
+        
+        <div style="margin-bottom: 20px; padding: 15px; background-color: #e9f7ef; border: 1px solid #27ae60; border-radius: 4px;">
+            <h3 style="margin-top: 0;">Quick Test</h3>
+            <p>Click the button below to immediately open your email client with a pre-filled test email:</p>
+            <a href="mailto:info@memoriesandmorephotobooths.com?subject=Quick%20Test%20Email&body=This%20is%20a%20quick%20test%20email%20to%20verify%20your%20business%20email%20is%20working%20properly." style="display: inline-block; background-color: #27ae60; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; font-weight: bold;">Open Quick Test Email</a>
+        </div>
+        
+        <div class="form-options">
+            <label>
+                <input type="radio" name="emailMethod" value="mailto" checked> Method 1: Mailto Link
+            </label>
+            <label>
+                <input type="radio" name="emailMethod" value="formspree"> Method 2: Formspree
+            </label>
+        </div>
+        
+        <hr>
+        
+        <!-- Method 1: Mailto Link -->
+        <div id="mailtoMethod">
+            <h2>Method 1: Mailto Link</h2>
+            <p>This will open your default email client with a pre-filled email to your business address.</p>
+            
+            <form id="mailtoForm">
+                <div class="form-group">
+                    <label for="mailtoName">Your Name:</label>
+                    <input type="text" id="mailtoName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mailtoEmail">Your Email:</label>
+                    <input type="email" id="mailtoEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mailtoSubject">Subject:</label>
+                    <input type="text" id="mailtoSubject" name="subject" value="Test Form Submission" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mailtoMessage">Message:</label>
+                    <textarea id="mailtoMessage" name="message" rows="4" required>This is a test message from the form.</textarea>
+                </div>
+                
+                <button type="button" id="mailtoSubmit">Send via Email Client</button>
+            </form>
+        </div>
+        
+        <hr>
+        
+        <!-- Method 2: Formspree -->
+        <div id="formspreeMethod" style="display: none;">
+            <h2>Method 2: Formspree</h2>
+            <p>This will send the form data through Formspree.io service to your business email.</p>
+            
+            <form id="formspreeForm" action="https://formspree.io/f/info@memoriesandmorephotobooths.com" method="POST">
+                <div class="form-group">
+                    <label for="formName">Your Name:</label>
+                    <input type="text" id="formName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="formEmail">Your Email:</label>
+                    <input type="email" id="formEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="formSubject">Subject:</label>
+                    <input type="text" id="formSubject" name="subject" value="Test Form Submission" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="formMessage">Message:</label>
+                    <textarea id="formMessage" name="message" rows="4" required>This is a test message from the form.</textarea>
+                </div>
+                
+                <button type="submit">Send via Formspree</button>
+            </form>
+        </div>
+        
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Method selection
+            const radioButtons = document.querySelectorAll('input[name="emailMethod"]');
+            const mailtoMethod = document.getElementById('mailtoMethod');
+            const formspreeMethod = document.getElementById('formspreeMethod');
+            
+            function updateMethodVisibility() {
+                if (document.querySelector('input[name="emailMethod"]:checked').value === 'mailto') {
+                    mailtoMethod.style.display = 'block';
+                    formspreeMethod.style.display = 'none';
+                } else {
+                    mailtoMethod.style.display = 'none';
+                    formspreeMethod.style.display = 'block';
+                }
+            }
+            
+            radioButtons.forEach(button => {
+                button.addEventListener('change', updateMethodVisibility);
+            });
+            
+            // Mailto form handling
+            const mailtoForm = document.getElementById('mailtoForm');
+            const mailtoSubmit = document.getElementById('mailtoSubmit');
+            const result = document.getElementById('result');
+            
+            mailtoSubmit.addEventListener('click', function() {
+                const name = document.getElementById('mailtoName').value;
+                const email = document.getElementById('mailtoEmail').value;
+                const subject = document.getElementById('mailtoSubject').value;
+                const message = document.getElementById('mailtoMessage').value;
+                
+                if (!name || !email || !subject || !message) {
+                    result.textContent = 'Please fill out all fields.';
+                    result.className = 'result error';
+                    result.style.display = 'block';
+                    return;
+                }
+                
+                const body = `Name: ${name}
+Email: ${email}
+
+${message}`;
+                const mailtoLink = `mailto:info@memoriesandmorephotobooths.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                window.location.href = mailtoLink;
+                
+                result.innerHTML = 'Email client should open with pre-filled email. If it doesn\'t open automatically, <a href="' + mailtoLink + '" id="directMailtoLink">click here</a> or check your default email client settings.';
+                result.className = 'result success';
+                result.style.display = 'block';
+            });
+            
+            // Formspree form handling
+            const formspreeForm = document.getElementById('formspreeForm');
+            
+            formspreeForm.addEventListener('submit', function(e) {
+                // Let the form submit normally
+                result.textContent = 'Submitting form...';
+                result.className = 'result';
+                result.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

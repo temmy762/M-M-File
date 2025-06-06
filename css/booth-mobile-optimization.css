@@ -1,0 +1,388 @@
+/* 
+   Memories and More Photo Booths - Booth Mobile Optimization
+   Version: 1.0
+*/
+
+/* ===== GLOBAL MOBILE ENHANCEMENTS FOR BOOTH PAGE ===== */
+
+/* Improved section spacing on mobile */
+@media (max-width: 768px) {
+    section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    .section-description {
+        font-size: 15px;
+        margin-bottom: 25px;
+        padding: 0 15px;
+    }
+}
+
+/* ===== BOOTH SHOWCASE SECTIONS (OPEN-AIR, ELEGANT, ENCLOSED) ===== */
+
+/* Enhanced booth section responsiveness */
+@media (max-width: 768px) {
+    .booth-content {
+        gap: 25px;
+        margin: 30px 0;
+    }
+    
+    .booth-image {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .booth-image img {
+        height: auto !important;
+        max-height: 350px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .booth-details h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .booth-description {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+    
+    /* Improve feature display on mobile */
+    .booth-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .feature {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .feature-text h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    .feature-text p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    .booth-features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature {
+        padding: 0;
+    }
+    
+    .booth-image img {
+        max-height: 300px;
+    }
+}
+
+/* ===== TECHNICAL SPECIFICATIONS SECTION ===== */
+
+@media (max-width: 992px) {
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tech-specs {
+        padding: 40px 0;
+    }
+    
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .spec-item {
+        padding: 15px 10px;
+    }
+    
+    .spec-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .spec-item h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    .spec-item p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 576px) {
+    .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .spec-item {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== WHY CHOOSE US SECTION ===== */
+
+@media (max-width: 992px) {
+    .why-choose-us .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-choose-us {
+        padding: 40px 0;
+    }
+    
+    .why-choose-us .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .feature-card {
+        padding: 20px 15px;
+    }
+    
+    .feature-card .feature-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .feature-card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .feature-card p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 576px) {
+    .why-choose-us .features-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .feature-card {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== PROPS SECTION ===== */
+
+.props-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.props-image {
+    flex: 0 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.props-details {
+    flex: 1;
+}
+
+@media (max-width: 992px) {
+    .props-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .props-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .props-details {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .props-section {
+        padding: 40px 0;
+    }
+    
+    .props-content {
+        margin: 20px 0;
+        gap: 25px;
+    }
+    
+    .props-image img {
+        height: auto !important;
+        max-height: 350px;
+        border-radius: 8px;
+    }
+    
+    .props-details h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .props-details p {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .props-image img {
+        max-height: 300px;
+    }
+}
+
+/* ===== ADDONS SECTION ===== */
+
+@media (max-width: 992px) {
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .addons-section {
+        padding: 40px 0;
+    }
+    
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .addon-item {
+        padding: 20px 15px;
+    }
+    
+    .addon-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .addon-item h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    .addon-item p {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+    
+    .addon-price {
+        font-size: 16px;
+    }
+    
+    .center-button {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .addons-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .addon-item {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== CTA SECTION ===== */
+
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 40px 0;
+    }
+    
+    .cta-section h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .cta-section p {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* Animation performance optimization for mobile */
+@media (max-width: 768px) {
+    .animate-card {
+        opacity: 1;
+        transform: translateY(0);
+        transition: none;
+    }
+}

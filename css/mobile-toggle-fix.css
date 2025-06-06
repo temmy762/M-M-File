@@ -1,0 +1,86 @@
+/* 
+   Mobile Toggle Fix - Enhanced styling for mobile menu toggle button
+   Ensures better visibility and touch response on mobile devices
+*/
+
+/* Increase touch target size */
+.nav-toggle {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  position: relative;
+  margin-right: 5px;
+}
+
+/* Improve visibility of toggle bars */
+.nav-toggle span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 3px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+/* Position the three bars */
+.nav-toggle span:nth-child(1) {
+  top: 0px;
+}
+
+.nav-toggle span:nth-child(2) {
+  top: 10px;
+}
+
+.nav-toggle span:nth-child(3) {
+  top: 20px;
+}
+
+/* Active state animation */
+.nav-toggle.active span:nth-child(1) {
+  top: 10px;
+  transform: rotate(135deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  top: 10px;
+  transform: rotate(-135deg);
+}
+
+/* Ensure menu is properly displayed when active */
+.nav-menu.active {
+  display: flex;
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add hover effect for better feedback */
+@media (hover: hover) {
+  .nav-toggle:hover span {
+    background-color: #555;
+  }
+}
+
+/* Ensure proper z-index and positioning */
+@media (max-width: 992px) {
+  .nav-toggle {
+    display: block;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .nav-menu {
+    z-index: 1000;
+  }
+}

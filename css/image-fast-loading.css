@@ -1,0 +1,95 @@
+/* 
+   Image Fast Loading - Critical Performance Optimization
+   Specialized CSS for dramatically reducing image load times
+*/
+
+/* ===== CRITICAL IMAGE OPTIMIZATIONS ===== */
+
+/* Add blur-up effect for low quality images */
+.low-quality-image {
+  filter: blur(10px);
+  transform: scale(1.05); /* Slightly larger to prevent blur edges */
+  transition: filter 0.3s ease-out;
+}
+
+.high-quality-image {
+  filter: blur(0);
+  transform: scale(1);
+  transition: filter 0.3s ease-out;
+}
+
+/* Use smaller thumbnails as background while loading */
+.gallery-item {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Prevent images from blocking rendering */
+img {
+  contain: paint;
+}
+
+/* Enforce size constraints to prevent layout shifts */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure all images maintain aspect ratio to prevent jumps */
+.gallery-item::before {
+  content: "";
+  display: block;
+  padding-top: 75%; /* 4:3 aspect ratio */
+}
+
+.gallery-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Optimize memory usage */
+.gallery-item img {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 225px; /* Default size hint (4:3 ratio) */
+}
+
+/* Reduce quality of far off-screen images */
+.gallery-item.far-from-viewport img {
+  image-rendering: optimizeSpeed;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  /* Smaller initial placeholder for faster mobile loading */
+  .gallery-item::before {
+    background-color: #f0f0f0;
+  }
+  
+  /* Prevent unnecessary animations on mobile */
+  .gallery-item, .gallery-item img {
+    transition: transform 0.2s ease-out;
+  }
+  
+  /* Use faster but lower quality rendering on mobile */
+  img {
+    image-rendering: optimizeSpeed;
+  }
+}
+
+/* Data-saving mode styles */
+.data-saving-mode .gallery-item img {
+  filter: brightness(0.9) contrast(0.9); /* Lower quality appearance */
+}
+
+/* Memory optimizations for large galleries */
+@media (min-width: 992px) {
+  .masonry-gallery {
+    contain: strict;
+    content-visibility: auto;
+    contain-intrinsic-size: 1200px 900px;
+  }
+}

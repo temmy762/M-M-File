@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Memories and More Photo Booths</title>
+    <meta name="description" content="Browse our photo gallery showcasing memorable moments captured at weddings, parties, corporate events and more with our premium photo booths.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/navbar-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/header-fix.css">
+    <!-- Gallery Overlay Fix - Added to remove text overlays and improve hover effects -->
+    <link rel="stylesheet" href="css/gallery-overlay-fix.css">
+    <link rel="stylesheet" href="css/responsive-enhancements.css">
+    <link rel="stylesheet" href="css/mobile-fixes.css">
+    <link rel="stylesheet" href="css/hero-alignment.css">
+    <link rel="stylesheet" href="css/image-loading-optimization.css">
+    <link rel="stylesheet" href="css/gallery-clean.css">
+    <link rel="stylesheet" href="css/image-display-optimization.css">
+    <link rel="stylesheet" href="css/mobile-toggle-fix.css"> <!-- Fix for mobile menu toggle button -->
+    <link rel="stylesheet" href="css/mobile-display-fixes.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Photo Booths Logo"></a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li class="active"><a href="event-gallery.html">Event Gallery</a></li>
+                <li><a href="our-booth.html">Our Booths</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="client-events.html">Client Access</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>Memories captured at events across the Twin Cities</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section - Clean & Optimized -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <!-- Gallery Header -->
+            <header class="gallery-header">
+                <h2>Event Gallery</h2>
+                <p>Browse through our collection of memorable moments captured at various events</p>
+            </header>
+
+            <!-- Clean Filter Buttons - Single set -->
+            <div class="filter-container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Events</button>
+                    <button class="filter-btn" data-category="weddings">Weddings</button>
+                    <button class="filter-btn" data-category="corporate">Corporate</button>
+                    <button class="filter-btn" data-category="parties">Parties</button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid - Using CSS Grid for layout -->
+            <div class="gallery-grid">
+                <!-- Wedding Photos -->
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/image-2.jpeg" data-lightbox="gallery" data-title="Wedding Photo Booth">
+                        <img src="images/image-2.jpeg" alt="Wedding photo booth picture" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Wedding</h3>
+                                <p>Minneapolis, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/Yinmu.jpg" data-lightbox="gallery" data-title="Wedding Celebration">
+                        <img src="images/Yinmu.jpg" alt="Wedding celebration photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Wedding Celebration</h3>
+                                <p>St. Paul, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/image-6.jpeg" data-lightbox="gallery" data-title="Bride and Groom Photo Booth">
+                        <img src="images/image-6.jpeg" alt="Bride and groom photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Bride & Groom</h3>
+                                <p>Edina, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Corporate Photos -->
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-16.jpeg" data-lightbox="gallery" data-title="Corporate Event Photo Booth">
+                        <img src="images/image-16.jpeg" alt="Corporate event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Corporate Event</h3>
+                                <p>Downtown Minneapolis</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-7.jpeg" data-lightbox="gallery" data-title="Company Holiday Party">
+                        <img src="images/image-7.jpeg" alt="Company holiday party photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Holiday Party</h3>
+                                <p>Bloomington, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/fatia.jpg" data-lightbox="gallery" data-title="Corporate Event">
+                        <img src="images/fatia.jpg" alt="Corporate event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Corporate Event</h3>
+                                <p>Plymouth, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Party Photos -->
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/corporatee..jpg" data-lightbox="gallery" data-title="Corporate Event">
+                        <img src="images/corporatee..jpg" alt="Corporate event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Corporate Event</h3>
+                                <p>Maple Grove, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/replaceee.jpg" data-lightbox="gallery" data-title="Celebration Party">
+                        <img src="images/replaceee.jpg" alt="Celebration party photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/duplicate3.jpg" data-lightbox="gallery" data-title="Family Celebration">
+                        <img src="images/duplicate3.jpg" alt="Family celebration photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/duplicate4.jpg" data-lightbox="gallery" data-title="Party Photo Booth">
+                        <img src="images/duplicate4.jpg" alt="Party photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/duplicate.jpg" data-lightbox="gallery" data-title="Birthday Party">
+                        <img src="images/duplicate.jpg" alt="Birthday party photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/image-3.jpeg" data-lightbox="gallery" data-title="Holiday Photo Booth">
+                        <img src="images/image-3.jpeg" alt="Holiday photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <!-- More Mixed Photos -->
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/image-14.jpeg" data-lightbox="gallery" data-title="Product Launch Event">
+                        <img src="images/image-14.jpeg" alt="Product launch event photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Product Launch</h3>
+                                <p>Minnetonka, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/reload2.jpg" data-lightbox="gallery" data-title="Family Reunion">
+                        <img src="images/reload2.jpg" alt="Family reunion photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Family Reunion</h3>
+                                <p>Roseville, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <a href="images/Gbemu.jpg" data-lightbox="gallery" data-title="Corporate Celebration">
+                        <img src="images/Gbemu.jpg" alt="Corporate celebration photo booth">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h3>Corporate Celebration</h3>
+                                <p>Minneapolis, MN</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/graduate.jpeg" data-lightbox="gallery" data-title="Graduation Party">
+                        <img src="images/graduate.jpeg" alt="Graduation party photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="parties">
+                    <a href="images/fateee.jpg" data-lightbox="gallery" data-title="Birthday Bash">
+                        <img src="images/fateee.jpg" alt="Birthday bash photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <a href="images/wedd.jpg" data-lightbox="gallery" data-title="Wedding Reception">
+                        <img src="images/wedd.jpg" alt="Wedding reception photo booth">
+                        <div class="gallery-overlay"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Restructured for better display -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-heading">Ready to Create Your Own Photo Memories?</h2>
+                <p class="cta-text">Book a photo booth for your next event and let the fun begin!</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                    <a href="packages.html" class="btn btn-secondary">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <h3>Memories & More</h3>
+        <p>Creating memories since 2010</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="event-gallery.html">Gallery</a></li>
+          <li><a href="packages.html">Packages</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-phone"></i> 763.785.1590</p>
+        <p><i class="fas fa-envelope"></i> info@memoriesandmorephotobooths.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Blaine, MN (Serving Twin Cities Metro)</p>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/Memories-and-More-Photo-Booths-228725290807237/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Memories and More Photo Booths. All Rights Reserved. Proudly Developed by <a href="https://solvatree.com" target="_blank">SolvaTree</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="scroll-top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/image-loading-optimizer.js"></script>
+<script src="js/enhanced-image-loader.js"></script>
+<script src="js/gallery-display-enhancer.js"></script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/image-loading-optimizer.js"></script>
+    <script src="js/enhanced-image-loader.js"></script>
+    <script src="js/gallery-display-enhancer.js"></script>
+    <script src="js/gallery-filter.js"></script> <!-- Added new gallery filter script -->
+    <script src="js/image-advanced-optimization.js"></script> <!-- Advanced image optimization -->
+    <script src="js/mobile-menu-fix.js"></script> <!-- Fix for mobile menu toggle -->
+</body>
+</html>

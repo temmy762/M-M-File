@@ -1,0 +1,130 @@
+/* 
+   Memories and More Photo Booths - Gallery Mobile Optimization
+   Version: 1.0
+*/
+
+/* Enhanced responsiveness for the gallery section after the category tabs */
+
+/* Make tabs more mobile-friendly */
+@media (max-width: 768px) {
+    .category-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .category-tab {
+        padding: 8px 18px;
+        font-size: 14px;
+        min-width: 120px;
+        text-align: center;
+        border-radius: 25px;
+    }
+}
+
+/* Optimize gallery layout for tablets */
+@media (max-width: 992px) {
+    .masonry-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 250px;
+        gap: 15px;
+    }
+    
+    .gallery-grid-section {
+        padding: 40px 0;
+    }
+}
+
+/* Enhanced mobile optimization */
+@media (max-width: 768px) {
+    .masonry-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+        gap: 12px;
+        padding: 0 10px;
+    }
+    
+    .gallery-item {
+        border-radius: 8px;
+    }
+    
+    /* Improve image loading performance */
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Make overlay content more readable on small screens */
+    .gallery-overlay {
+        background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for better contrast */
+    }
+    
+    .gallery-overlay .overlay-content h3 {
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    .gallery-overlay .overlay-content p {
+        font-size: 12px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    .masonry-gallery {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 240px; /* Slightly taller for better viewing on small screens */
+        gap: 15px;
+    }
+    
+    /* Full width gallery items that scroll nicely */
+    .gallery-item {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    
+    /* Ensure the gallery section has proper padding */
+    .gallery-grid-section {
+        padding: 30px 0;
+    }
+    
+    /* Smaller gaps for category tabs */
+    .category-tabs {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    
+    /* Make tabs full width on very small screens for better tap targets */
+    @media (max-width: 380px) {
+        .category-tabs {
+            flex-direction: column;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .category-tab {
+            width: 100%;
+            margin-bottom: 8px;
+            padding: 10px;
+        }
+    }
+}
+
+/* Image loading optimization */
+.gallery-item img {
+    transition: opacity 0.3s ease-in;
+}
+
+/* Add smooth transitions when filtering gallery items */
+.gallery-item {
+    transition: all 0.3s ease-out;
+}
+
+/* Hide gallery items with JavaScript when filtering */
+.gallery-item.hidden {
+    display: none;
+}
