@@ -100,18 +100,20 @@
             img.style.display = 'block';
             img.style.visibility = 'visible';
             img.style.opacity = '1';
+              // Add error handling
+            img.addEventListener('error', handleImageError);
             
-            // Add error handling
-            img.addEventListener('error', function() {
+            function handleImageError() {
                 console.warn('Failed to load image:', this.src);
                 // Try to reload the image once
                 if (!this.hasAttribute('data-retry')) {
                     this.setAttribute('data-retry', 'true');
+                    const originalSrc = this.src;
                     setTimeout(() => {
-                        this.src = this.src;
+                        this.src = originalSrc + '?retry=' + Date.now();
                     }, 1000);
                 }
-            });
+            }
 
             // Add load success handling
             img.addEventListener('load', function() {
@@ -213,9 +215,7 @@
         if (activeButton) {
             activeButton.classList.add('active');
         }
-    }
-
-    function filterGallery(filter) {
+    }    function filterGallery(filter) {
         // Reset visible cards count when filtering
         updateVisibleCardsCount();
         
@@ -223,26 +223,28 @@
         galleryCards.forEach((card, index) => {
             card.classList.add('fade-out');
             
-            setTimeout(() => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                    card.classList.remove('hidden', 'fade-out');
-                    card.classList.add('fade-in');
-                } else {
-                    card.classList.add('hidden');
-                    card.classList.remove('fade-in', 'fade-out');
-                }
-            }, index * 50);
+            setTimeout(() => animateFilteredCard(card, filter), index * 50);
         });
 
         // Show filtered cards after animation
-        setTimeout(() => {
-            showCards();
-            updateLoadMoreButton();
-            forceImageDisplay();
-        }, 500);
+        setTimeout(showFilteredCards, 500);
     }
-
-    function showCards() {
+    
+    function animateFilteredCard(card, filter) {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.classList.remove('hidden', 'fade-out');
+            card.classList.add('fade-in');
+        } else {
+            card.classList.add('hidden');
+            card.classList.remove('fade-in', 'fade-out');
+        }
+    }
+    
+    function showFilteredCards() {
+        showCards();
+        updateLoadMoreButton();
+        forceImageDisplay();
+    }    function showCards() {
         const filteredCards = getFilteredCards();
         
         filteredCards.forEach((card, index) => {
@@ -251,9 +253,7 @@
                 card.classList.remove('hidden');
                 
                 // Stagger the animation
-                setTimeout(() => {
-                    card.classList.add('fade-in');
-                }, index * 100);
+                setTimeout(() => animateCardIn(card), index * 100);
             } else {
                 card.style.display = 'none';
                 card.classList.add('hidden');
@@ -262,6 +262,10 @@
 
         // Force image display after showing cards
         setTimeout(forceImageDisplay, 100);
+    }
+    
+    function animateCardIn(card) {
+        card.classList.add('fade-in');
     }
 
     function getFilteredCards() {
@@ -275,8 +279,7 @@
         const filteredCards = getFilteredCards();
         const increment = window.innerWidth < 768 ? 4 : 8; // Load fewer on mobile
         const currentlyVisible = visibleCards;
-        
-        visibleCards = Math.min(visibleCards + increment, filteredCards.length);
+          visibleCards = Math.min(visibleCards + increment, filteredCards.length);
         
         // Show newly loaded cards
         for (let i = currentlyVisible; i < visibleCards; i++) {
@@ -285,9 +288,7 @@
                 filteredCards[i].classList.remove('hidden');
                 
                 // Animate in with delay
-                setTimeout(() => {
-                    filteredCards[i].classList.add('fade-in');
-                }, (i - currentlyVisible) * 150);
+                setTimeout(() => animateNewCard(filteredCards[i]), (i - currentlyVisible) * 150);
             }
         }
 
@@ -298,13 +299,18 @@
         
         // Smooth scroll to first new card on mobile
         if (window.innerWidth <= 768 && filteredCards[currentlyVisible]) {
-            setTimeout(() => {
-                filteredCards[currentlyVisible].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest'
-                });
-            }, 500);
+            setTimeout(() => scrollToNewCard(filteredCards[currentlyVisible]), 500);
         }
+    }
+    
+    function animateNewCard(card) {
+        card.classList.add('fade-in');
+    }
+      function scrollToNewCard(card) {
+        card.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
     }
 
     function updateLoadMoreButton() {

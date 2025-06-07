@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Gallery Mobile Test - M&M Photo Booths</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-result {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        
+        .image-test {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+        }
+        
+        .device-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Gallery Mobile Compatibility Test</h1>
+        
+        <div class="device-info" id="deviceInfo">
+            <h3>Device Information</h3>
+            <div id="deviceDetails"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>1. Basic Image Display Test</h3>
+            <p>Testing if images display correctly on this device:</p>
+            <img src="images/image-2.jpeg" alt="Test Image 1" class="image-test" id="testImg1">
+            <img src="images/image-5.jpeg" alt="Test Image 2" class="image-test" id="testImg2">
+            <img src="images/image-10.jpeg" alt="Test Image 3" class="image-test" id="testImg3">
+            <div id="imageTestResult"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>2. CSS Support Test</h3>
+            <div id="cssTestResult"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>3. JavaScript Functionality Test</h3>
+            <div id="jsTestResult"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>4. Gallery Link Test</h3>
+            <p>Test the actual gallery page:</p>
+            <button onclick="testGalleryPage()">Open Gallery in Same Tab</button>
+            <button onclick="testGalleryNewTab()">Open Gallery in New Tab</button>
+            <div id="galleryTestResult"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>5. Performance Test</h3>
+            <button onclick="runPerformanceTest()">Run Performance Test</button>
+            <div id="performanceResult"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>6. Debug Log</h3>
+            <button onclick="clearLog()">Clear Log</button>
+            <button onclick="runAllTests()">Run All Tests</button>
+            <div id="debugLog" class="log"></div>
+        </div>
+    </div>
+
+    <script>
+        // Device Detection
+        function detectDevice() {
+            const ua = navigator.userAgent;
+            const isIOS = /iPad|iPhone|iPod/.test(ua);
+            const isAndroid = /Android/.test(ua);
+            const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+            const isChrome = /Chrome/.test(ua);
+            const isMobile = window.innerWidth <= 768;
+            
+            return {
+                userAgent: ua,
+                isIOS,
+                isAndroid,
+                isSafari,
+                isChrome,
+                isMobile,
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height,
+                viewport: {
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                },
+                pixelRatio: window.devicePixelRatio || 1
+            };
+        }
+
+        function log(message) {
+            const debugLog = document.getElementById('debugLog');
+            const timestamp = new Date().toLocaleTimeString();
+            debugLog.innerHTML += `[${timestamp}] ${message}<br>`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+            console.log(message);
+        }
+
+        function showResult(elementId, status, message) {
+            const element = document.getElementById(elementId);
+            const resultClass = status === 'pass' ? 'pass' : status === 'fail' ? 'fail' : 'warning';
+            element.innerHTML = `<span class="test-result ${resultClass}">${status.toUpperCase()}</span> ${message}`;
+        }
+
+        // Test 1: Device Info
+        function displayDeviceInfo() {
+            const device = detectDevice();
+            const detailsDiv = document.getElementById('deviceDetails');
+            
+            detailsDiv.innerHTML = `
+                <strong>Mobile Device:</strong> ${device.isMobile ? 'Yes' : 'No'}<br>
+                <strong>iOS:</strong> ${device.isIOS ? 'Yes' : 'No'}<br>
+                <strong>Android:</strong> ${device.isAndroid ? 'Yes' : 'No'}<br>
+                <strong>Safari:</strong> ${device.isSafari ? 'Yes' : 'No'}<br>
+                <strong>Chrome:</strong> ${device.isChrome ? 'Yes' : 'No'}<br>
+                <strong>Screen:</strong> ${device.screenWidth} x ${device.screenHeight}<br>
+                <strong>Viewport:</strong> ${device.viewport.width} x ${device.viewport.height}<br>
+                <strong>Pixel Ratio:</strong> ${device.pixelRatio}<br>
+                <strong>User Agent:</strong> ${device.userAgent}
+            `;
+            
+            log('Device info displayed');
+        }
+
+        // Test 2: Image Display
+        function testImageDisplay() {
+            const images = document.querySelectorAll('.image-test');
+            let loadedCount = 0;
+            let failedCount = 0;
+            
+            images.forEach((img, index) => {
+                img.addEventListener('load', function() {
+                    loadedCount++;
+                    log(`Image ${index + 1} loaded successfully`);
+                    updateImageTestResult();
+                });
+                
+                img.addEventListener('error', function() {
+                    failedCount++;
+                    log(`Image ${index + 1} failed to load: ${this.src}`);
+                    updateImageTestResult();
+                });
+            });
+            
+            function updateImageTestResult() {
+                if (loadedCount + failedCount === images.length) {
+                    if (failedCount === 0) {
+                        showResult('imageTestResult', 'pass', `All ${loadedCount} images loaded successfully`);
+                    } else if (loadedCount > 0) {
+                        showResult('imageTestResult', 'warning', `${loadedCount} images loaded, ${failedCount} failed`);
+                    } else {
+                        showResult('imageTestResult', 'fail', `All ${failedCount} images failed to load`);
+                    }
+                }
+            }
+            
+            // Trigger test after a delay
+            setTimeout(updateImageTestResult, 3000);
+        }
+
+        // Test 3: CSS Support
+        function testCSSSupport() {
+            const testElement = document.createElement('div');
+            testElement.style.display = 'grid';
+            
+            const supports = {
+                grid: testElement.style.display === 'grid',
+                flexbox: CSS.supports('display', 'flex'),
+                objectFit: CSS.supports('object-fit', 'cover'),
+                transforms: CSS.supports('transform', 'translateZ(0)'),
+                animations: CSS.supports('animation-name', 'test')
+            };
+            
+            const supportedFeatures = Object.keys(supports).filter(key => supports[key]);
+            const unsupportedFeatures = Object.keys(supports).filter(key => !supports[key]);
+            
+            if (unsupportedFeatures.length === 0) {
+                showResult('cssTestResult', 'pass', `All CSS features supported: ${supportedFeatures.join(', ')}`);
+            } else {
+                showResult('cssTestResult', 'warning', `Missing CSS features: ${unsupportedFeatures.join(', ')}`);
+            }
+            
+            log(`CSS Support - Supported: ${supportedFeatures.join(', ')}, Missing: ${unsupportedFeatures.join(', ')}`);
+        }
+
+        // Test 4: JavaScript Functionality
+        function testJavaScript() {
+            const features = {
+                intersectionObserver: 'IntersectionObserver' in window,
+                fetch: 'fetch' in window,
+                promises: 'Promise' in window,
+                addEventListener: 'addEventListener' in document,
+                querySelector: 'querySelector' in document
+            };
+            
+            const supportedFeatures = Object.keys(features).filter(key => features[key]);
+            const unsupportedFeatures = Object.keys(features).filter(key => !features[key]);
+            
+            if (unsupportedFeatures.length === 0) {
+                showResult('jsTestResult', 'pass', `All JavaScript features supported`);
+            } else {
+                showResult('jsTestResult', 'warning', `Missing JS features: ${unsupportedFeatures.join(', ')}`);
+            }
+            
+            log(`JavaScript Support - Supported: ${supportedFeatures.join(', ')}, Missing: ${unsupportedFeatures.join(', ')}`);
+        }
+
+        // Test 5: Gallery Page
+        function testGalleryPage() {
+            window.location.href = 'event-gallery.html';
+        }
+        
+        function testGalleryNewTab() {
+            window.open('event-gallery.html', '_blank');
+            showResult('galleryTestResult', 'pass', 'Gallery opened in new tab');
+        }
+
+        // Test 6: Performance
+        function runPerformanceTest() {
+            const startTime = performance.now();
+            
+            // Test DOM operations
+            for (let i = 0; i < 1000; i++) {
+                const div = document.createElement('div');
+                div.textContent = 'test';
+                document.body.appendChild(div);
+                document.body.removeChild(div);
+            }
+            
+            const endTime = performance.now();
+            const duration = endTime - startTime;
+            
+            if (duration < 100) {
+                showResult('performanceResult', 'pass', `DOM operations: ${duration.toFixed(2)}ms (Excellent)`);
+            } else if (duration < 300) {
+                showResult('performanceResult', 'warning', `DOM operations: ${duration.toFixed(2)}ms (Good)`);
+            } else {
+                showResult('performanceResult', 'fail', `DOM operations: ${duration.toFixed(2)}ms (Slow)`);
+            }
+            
+            log(`Performance test completed in ${duration.toFixed(2)}ms`);
+        }
+
+        // Utility functions
+        function clearLog() {
+            document.getElementById('debugLog').innerHTML = '';
+        }
+
+        function runAllTests() {
+            log('Running all tests...');
+            displayDeviceInfo();
+            testImageDisplay();
+            testCSSSupport();
+            testJavaScript();
+            log('All tests completed');
+        }
+
+        // Initialize tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            log('Test page loaded');
+            displayDeviceInfo();
+            setTimeout(function() {
+                testImageDisplay();
+                testCSSSupport();
+                testJavaScript();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
