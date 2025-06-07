@@ -1,0 +1,210 @@
+/* Gallery Mobile Image Fix - Force image display on all mobile devices */
+
+/* Mobile-First Image Display Rules */
+@media (max-width: 768px) {
+    /* Force all gallery images to display */
+    .gallery-card img,
+    .card-image img,
+    .gallery-grid img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 180px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        background-color: #f0f0f0 !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Remove any potential hiding styles */
+    .gallery-card img[style*="display: none"] {
+        display: block !important;
+    }
+    
+    .gallery-card img[style*="visibility: hidden"] {
+        visibility: visible !important;
+    }
+    
+    .gallery-card img[style*="opacity: 0"] {
+        opacity: 1 !important;
+    }
+    
+    /* Card image container fixes */
+    .card-image,
+    .gallery-item .gallery-image,
+    .gallery-card .card-image {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        overflow: hidden !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 180px !important;
+        background-color: #f8f9fa !important;
+    }
+    
+    /* Prevent any JavaScript from hiding images */
+    img[data-src],
+    img[loading="lazy"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Force display even if image fails to load */
+    img[src=""], 
+    img:not([src]) {
+        background-color: #e9ecef !important;
+        min-height: 180px !important;
+        display: block !important;
+    }
+}
+
+/* iPhone specific fixes */
+@media (max-width: 480px) {
+    .gallery-card img,
+    .card-image img {
+        height: auto !important;
+        min-height: 160px !important;
+        max-height: 250px !important;
+    }
+    
+    .card-image {
+        height: 160px !important;
+        min-height: 160px !important;
+    }
+}
+
+/* Safari iOS specific image fixes */
+@supports (-webkit-touch-callout: none) {
+    .gallery-card img {
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        -webkit-perspective: 1000 !important;
+        perspective: 1000 !important;
+    }
+    
+    .card-image {
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+    }
+}
+
+/* Android specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    .gallery-card img {
+        image-rendering: auto !important;
+        image-rendering: crisp-edges !important;
+        image-rendering: -webkit-optimize-contrast !important;
+    }
+}
+
+/* Ensure images load even with slow connections */
+.gallery-card img {
+    background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Loading state for images */
+.gallery-card img:not([src]),
+.gallery-card img[src=""] {
+    content: "Loading...";
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #f8f9fa !important;
+    color: #6c757d !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+/* Error state for images */
+.gallery-card img[alt]::after {
+    content: attr(alt);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    display: none;
+}
+
+.gallery-card img[src=""]:after,
+.gallery-card img:not([src]):after {
+    display: block;
+}
+
+/* Force visibility on all potential hiding classes */
+.gallery-card.hidden img,
+.gallery-card.fade-out img,
+.gallery-card[style*="display: none"] img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Intersection Observer support for lazy loading */
+.gallery-card img[data-lazy] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card img[data-lazy].loaded {
+    opacity: 1;
+}
+
+/* Prevent flash of unstyled content */
+.gallery-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.gallery-card .card-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .gallery-card img {
+        filter: contrast(1.2) !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .gallery-card img {
+        transition: none !important;
+        transform: none !important;
+    }
+    
+    .card-overlay {
+        transition: none !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .gallery-card img {
+        display: block !important;
+        break-inside: avoid !important;
+    }
+}
