@@ -1,0 +1,114 @@
+/* 
+   Memories and More Photo Booths - Booth Mobile Image Fix
+   Version: 1.0
+   Specific fixes for booth images not displaying on mobile
+*/
+
+/* ===== MOBILE BOOTH IMAGE FIXES ===== */
+
+/* Force booth images to display properly on all mobile devices */
+@media screen and (max-width: 768px) {
+    .booth-image {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 250px !important;
+        display: block !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+        border-radius: 15px !important;
+        background-color: #f0f0f0 !important;
+        position: relative !important;
+    }
+    
+    .booth-image img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        border-radius: 15px !important;
+        border: none !important;
+        box-shadow: none !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    /* Ensure booth content container doesn't hide images */
+    .booth-content {
+        display: block !important;
+        width: 100% !important;
+        padding: 1.5rem !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .booth-item {
+        width: 100% !important;
+        margin-bottom: 2rem !important;
+        display: block !important;
+        background: white !important;
+        border-radius: 20px !important;
+        overflow: visible !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Fix any potential grid issues */
+    .new-booth-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        background: #f8f9fa !important;
+    }
+    
+    /* Make sure booth details don't interfere */
+    .booth-details {
+        width: 100% !important;
+        margin-top: 1rem !important;
+        display: block !important;
+        padding: 0 !important;
+    }
+    
+    /* Specific image source fixes */
+    img[src*="image-10.jpeg"],
+    img[src*="image-3.jpeg"], 
+    img[src*="image-1.png"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+/* ===== VERY SMALL MOBILE DEVICES ===== */
+
+@media screen and (max-width: 480px) {
+    .booth-image {
+        height: 200px !important;
+    }
+    
+    .booth-content {
+        padding: 1rem !important;
+    }
+}
+
+/* ===== FORCE DISPLAY FOR PROBLEMATIC DEVICES ===== */
+
+@media screen and (max-width: 768px) {
+    /* Override any conflicting styles */
+    .booth-image,
+    .booth-image img {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Ensure images load and display */
+    img[src*="image-"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}

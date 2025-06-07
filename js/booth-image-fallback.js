@@ -21,15 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
  * Fix booth images by directly setting correct sources
  */
 function fixBoothImages() {
-    // Get all booth sections
-    const boothSections = document.querySelectorAll('.booth-showcase');
+    // Get all booth images in the new gallery theme structure
+    const boothImages = document.querySelectorAll('.booth-image img');
     
-    boothSections.forEach(section => {
-        // Find the heading and image
-        const heading = section.querySelector('h2')?.textContent;
-        const imgElement = section.querySelector('.booth-image img');
-        
-        if (!imgElement) return;
+    boothImages.forEach(imgElement => {
+        // Find the booth heading
+        const boothContent = imgElement.closest('.booth-content');
+        const heading = boothContent?.querySelector('h2')?.textContent;
         
         // Apply correct image based on booth type
         if (heading === 'Open-Air Style Booth') {
@@ -67,7 +65,8 @@ function handleBoothImageFallbacks() {
             console.log(`Image failed to load: ${originalSrc}`);
             
             // Check which booth type this is
-            const boothHeading = img.closest('.booth-content')?.querySelector('h2')?.textContent;
+            const boothContent = img.closest('.booth-content');
+            const boothHeading = boothContent?.querySelector('h2')?.textContent;
             
             // Apply appropriate fallback based on booth type
             if (boothHeading === 'Open-Air Style Booth') {

@@ -136,23 +136,40 @@ function optimizeBoothImages() {
     boothImages.forEach(img => {
         // Ensure proper sizing
         if (window.innerWidth <= 480) {
-            img.style.maxHeight = '300px';
+            img.style.maxHeight = '250px';
+            img.style.width = '100%';
+            img.style.height = '250px';
         } else if (window.innerWidth <= 768) {
-            img.style.maxHeight = '350px';
+            img.style.maxHeight = '300px';
+            img.style.width = '100%';
+            img.style.height = '300px';
         } else if (window.innerWidth <= 992) {
             img.style.maxHeight = '400px';
         }
+        
+        // Ensure images are visible on mobile
+        img.style.display = 'block';
+        img.style.visibility = 'visible';
+        img.style.objectFit = 'cover';
         
         // Add placeholder until loaded
         const parent = img.parentElement;
         parent.style.backgroundColor = '#f0f0f0';
         
-        // Show image when loaded
-        img.style.opacity = '0';
-        img.onload = function() {
-            this.style.opacity = '1';
-            parent.style.backgroundColor = 'transparent';
-        };
+        // Show image when loaded (but don't hide it initially on mobile)
+        if (window.innerWidth > 768) {
+            img.style.opacity = '0';
+            img.onload = function() {
+                this.style.opacity = '1';
+                parent.style.backgroundColor = 'transparent';
+            };
+        } else {
+            // On mobile, keep images visible
+            img.style.opacity = '1';
+            img.onload = function() {
+                parent.style.backgroundColor = 'transparent';
+            };
+        }
     });
 }
 

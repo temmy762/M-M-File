@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Photo Booths - Memories and More Photo Booths</title>
+    <meta name="description" content="Explore our modern open-air and enclosed photo booth options. High-quality equipment with professional printing for your special event.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-branding-responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/footer-logo-improvements.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/navbar-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/header-fix.css">
+    <link rel="stylesheet" href="css/mobile-display-fixes.css">
+    
+    <!-- New Booth Styles - Gallery Theme -->
+    <style>
+        .new-booth-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .booth-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: #000000;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booth-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .booth-header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .booth-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: -0.02em;
+        }
+
+        .booth-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .booth-showcase-section {
+            margin-bottom: 3rem;
+        }
+
+        .booth-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .booth-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .booth-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 3rem;
+        }
+
+        .booth-content.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .booth-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .booth-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .booth-item:hover .booth-image img {
+            transform: scale(1.05);
+        }
+
+        .booth-details {
+            flex: 1;
+            padding: 0 2rem;
+        }
+
+        .booth-details h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .booth-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .booth-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            background: #000000;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover .feature-icon {
+            background: white;
+            color: #000000;
+        }
+
+        .feature-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .cta-section {
+            background: #000000;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .cta-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #000000;
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .new-booth-container {
+                padding: 1.5rem;
+            }
+
+            .booth-content {
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .booth-details {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booth-header {
+                padding: 3rem 1.5rem;
+            }
+
+            .booth-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .booth-header p {
+                font-size: 1.1rem;
+            }
+
+            .booth-content,
+            .booth-content.reverse {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .booth-details h2 {
+                font-size: 2rem;
+            }
+
+            .booth-features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .new-booth-container {
+                padding: 1rem;
+            }
+
+            .booth-header {
+                padding: 2rem 1rem;
+            }
+
+            .booth-header h1 {
+                font-size: 2rem;
+            }
+
+            .booth-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .booth-details h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.jpg" alt="Memories & More Photo Booths Logo"></a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="event-gallery.html">Event Gallery</a></li>
+                <li><a href="our-booth.html" class="active">Our Booths</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="client-events.html">Client Access</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Photo Booths</h1>
+            <p>Modern, sleek, and designed to impress</p>
+        </div>
+    </section>
+
+    <!-- Open Air Booth -->
+    <section class="booth-showcase">
+        <div class="container">
+            <div class="booth-content">
+                <div class="booth-image">
+                    <img src="images/image-11.png" alt="Open-Air Style Photo Booth">
+                </div>
+                <div class="booth-details">
+                    <h2>Open-Air Style Booth</h2>
+                    <p class="booth-description">Our Open-Air Style Booth is a beauty! This modern, sleek, and illuminating look draws people in every time. Paired with one of our beautiful backdrops and you have a huge crowd-pleaser! This style of booth is great for all types of events. It is perfect for getting people in line and engaged as well.</p>
+                    
+                    <div class="booth-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Spacious Design</h3>
+                                <p>Perfect for large groups and engaging experiences</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Group-Friendly</h3>
+                                <p>Fits large groups comfortably</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Instant Printing</h3>
+                                <p>Photos ready in just 10 seconds</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Professional Camera</h3>
+                                <p>High-quality images every time</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Air Booth Styles -->
+    <section class="booth-showcase alt-bg">
+        <div class="container">
+            <div class="booth-content reverse">
+                <div class="booth-image">
+                    <img src="images/image-19.png" alt="Open Air Photo Booth Style" onerror="this.src='images/image-20.png'">
+                </div>
+                <div class="booth-details">
+                    <h2>Elegant Design</h2>
+                    <p class="booth-description">Our open-air booths are available in different styles to match your event aesthetic. These elegant designs complement any event décor with their minimalist look and high-quality construction. The sophisticated photo experience will delight your guests at weddings, corporate events, and upscale celebrations where aesthetics matter.</p>
+                    
+                    <div class="booth-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Premium Finish</h3>
+                                <p>Elegant white exterior for upscale events</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Sleek Design</h3>
+                                <p>Modern look that enhances any venue</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Premium Lighting</h3>
+                                <p>Professional lighting for flawless photos</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Digital Sharing</h3>
+                                <p>Instant social media integration available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enclosed Booth -->
+    <section class="booth-showcase">
+        <div class="container">
+            <div class="booth-content">
+                <div class="booth-image">
+                    <img src="images/image-1.png" alt="Enclosed Photo Booth">
+                </div>
+                <div class="booth-details">
+                    <h2>Enclosed Booth</h2>
+                    <p class="booth-description">Looking for privacy and an old-school look? The Enclosed Booth is just what you're looking for. Professional and so good looking, this is your best chance to sneak in a "photo bomb"! Guests sit down and shut the curtains while they take their fun photos!</p>
+                    
+                    <div class="booth-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-door-closed"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Private Experience</h3>
+                                <p>Curtained booth for intimate photo sessions</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-couch"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Comfortable Seating</h3>
+                                <p>Bench seating for up to 10 people</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Touch Screen</h3>
+                                <p>Intuitive interface for easy operation</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Classic Design</h3>
+                                <p>Nostalgic photo booth experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Technical Specifications -->
+    <section class="tech-specs">
+        <div class="container">
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3>Camera System</h3>
+                    <p>Professional DSLR camera with studio-quality lens</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>Printer</h3>
+                    <p>Dye-sublimation printer for smudge-proof, lab-quality prints</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Software</h3>
+                    <p>Custom software with color/B&W options and digital sharing</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Lighting</h3>
+                    <p>Professional studio lighting for perfect exposure</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3>Booth Size</h3>
+                    <p>Enclosed: 8'L x 5'W x 7'H | Open-Air: Customizable setup</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Power</h3>
+                    <p>Standard 110V outlet required within 25 feet</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Connectivity</h3>
+                    <p>Optional WiFi for instant social media uploads</p>
+                </div>
+                <div class="spec-item animate-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Setup Time</h3>
+                    <p>60-90 minutes before your event start time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3>Premium Equipment</h3>
+                    <p>Professional DSLR cameras and studio-quality lighting for perfect photos every time</p>
+                </div>
+                <div class="feature-card animate-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>Instant Printing</h3>
+                    <p>High-speed dye-sublimation printers deliver smudge-proof, lab-quality prints in seconds</p>
+                </div>
+                <div class="feature-card animate-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Professional Staff</h3>
+                    <p>Friendly, experienced attendants ensure your photo booth runs flawlessly all event long</p>
+                </div>
+                <div class="feature-card animate-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Easy Setup</h3>
+                    <p>We handle all technical aspects from delivery to setup to teardown - you just enjoy!</p>
+                </div>
+                <div class="feature-card animate-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Customizable</h3>
+                    <p>Personalized photo layouts, backdrops, and props to match your event theme perfectly</p>
+                </div>
+                <div class="feature-card animate-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>5-Star Service</h3>
+                    <p>Consistently rated 5 stars by our clients for reliability, quality and experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Props Section -->
+    <section class="props-section">
+        <div class="container">
+            <div class="props-content">
+                <div class="props-image">
+                    <img src="images/fun-props-collection.jpg" alt="Photo booth props collection">
+                </div>
+                <div class="props-details">
+                    <h2>Fun Props Collection</h2>
+                    <p>Our extensive collection of high-quality props adds an extra layer of fun to your photo booth experience. From silly hats and glasses to signs and themed accessories, we have everything you need to create memorable and entertaining photos.</p>
+                    <p>Props are included in our Package #2 or can be added to any package for just $50.</p>
+                    <a href="packages.html" class="btn btn-primary">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Add-Ons -->
+    <section class="addons-section">
+        <div class="container">
+            <h2 class="section-title">Available Add-Ons</h2>
+            <p class="section-description">Enhance your photo booth experience with these popular add-ons</p>
+            
+            <div class="addons-grid">
+                <div class="addon-item animate-card">
+                    <div class="addon-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Guest Book</h3>
+                    <p>Custom scrapbook with copies of all photos and guest messages</p>
+                    <span class="addon-price">$75</span>
+                </div>
+                <div class="addon-item animate-card">
+                    <div class="addon-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Digital Sharing</h3>
+                    <p>Digital link with all photos from your event</p>
+                    <span class="addon-price">Ask for pricing</span>
+                </div>
+                <div class="addon-item animate-card">
+                    <div class="addon-icon">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <h3>DVD of All Images</h3>
+                    <p>High-resolution digital copies of all photos</p>
+                    <span class="addon-price">$50</span>
+                </div>
+                <div class="addon-item animate-card">
+                    <div class="addon-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Personalized Photo Layouts</h3>
+                    <p>Custom design with names, date, and event details</p>
+                    <span class="addon-price">$50</span>
+                </div>
+                <div class="addon-item animate-card">
+                    <div class="addon-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3>Props</h3>
+                    <p>Fun collection of hats, glasses, signs and more</p>
+                    <span class="addon-price">$50</span>
+                </div>
+                <div class="addon-item animate-card">
+                    <div class="addon-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Additional Hour</h3>
+                    <p>Extend your photo booth rental time</p>
+                    <span class="addon-price">$150/hour</span>
+                </div>
+            </div>
+            
+            <div class="center-button">
+                <a href="packages.html" class="btn btn-primary">View All Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Book Your Photo Booth?</h2>
+            <p>Contact us today to check availability for your event date!</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <a href="packages.html" class="btn btn-secondary">View Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Memories & More</h3>
+                    <p>Creating memories since 2010</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="event-gallery.html">Gallery</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> 763.785.1590</p>
+                    <p><i class="fas fa-envelope"></i> info@memoriesandmorephotobooths.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Blaine, MN (Serving Twin Cities Metro)</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/Memories-and-More-Photo-Booths-228725290807237/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Memories and More Photo Booths. All Rights Reserved. Proudly Developed by <a href="https://solvatree.com" target="_blank">SolvaTree</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/booth-image-fallback.js"></script>
+    <script src="js/image-loading-optimizer.js"></script>
+</body>
+</html>
